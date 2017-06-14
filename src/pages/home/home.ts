@@ -66,10 +66,6 @@ export class HomePage {
 
   }
 
-  // scanBarCode() {
-  //   this.navCtrl.push(ScanBarCodePage);
-  // }
-
   showCategories() {
     this.navCtrl.push(CategoriesPage);
   }
