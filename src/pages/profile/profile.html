@@ -1,0 +1,55 @@
+<!--
+  Generated template for the ProfilePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+
+<ion-header>
+
+    <header myTitle="Profile"></header>
+
+</ion-header>
+
+<ion-content padding>
+
+    <ion-card id="bottomCard">
+
+        <ion-card-header (click)="editData()">
+            <a href="#">Edit Data</a>
+        </ion-card-header>
+
+        <div *ngFor="let user of ListUsers()">
+            <ion-list *ngIf="user.email == email">
+                <button ion-item>
+            <ion-icon name="md-person" item-left (click)="listAddresses()"></ion-icon>
+                {{user.userName}}
+            </button>
+
+                <button ion-item (click)="listMobiles()">
+            <ion-icon name="md-mail" item-left></ion-icon>
+                {{user.email}}
+            </button>
+
+                <button ion-item>
+                <ion-icon name="md-call" item-left></ion-icon>
+                        {{user.mobile}}
+                <ion-icon name="md-add-circle" item-right></ion-icon>
+            </button>
+                <!--<button>
+                    <ion-icin name="md-add-circle" item-right></ion-icin>
+                </button>-->
+
+                <button ion-item>
+            <ion-icon name="md-navigate" item-left></ion-icon>
+                {{user.country}}/ {{user.city}}/{{user.state}}
+                <ion-icon name="md-add-circle" item-right></ion-icon>
+            </button>
+
+            </ion-list>
+        </div>
+
+    </ion-card>
+
+</ion-content>

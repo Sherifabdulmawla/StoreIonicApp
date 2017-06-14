@@ -1,0 +1,38 @@
+<ion-header>
+    <header myTitle="Cart"></header>
+</ion-header>
+
+
+<ion-content padding>
+
+    <div class="row header" *ngIf="checkArrLength()>0">
+        <div class="col">product name</div>
+        <div class="col">barcode</div>
+        <div class="col">quantity</div>
+        <div class="col">price</div>
+        <div class="col"></div>
+    </div>
+
+    <div class="row" *ngFor="let product of Listproducts()">
+        <div class="col">{{product.name}}</div>
+        <div class="col" id="inputBarCode">{{product.barcode}}</div>
+        <div class="col"><input type="number" value={{product.quantity}} id="inputNum"></div>
+        <div class="col">{{product.price}}$</div>
+        <div class="col"><button class="button" id="inputdelete" style="background-color:white" (click)="deleteProduct(product.id)"><ion-icon name="md-trash"></ion-icon></button></div>
+    </div>
+    <br/>
+    <div *ngIf="checkArrLength()>0">
+        <button (click)="deleteAll()" ion-button full>delete all</button>
+    </div>
+    <div *ngIf="checkArrLength()>0">
+        <button (click)="continueShopping()" ion-button full>Continue shopping</button>
+    </div>
+    <div *ngIf="checkArrLength()>0">
+        <button (click)="checkOut()" ion-button full>Checkout</button>
+    </div>
+
+    <div *ngIf="checkArrLength()==0" id="emptyDiv">
+        <span>Empty</span>
+    </div>
+
+</ion-content>

@@ -1,0 +1,37 @@
+<ion-header>
+    <header myTitle="Checkout"></header>
+</ion-header>
+
+<ion-content padding>
+
+    <ion-card>
+        <ion-card-header>
+            Header
+        </ion-card-header>
+        <ion-card-content>
+            total price
+        </ion-card-content>
+    </ion-card>
+
+    <div *ngFor="let user of ListUsers()">
+        <ion-list *ngIf="user.email==email">
+            <ion-item>
+                <ion-label stacked>address</ion-label>
+                <ion-input type="text" value={{user.city}} #address></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label stacked>Mobile</ion-label>
+                <ion-input type="text" value={{user.mobile}} #mobile></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>Date</ion-label>
+                <ion-datetime displayFormat="MMM DD, HH:mm" min="2017" max="2018-10-31" [(ngModel)]="myDate" #date>
+                </ion-datetime>
+            </ion-item>
+        </ion-list>
+    </div>
+
+    <button ion-button full (click)="confirm()"> confirm </button>
+
+</ion-content>

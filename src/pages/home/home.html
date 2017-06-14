@@ -1,0 +1,27 @@
+<ion-header>
+    <header myTitle="Home"></header>
+</ion-header>
+
+<ion-content has-header>
+
+    <div id="topContainer">
+        <button (click)="scanBarCode()" ion-button full id="scanBtn">Scan Bar Code</button>
+    </div>
+
+    <div id="bottomContainer">
+        <div id="topLeft">
+            <button (click)="showHistory()" ion-button full icon-left>History</button>
+        </div>
+        <div id="topRight">
+            <button (click)="showCategories()" ion-button full icon-left>Show Products</button>
+        </div>
+        <div id="bottomLeft">
+            <button (click)="showCart()" ion-button full icon-left>Cart</button>
+        </div>
+        <div id="bottomRight">
+            <button (click)="showProfile()" ion-button full icon-left>Profile</button>
+        </div>
+        <!--<input type="hidden" value={{result.text}} [(ngModel)]="text">-->
+    </div>
+
+</ion-content>

@@ -1,0 +1,42 @@
+<ion-header>
+
+    <header myTitle={{product_name}}></header>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <div *ngFor="let product of product">
+        <ion-card>
+
+            <img src="../../assets/img/iphon7.jpg">
+
+            <ion-card-content>
+                <p>{{product.description}}</p>
+            </ion-card-content>
+
+            <ion-row>
+                <ion-col center text-center>
+                    <ion-note>
+                        {{product.price}}
+                    </ion-note>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col center text-center>
+                    <input type="number" id="productsNum" value="1" #quantity>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col center text-center>
+                    <button (click)="presentToast(product.name,product.barcode,quantity.value,product.price,product.description,product.quantity)" ion-button full icon-left>Add To Cart</button>
+                </ion-col>
+            </ion-row>
+
+        </ion-card>
+    </div>
+
+</ion-content>

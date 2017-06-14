@@ -1,0 +1,46 @@
+<ion-header>
+
+    <header myTitle="Edit"></header>
+
+</ion-header>
+
+
+
+
+<ion-content padding>
+
+    <div *ngFor="let user of ListUsers()">
+        <ion-grid *ngIf="user.email == email">
+            <ion-row>
+                <ion-col>
+                    <input type="text" class="inputText" value={{user.userName}} full>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col>
+                    <input type="text" class="inputText" value={{user.email}}>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col>
+                    <input type="text" class="inputText" value={{user.mobile}}>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col>
+                    <input type="text" class="inputText" value={{user.city}}>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col>
+                    <button (click)="EditData()" ion-button full icon-left>Keep Changes</button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+
+</ion-content>

@@ -1,0 +1,58 @@
+<ion-header>
+
+    <header myTitle="Scan Barcode"></header>
+
+</ion-header>
+
+
+
+<ion-content padding>
+    <ion-grid>
+
+        <ion-row>
+            <ion-col>
+                <div *ngIf="result">
+                    {{result.text}}
+                </div>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col>
+                <div *ngIf="result">
+                    {{product}}
+                </div>
+            </ion-col>
+        </ion-row>
+
+        <!--<ion-row>
+            <ion-col>
+                <div *ngIf="result">
+                    {{result.format}}
+                </div>
+            </ion-col>
+        </ion-row>-->
+
+        <!--<ion-row>
+            <ion-col>
+                <div *ngIf="result">
+                    {{result.cancelled}}
+                </div>
+            </ion-col>
+        </ion-row>-->
+
+        <ion-row>
+            <ion-col>
+                <button ion-button full (click)="addtoCart(result.text)">add to cart</button>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col>
+                <button ion-button full (click)="cancel()">Cancel</button>
+            </ion-col>
+        </ion-row>
+
+
+    </ion-grid>
+</ion-content>
