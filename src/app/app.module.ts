@@ -25,7 +25,6 @@ import { CategoriesPage } from '../pages/categories/categories';
 import { ProductsListPage } from '../pages/products-list/products-list';
 import { ProductPage } from '../pages/product/product';
 import { EditDataPage } from '../pages/edit-data/edit-data';
-import { ScanBarCodePage } from '../pages/scan-bar-code/scan-bar-code';
 import { CartPage } from '../pages/cart/cart';
 import { CheckoutPage } from "../pages/checkout/checkout";
 import { SubCategoryPage } from "../pages/sub-category/sub-category";
@@ -45,7 +44,6 @@ import { HeaderComponent } from '../components/header/header';
     ProductsListPage,
     ProductPage,
     EditDataPage,
-    ScanBarCodePage,
     CartPage,
     CheckoutPage,
     SubCategoryPage,
@@ -73,7 +71,6 @@ import { HeaderComponent } from '../components/header/header';
     ProductsListPage,
     ProductPage,
     EditDataPage,
-    ScanBarCodePage,
     CartPage,
     CheckoutPage,
     SubCategoryPage,

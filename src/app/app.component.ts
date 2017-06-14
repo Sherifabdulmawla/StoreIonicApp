@@ -7,7 +7,6 @@ import { Storage } from '@ionic/storage';
 import { HomePage } from '../pages/home/home';
 import { ProfilePage } from '../pages/profile/profile';
 import { LoginPage } from '../pages/login/login';
-import { ScanBarCodePage } from '../pages/scan-bar-code/scan-bar-code';
 import { CategoriesPage } from '../pages/categories/categories';
 import { CartPage } from '../pages/cart/cart';
 import { OrderHistoryPage } from "../pages/order-history/order-history";
@@ -38,7 +37,6 @@ export class MyApp {
       if(val != null){
         this.pages = [
           { title: 'Home', component: HomePage },
-          { title: 'shop Now',component:ScanBarCodePage},
           { title: 'profile',component:ProfilePage},
           { title: 'Cart' , component:CartPage},
           { title: 'Categories' , component:CategoriesPage},
@@ -47,7 +45,6 @@ export class MyApp {
       } else if(val == null) {
         this.pages = [
           { title: 'Home', component: HomePage },
-          { title: 'shop Now',component:ScanBarCodePage}
         ];
       }
     });
