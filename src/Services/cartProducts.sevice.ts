@@ -38,26 +38,28 @@ export class CartProductsService {
             this.user_email = emailVal;
             this.storage.get(emailVal).then((val) => {
                 if(JSON.parse(val) == null){
+                    console.log("first time");
+                    this.msg = "Product is added to cart correctlly";
                     this.cartProducts.push(productObject);
                     this.storage.set(this.user_email,JSON.stringify(this.cartProducts));
                 } else {
                     this.cartProducts = JSON.parse(val);
                     for(var i=0;i<this.cartProducts.length;i++) {
-                        if(productObject.barCode == this.cartProducts[i].barCode) {
+                        if(productObject.barcode == this.cartProducts[i].barcode) {
                             this.msg = "already added";
                             console.log("equal");
                             break;
-                            // this.cartProducts[i].quantity = parseInt(this.cartProducts[i].quantity)+1;
                         } else {
-                            this.cartProducts.push(productObject);
-                            this.msg = "Product is added to cart correctlly";
-                            console.log("not equal");
-                            break;
+                            if(i == this.cartProducts.length-1) {
+                                this.msg = "Product is added to cart correctlly";
+                                this.cartProducts.push(productObject)
+                                this.storage.set(this.user_email,JSON.stringify(this.cartProducts));
+                                this.cartProductsLength = this.cartProducts.length;
+                                console.log("not equal");
+                            }
                         }
                     }
-                    // this.cartProducts.push(productObject);
-                    this.storage.set(this.user_email,JSON.stringify(this.cartProducts));
-                    this.cartProductsLength = this.cartProducts.length;
+
                 }
             }); 
         });

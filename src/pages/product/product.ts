@@ -72,11 +72,9 @@ export class ProductPage {
           'price':price,
           'description':description
         }
-        this.msg=this.cartProductsService.addProductsToCart(this.productObject);
-        console.log("msg is: "+this.msg);
-
+        this.cartProductsService.addProductsToCart(this.productObject);
         let toast = this.toastCtrl.create({
-          message: 'Product is added to cart correctlly',
+          message: this.cartProductsService.msg,
           duration: 3000,
           position: 'bottom'
         });
