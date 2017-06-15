@@ -4,24 +4,35 @@
 
 <ion-content has-header>
 
-    <div id="topContainer">
-        <button (click)="scanBarCode()" ion-button full id="scanBtn">Scan Bar Code</button>
-    </div>
+    <ion-card>
+        <!--<img src="/assets/img/VRC.jpg" />-->
+        <ion-card-content>
+            <img src="https://image.ibb.co/kLrPJQ/VRC.jpg" />
+        </ion-card-content>
+    </ion-card>
 
-    <div id="bottomContainer">
-        <div id="topLeft">
-            <button (click)="showHistory()" ion-button full icon-left>History</button>
-        </div>
-        <div id="topRight">
-            <button (click)="showCategories()" ion-button full icon-left>Show Products</button>
-        </div>
-        <div id="bottomLeft">
-            <button (click)="showCart()" ion-button full icon-left>Cart</button>
-        </div>
-        <div id="bottomRight">
-            <button (click)="showProfile()" ion-button full icon-left>Profile</button>
-        </div>
-        <!--<input type="hidden" [(ngModel)]="text1">-->
-    </div>
+    <ion-grid>
+
+        <button (click)="scanBarCode()" ion-button block id="scanBtn" large>
+            <i class="fa fa-barcode" aria-hidden="true" style="margin:10px;"></i>Scan to Shop
+        </button>
+
+        <button (click)="showCategories()" ion-button block icon-left large>
+            <i class="fa fa-shopping-basket" aria-hidden="true" style="margin:10px;"></i>Show Products
+            </button>
+
+        <button (click)="showCart()" ion-button block icon-left large>
+            <i class="fa fa-shopping-cart" aria-hidden="true" style="margin:10px;"></i> Shopping Cart
+            </button>
+
+        <button (click)="showHistory()" ion-button block icon-left large>
+            <i class="fa fa-history" aria-hidden="true" style="margin:10px;"></i> Orders History
+            </button>
+
+        <button (click)="showProfile()" ion-button block icon-left large>
+            <i class="fa fa-user-circle" aria-hidden="true" style="margin:10px;"></i>Personal Profile
+            </button>
+
+    </ion-grid>
 
 </ion-content>
