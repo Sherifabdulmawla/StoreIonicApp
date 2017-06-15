@@ -9,7 +9,7 @@ export class CartProductsService {
     cartProductsLength;
     user_email;
     index;
-    msg;
+    msg:string;
    
     constructor(private storage: Storage) {
         this.storage.get('email').then((val) => {
@@ -40,6 +40,7 @@ export class CartProductsService {
                 if(JSON.parse(val) == null){
                     console.log("first time");
                     this.msg = "Product is added to cart correctlly";
+                    console.log("msg from service: "+this.msg);
                     this.cartProducts.push(productObject);
                     this.storage.set(this.user_email,JSON.stringify(this.cartProducts));
                 } else {
@@ -47,6 +48,7 @@ export class CartProductsService {
                     for(var i=0;i<this.cartProducts.length;i++) {
                         if(productObject.barcode == this.cartProducts[i].barcode) {
                             this.msg = "already added";
+                            console.log("msg from service: "+this.msg);
                             console.log("equal");
                             break;
                         } else {
@@ -55,6 +57,7 @@ export class CartProductsService {
                                 this.cartProducts.push(productObject)
                                 this.storage.set(this.user_email,JSON.stringify(this.cartProducts));
                                 this.cartProductsLength = this.cartProducts.length;
+                                console.log("msg from service: "+this.msg);
                                 console.log("not equal");
                             }
                         }

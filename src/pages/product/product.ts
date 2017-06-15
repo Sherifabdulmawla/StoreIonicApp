@@ -73,11 +73,13 @@ export class ProductPage {
           'description':description
         }
         this.cartProductsService.addProductsToCart(this.productObject);
+        console.log("msg first: "+this.cartProductsService.msg);
         let toast = this.toastCtrl.create({
           message: this.cartProductsService.msg,
           duration: 3000,
           position: 'bottom'
         });
+        console.log("msg after: "+this.cartProductsService.msg);
 
         toast.onDidDismiss(() => {
           console.log('Dismissed toast');

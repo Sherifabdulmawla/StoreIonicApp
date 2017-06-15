@@ -14,20 +14,14 @@ export class RegisterPage {
   userName: string;
   email: string;
   mobile: number;
-  country: string;
-  city: string;
-  state: string;
+  public static country: string;
+  public static city: string;
+  public static street: string;
   password: string;
   msg: string;
   emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-  // if (emailPattern.test(control.value)) {
-  //     return null;
-  // } else {
-  //     return { 'invalidEmailAddress': true };
-  // }
 
   constructor(private storage: Storage, public geolocation: Geolocation, public userService: UserService, public navCtrl: NavController, public navParams: NavParams) {
-
   }
 
   ionViewDidLoad() {
@@ -53,6 +47,11 @@ export class RegisterPage {
       this.msg = "You must fill all fields";
     }
   }
+
+  async getAddressLocation() {
+    return RegisterPage.city;
+  }
+
   get_location() {
     this.geolocation.getCurrentPosition({
       enableHighAccuracy: true,
@@ -74,15 +73,20 @@ export class RegisterPage {
     var method = 'GET';
     var url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + latitude + ',' + longitude + '&sensor=true';
     var async = true;
+    var address;
 
     request.open(method, url, async);
     request.onreadystatechange = function () {
       if (request.readyState == 4 && request.status == 200) {
         var data = JSON.parse(request.responseText);
-        var address = data.results[0];
+        address = data.results[0];
         address = address.formatted_address;
         address = address.split(',');
-        console.log(address);
+        console.log(address+data.results);
+        RegisterPage.street = address[0];
+        RegisterPage.city = address[1];
+        RegisterPage.country = address[2];
+        console.log(RegisterPage.country);
         var detailedAddress = address[1] + " " + address[0];
         alert(detailedAddress)
       }

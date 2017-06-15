@@ -8,6 +8,8 @@ import { BarcodeScanner,BarcodeScannerOptions } from '@ionic-native/barcode-scan
 import { ProductService } from "../../Services/product.service";
 import { CartProductsService } from "../../Services/cartProducts.sevice";
 import { ProductPage } from "../product/product";
+import { Storage } from '@ionic/storage';
+import { LoginPage } from "../login/login";
 
 
 @Component({
@@ -19,8 +21,9 @@ export class HomePage {
   options: BarcodeScannerOptions;
   result;
   barcode;
+  user_email;
 
-  constructor(private toastCtrl: ToastController,private productService:ProductService,public cartProductsService:CartProductsService,private barCode:BarcodeScanner,public navCtrl: NavController,public navParams:NavParams) {
+  constructor(private storage: Storage,private toastCtrl: ToastController,private productService:ProductService,public cartProductsService:CartProductsService,private barCode:BarcodeScanner,public navCtrl: NavController,public navParams:NavParams) {
     this.result={"text":"","format":"","cancelled":false};
   }
 
@@ -71,15 +74,54 @@ export class HomePage {
   }
 
   showProfile() {
-    this.navCtrl.push(ProfilePage);
+    if(this.user_email == null){
+      let toast = this.toastCtrl.create({
+        message: 'You must login',
+        duration: 3000,
+        position: 'bottom'
+        });
+        toast.onDidDismiss(() => {
+          console.log('Dismissed toast');
+        });
+        toast.present();
+        this.navCtrl.push(LoginPage);
+      } else {
+        this.navCtrl.push(ProfilePage);
+      }
   }
 
   showHistory() {
-    this.navCtrl.push(OrderHistoryPage);
+    if(this.user_email == null){
+      let toast = this.toastCtrl.create({
+        message: 'You must login',
+        duration: 3000,
+        position: 'bottom'
+      });
+      toast.onDidDismiss(() => {
+        console.log('Dismissed toast');
+      });
+      toast.present();
+      this.navCtrl.push(LoginPage);
+    } else {
+      this.navCtrl.push(OrderHistoryPage);
+    }
   }
 
   showCart() {
+    if(this.user_email == null){
+      let toast = this.toastCtrl.create({
+        message: 'You must login',
+        duration: 3000,
+        position: 'bottom'
+      });
+      toast.onDidDismiss(() => {
+        console.log('Dismissed toast');
+      });
+      toast.present();
+      this.navCtrl.push(LoginPage);
+    } else {
     this.navCtrl.push(CartPage);
+    }
   }
 
 }
