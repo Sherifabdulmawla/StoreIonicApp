@@ -18,9 +18,9 @@ export class RegisterPage {
   userName: string;
   email: string;
   mobile: number;
-  // public static country: string;
-  // public static city: string;
-  // public static street: string;
+  public static country: string;
+  public static city: string;
+  public static street: string;
   password: string;
   msg: string;
   emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
@@ -85,17 +85,27 @@ export class RegisterPage {
         address = address.formatted_address;
         address = address.split(',');
         console.log(address+data.results);
-        // street = address[0];
-        // city = address[1];
-        // country = address[2];
-        // console.log("country drom observer "+country);
-        var detailedAddress = address[1] + " " + address[0];
-        alert(detailedAddress)
+        RegisterPage.street = address[0];
+        RegisterPage.city = address[1];
+        RegisterPage.country = address[2];
+        // console.log("country drom observer "+RegisterPage.country);
+        // var detailedAddress = address[1] + " " + address[0];
+        // alert(detailedAddress)
       }
     };
     request.send();
   };
 
+  getCity(){
+    return RegisterPage.city;
+  }
+  getStreet(){
+    return RegisterPage.street;
+  }
+  getCountry()
+  {
+    return RegisterPage.country
+  }
   getuserbyemail(email) {
     this.userService.getUserByEmail(email).subscribe(data => {
       console.log("id from method: "+JSON.stringify(data));

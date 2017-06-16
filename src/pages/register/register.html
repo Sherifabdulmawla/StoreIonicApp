@@ -29,17 +29,16 @@
         <ion-item>
             <button (click)="get_location($event)" ion-button full color="danger">Get location</button>
         </ion-item>
-
         <ion-item>
-            <ion-input type="text" placeholder="Country" class="inputText" required #country></ion-input>
+            <ion-input type="text" placeholder="Country"  class="inputText" required #country value="{{getCountry()}}"></ion-input>
         </ion-item>
 
         <ion-item>
-            <ion-input type="text" placeholder="City" class="inputText" required #city></ion-input>
+            <ion-input type="text" placeholder="City" class="inputText" required #city value="{{getCity()}}"></ion-input>
         </ion-item>
 
         <ion-item>
-            <ion-input type="text" placeholder="Street" class="inputText" required #state></ion-input>
+            <ion-input type="text" placeholder="Street" class="inputText" required #state value="{{getStreet()}}"></ion-input>
         </ion-item>
 
         <ion-item>
