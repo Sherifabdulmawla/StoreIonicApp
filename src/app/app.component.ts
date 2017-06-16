@@ -11,7 +11,7 @@ import { CategoriesPage } from '../pages/categories/categories';
 import { CartPage } from '../pages/cart/cart';
 import { OrderHistoryPage } from "../pages/order-history/order-history";
 import { CartProductsService } from "../Services/cartProducts.sevice";
-
+import { UserService } from "../Services/user.service";
 
 
 @Component({
@@ -23,10 +23,10 @@ export class MyApp {
   rootPage: any = HomePage;
 
   user_email;
-
+  isLogged=0;
   pages: Array<{title: string, component: any}>;
 
-  constructor(public cartProductsService:CartProductsService,private storage: Storage,public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public userService:UserService,public cartProductsService:CartProductsService,private storage: Storage,public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
     this.setSideMenue();
   }
@@ -40,25 +40,35 @@ export class MyApp {
           { title: 'profile',component:ProfilePage},
           { title: 'Cart' , component:CartPage},
           { title: 'Categories' , component:CategoriesPage},
-          { title: 'History' , component:OrderHistoryPage}
+          { title: 'History' , component:OrderHistoryPage},
+          { title : 'aaa',component:this.logOut()}
         ];
       } else if(val == null) {
         this.pages = [
           { title: 'Home', component: HomePage },
         ];
+      } else {
+
       }
     });
   }
 
+  getUserEmail() {
+    return this.userService.user_email;
+  }
+
   logOut() {
+    console.log("shimaaaa "+this.getUserEmail());
     this.storage.remove('email');
     this.nav.setRoot(LoginPage);
     this.setSideMenue();
+    console.log("shimaaaa"+this.getUserEmail());
   }
 
   logIn() {
     this.nav.setRoot(LoginPage);
     this.setSideMenue();
+    console.log("shimaaaa"+this.getUserEmail());
   }
 
   initializeApp() {

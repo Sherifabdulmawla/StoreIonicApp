@@ -13,6 +13,7 @@ import { UserService } from "../../Services/user.service";
 export class LoginPage {
 
   msg:string="";
+  isLogged=1;
 
   constructor(private storage: Storage,public userService:UserService,public navCtrl: NavController, public navParams: NavParams) {
   }
@@ -22,17 +23,20 @@ export class LoginPage {
   }
 
   loginToHome(email,password) {
-    for (var i = 0; i < this.userService.users.length ; i++) {
-      if(this.userService.users[i].email == email && this.userService.users[i].password == password) {
+    this.userService.login(email,password).subscribe(data=>{
+      if(data){
+        console.log(data);
         this.navCtrl.push(HomePage,{
           "user_email":email
         });
         this.storage.set('email', email);
-      }
-      else {
+      }else{
         this.msg="Incorrect data";
       }
-    }
+    },
+    err=>console.log(`error happened getting user ${err}`)
+
+    )
   }
 
   register() {

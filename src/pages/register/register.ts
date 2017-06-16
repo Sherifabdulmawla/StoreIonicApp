@@ -5,6 +5,10 @@ import { Storage } from '@ionic/storage';
 import { HomePage } from '../home/home';
 import { UserService } from "../../Services/user.service";
 
+declare var country:any;
+declare var city:any;
+declare var street:any;
+
 @Component({
   selector: 'page-register',
   templateUrl: 'register.html',
@@ -14,12 +18,13 @@ export class RegisterPage {
   userName: string;
   email: string;
   mobile: number;
-  public static country: string;
-  public static city: string;
-  public static street: string;
+  // public static country: string;
+  // public static city: string;
+  // public static street: string;
   password: string;
   msg: string;
   emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  name = "shimaa";
 
   constructor(private storage: Storage, public geolocation: Geolocation, public userService: UserService, public navCtrl: NavController, public navParams: NavParams) {
   }
@@ -48,9 +53,6 @@ export class RegisterPage {
     }
   }
 
-  async getAddressLocation() {
-    return RegisterPage.city;
-  }
 
   get_location() {
     this.geolocation.getCurrentPosition({
@@ -83,10 +85,10 @@ export class RegisterPage {
         address = address.formatted_address;
         address = address.split(',');
         console.log(address+data.results);
-        RegisterPage.street = address[0];
-        RegisterPage.city = address[1];
-        RegisterPage.country = address[2];
-        console.log(RegisterPage.country);
+        // street = address[0];
+        // city = address[1];
+        // country = address[2];
+        // console.log("country drom observer "+country);
         var detailedAddress = address[1] + " " + address[0];
         alert(detailedAddress)
       }

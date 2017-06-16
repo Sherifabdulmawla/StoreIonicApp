@@ -20,12 +20,6 @@ export class HeaderComponent {
   constructor(public cartProductsService:CartProductsService,private storage: Storage,public http:Http ,public navCtrl: NavController) {
     storage.get('email').then((emailVal) => {
       this.user_email = emailVal;
-      storage.get(emailVal).then((val)=>{
-        // console.log("object from header: "+val);
-        // console.log("Content Length from header "+val.length);
-        // console.log("Length from header "+this.cartProductsService.cartProducts.length);
-        // console.log("length "+JSON.parse(val).length);
-      })
     });  
   }
 

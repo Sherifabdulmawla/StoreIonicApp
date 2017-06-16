@@ -11,7 +11,6 @@ import { ProductPage } from "../product/product";
 import { Storage } from '@ionic/storage';
 import { LoginPage } from "../login/login";
 
-
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -25,6 +24,9 @@ export class HomePage {
 
   constructor(private storage: Storage,private toastCtrl: ToastController,private productService:ProductService,public cartProductsService:CartProductsService,private barCode:BarcodeScanner,public navCtrl: NavController,public navParams:NavParams) {
     this.result={"text":"","format":"","cancelled":false};
+     storage.get('email').then((emailVal) => {
+      this.user_email = emailVal;
+    });
   }
 
   async scanBarCode() {
@@ -33,8 +35,7 @@ export class HomePage {
       prompt: 'Scan the bar code to see the result'
     }
 
-    this.result = await this.barCode.scan(this.options);
-    
+    this.result = await this.barCode.scan(this.options);   
     if(this.productService.allProducts.length == 0) {
       console.log("length is 0");
     } else {
@@ -47,25 +48,24 @@ export class HomePage {
               "productName":this.productService.allProducts[i].name
             })
         break;
-      } else {
-        if(i==this.productService.allProducts.length-1){
-              let toast = this.toastCtrl.create({
-            message: 'Product is not exist',
-            duration: 3000,
-            position: 'bottom'
-          });
-
-      toast.onDidDismiss(() => {
-        console.log('Dismissed toast');
-      });
-      toast.present();
         } else {
-        continue;
+          if(i==this.productService.allProducts.length-1){
+              let toast = this.toastCtrl.create({
+                message: 'Product is not exist',
+                duration: 3000,
+                position: 'bottom'
+            });
+
+            toast.onDidDismiss(() => {
+              console.log('Dismissed toast');
+            });
+            toast.present();
+          } else {
+            continue;
+          }  
         }
-      
+      }
     }
-  }
-  }
 
   }
 
@@ -79,15 +79,15 @@ export class HomePage {
         message: 'You must login',
         duration: 3000,
         position: 'bottom'
-        });
-        toast.onDidDismiss(() => {
-          console.log('Dismissed toast');
-        });
-        toast.present();
+      });
+      toast.onDidDismiss(() => {
+        console.log('Dismissed toast');
+      });
+      toast.present();
         this.navCtrl.push(LoginPage);
-      } else {
-        this.navCtrl.push(ProfilePage);
-      }
+    } else {
+      this.navCtrl.push(ProfilePage);
+    }
   }
 
   showHistory() {
