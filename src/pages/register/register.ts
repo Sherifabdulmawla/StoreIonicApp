@@ -39,7 +39,7 @@ export class RegisterPage {
         if (password == confirmPass) {
           this.user = this.userService.addUser(name, email, password);
           this.getuserbyemail(email);
-          this.navCtrl.push(HomePage);
+         // this.navCtrl.push(HomePage);
           this.storage.set('email', email);
         } else {
           this.msg = "password dosen't matches";
@@ -98,16 +98,18 @@ export class RegisterPage {
   getCity(){
     return RegisterPage.city;
   }
+
   getStreet(){
     return RegisterPage.street;
   }
-  getCountry()
-  {
+
+  getCountry(){
     return RegisterPage.country
   }
+
   getuserbyemail(email) {
     this.userService.getUserByEmail(email).subscribe(data => {
-      console.log("id from method: "+JSON.stringify(data));
+      console.log("data",data);
     },
       err => console.log(`error happened getting todos ${err}`)
     );

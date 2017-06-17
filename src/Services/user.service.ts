@@ -27,7 +27,7 @@ export class UserService {
     }
 
     login(email: string, password: string) {
-        return this.http.get(this.userUrl + "/" + email + "/" + password).map((response: Response) => response.json())
+        return this.http.get(this.userUrl +"user"+ "/" + email + "/" + password).map((response: Response) => response.json())
     }
     addUser(userName: string, email: string, password: string) {
         if (userName != "" && email != "" && password != "") {

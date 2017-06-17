@@ -5,6 +5,7 @@ import { Storage } from '@ionic/storage';
 import { HomePage } from '../home/home';
 import { RegisterPage } from '../register/register';
 import { UserService } from "../../Services/user.service";
+import { Events } from 'ionic-angular';
 
 @Component({
   selector: 'page-login',
@@ -15,7 +16,7 @@ export class LoginPage {
   public static isLogged: string;
   msg:string="";
 
-  constructor(private storage: Storage,public userService:UserService,public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public events: Events,private storage: Storage,public userService:UserService,public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
@@ -30,7 +31,7 @@ export class LoginPage {
           "user_email":email
         })
         this.storage.set('email', email);
-        this.userService.isLogged = email;
+        this.events.publish('user:created', email);;
       }else{
         this.msg="Incorrect data";
       }
