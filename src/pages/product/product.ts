@@ -31,7 +31,7 @@ export class ProductPage {
     console.log('ionViewDidLoad ProductPage');
   }
 
-  presentToast(name,barcode,quantity,price,description,productQuantity) {
+  presentToast(idproduct,name,barcode,quantity,price,description,productQuantity) {
     if(this.user_email == null){
       let toast = this.toastCtrl.create({
         message: 'You must login',
@@ -66,6 +66,7 @@ export class ProductPage {
         toast.present();
       } else {
         this.productObject = {
+          'idproduct':idproduct,
           'name':name,
           'barcode':barcode,
           'quantity':quantity,
