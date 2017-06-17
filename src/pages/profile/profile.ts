@@ -12,14 +12,21 @@ export class ProfilePage {
 
   mobiles = [];
   addresses = [];
-  user={};
+  user = {};
   email;
+  user_id;
 
-  constructor(private storage: Storage,public userService:UserService,public navCtrl: NavController, public navParams: NavParams) {
-    storage.get('email').then((val)=>{
+  constructor(private storage: Storage, public userService: UserService, public navCtrl: NavController, public navParams: NavParams) {
+    storage.get('email').then((val) => {
       this.email = val;
     });
-}
+    storage.get('id').then((val) => {
+      this.user_id = val;
+      console.log("id " + this.user_id);
+    })
+    // console.log(this.listMobiles());
+    // console.log("mobiles ", this.Mobiles);
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfilePage');
@@ -30,29 +37,16 @@ export class ProfilePage {
   }
 
   ListUsers() {
-        return this.userService.users;
+    return this.userService.users;
   }
 
   listMobiles() {
-    for(var i=0 ; i<this.userService.users.length;i++) {
-      for(var j=0 ; j<this.userService.users[i].mobile.length;j++) {
-        this.mobiles.push(this.userService.users[i].mobile[j]);
-          // console.log(this.userService.users[i].mobile[j]);
-      }
-    }
-    return this.mobiles;
+   return this.userService.Mobiles
   }
 
-  listAddresses() {
-  //  this.user =this.userService.getUserBuEmail(this.user_email);
 
-    // for(var i =0;i<this.userService.users.length;i++) {
-    //   for(var j=0 ; j<this.userService.users[i].address.length;j++) {
-    //     this.addresses.push(this.userService.users[i].address);
-    //   }
-    // }
-    // console.log(this.addresses);
-    // return this.addresses;
+  listAddresses() {
+    return this.userService.Addresses;
   }
 
 }

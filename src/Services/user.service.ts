@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Http, Response } from '@angular/http';
+import { Storage } from '@ionic/storage';
 
 import 'rxjs/add/operator/map';
 @Injectable()
@@ -13,13 +14,19 @@ export class UserService {
     price: number;
     description: string;
     mobiles;
+    addresses;
     user_email;
-    isLogged=null;
-
-    userUrl = "https://storewebservice.herokuapp.com/users";
-    useraddressUrl = "https://storewebservice.herokuapp.com/usersaddress";
-    // usermobileUrl = "https://storewebservice.herokuapp.com/usersaddress"
-    constructor(private http: Http) {
+    isLogged = null;
+    currentuserid: any;
+    userUrl = "https://storewebservice.herokuapp.com/users/";
+    useraddressUrl = "https://storewebservice.herokuapp.com/usersaddress/";
+    usermobileUrl = "https://storewebservice.herokuapp.com/Mobiles/"
+    constructor(private storage: Storage,private http: Http) {
+        storage.get('id').then((val) => {
+           this. listMobiles(val);
+           this.listAddress(val);
+    })
+        
     }
 
     getUserByEmail(email: string) {
@@ -27,7 +34,7 @@ export class UserService {
     }
 
     login(email: string, password: string) {
-        return this.http.get(this.userUrl +"user"+ "/" + email + "/" + password).map((response: Response) => response.json())
+        return this.http.get(this.userUrl + "user" + "/" + email + "/" + password).map((response: Response) => response.json())
     }
     addUser(userName: string, email: string, password: string) {
         if (userName != "" && email != "" && password != "") {
@@ -36,23 +43,64 @@ export class UserService {
                 "email": email,
                 "password": password
             }
-            this.http.post(this.userUrl, newUser).map((response: Response) => response.json())
-                .subscribe(
-                data => {
-                    this.users.push(data);
-                },
-                (err) => console.log(`errror ${err}`)
-                )
+            return this.http.post(this.userUrl, newUser).map((response: Response) => response.json())
 
         }
     }
 
-    // listMobiles() {
-    //     return this.http.get(this.user).map((response: Response) => response.json())
-    //         .subscribe(data => {
-    //             this.mobiles = data
-    //     },
-    //     err => console.log(`error happened getting todos ${err}`)
-    //     );
-    // }
+
+    AddNewAddress(id, country, city, street) {
+        let newaddress = {
+            "iduser": id,
+            "country": country,
+            "city": city,
+            "street": street
+        }
+        return this.http.post(this.useraddressUrl + "/" + id, newaddress).map((response: Response) => response.json()).subscribe(
+            data => {
+                console.log(data);
+            },
+            (err) => console.log(`errror ${err}`)
+        )
+    }
+
+
+    AddNewMobile(id, mobile) {
+        let newmobile = {
+            "iduser": id,
+            "mobile": mobile
+        }
+        return this.http.post(this.usermobileUrl + "/" + id, newmobile).map((response: Response) => response.json()).subscribe(
+            data => {
+                console.log(data);
+            },
+            (err) => console.log(`errror ${err}`)
+        )
+    }
+
+    listMobiles(userid) {
+        console.log("inside service id ",userid);
+       this.http.get(this.usermobileUrl + "/" + userid).map((response: Response) => response.json()).subscribe(data => {
+       // data = JSON.stringify(data);
+        this.mobiles = data;
+        console.log("mobile", this.mobiles);
+        console.log("stringfy data " + JSON.stringify(data))
+      }
+        , (err) => console.log(`error happen ${err}`))
+
+    }
+    get Mobiles(){
+       return this.mobiles;
+    }
+      listAddress(userid) {
+       this.http.get(this.useraddressUrl + "/" + userid).map((response: Response) => response.json()).subscribe(data => {
+       // data = JSON.stringify(data);
+        this.addresses = data;
+      }
+        , (err) => console.log(`error happen ${err}`))
+
+    }
+    get Addresses(){
+       return this.addresses;
+    }
 }

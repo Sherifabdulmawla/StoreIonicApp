@@ -5,16 +5,16 @@ import { Storage } from '@ionic/storage';
 import { HomePage } from '../home/home';
 import { UserService } from "../../Services/user.service";
 
-declare var country:any;
-declare var city:any;
-declare var street:any;
+declare var country: any;
+declare var city: any;
+declare var street: any;
 
 @Component({
   selector: 'page-register',
   templateUrl: 'register.html',
 })
 export class RegisterPage {
-  user: any;
+  userid: any;
   userName: string;
   email: string;
   mobile: number;
@@ -23,6 +23,7 @@ export class RegisterPage {
   public static street: string;
   password: string;
   msg: string;
+  users: any = [];
   emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
   constructor(private storage: Storage, public geolocation: Geolocation, public userService: UserService, public navCtrl: NavController, public navParams: NavParams) {
@@ -32,15 +33,27 @@ export class RegisterPage {
     console.log('ionViewDidLoad RegisterPage');
   }
 
-  register(name, email, mobile, country, city, state, password, confirmPass) {
+  register(name, email, mobile, country, city, street, password, confirmPass) {
     if (name.length > 0 && email.length > 0 && mobile.length > 0 && country.length > 0 && city.length > 0
-      && state.length > 0 && password.length > 0) {
+      && street.length > 0 && password.length > 0) {
       if (this.emailPattern.test(email)) {
         if (password == confirmPass) {
-          this.user = this.userService.addUser(name, email, password);
-          this.getuserbyemail(email);
-         // this.navCtrl.push(HomePage);
-          this.storage.set('email', email);
+          this.userService.addUser(name, email, password).subscribe(
+            data => {
+              this.userid = data;
+              console.log("user id method ", this.userid);
+               this.storage.set('email', email);
+               this.storage.set('id',this.userid);
+               this.userService.AddNewAddress(this.userid,country,city,street);
+               this.userService.AddNewMobile(this.userid,mobile);
+               this.navCtrl.push(HomePage);
+             
+            },
+            (err) => console.log(`errror ${err}`)
+          )
+
+
+
         } else {
           this.msg = "password dosen't matches";
         }
@@ -83,7 +96,7 @@ export class RegisterPage {
         address = data.results[0];
         address = address.formatted_address;
         address = address.split(',');
-        console.log(address+data.results);
+        console.log(address + data.results);
         RegisterPage.street = address[0];
         RegisterPage.city = address[1];
         RegisterPage.country = address[2];
@@ -95,24 +108,17 @@ export class RegisterPage {
     request.send();
   };
 
-  getCity(){
+  getCity() {
     return RegisterPage.city;
   }
 
-  getStreet(){
+  getStreet() {
     return RegisterPage.street;
   }
 
-  getCountry(){
+  getCountry() {
     return RegisterPage.country
   }
 
-  getuserbyemail(email) {
-    this.userService.getUserByEmail(email).subscribe(data => {
-      console.log("data",data);
-    },
-      err => console.log(`error happened getting todos ${err}`)
-    );
-  }
 
 }

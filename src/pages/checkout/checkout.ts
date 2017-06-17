@@ -14,7 +14,7 @@ export class CheckoutPage {
 
   email;
 
-  constructor(private storage:Storage,private UserService:UserService,private orderservice: OrderService, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private storage:Storage,private userService:UserService,private orderservice: OrderService, public navCtrl: NavController, public navParams: NavParams) {
     storage.get('email').then((val)=>{
       this.email = val;
     })
@@ -24,15 +24,26 @@ export class CheckoutPage {
     console.log('ionViewDidLoad CheckoutPage');
   }
 
-  confirm() {
+  confirm(date) {
+    console.log(date);
      this.orderservice.addorder();
   }
 
   ListUsers() {
-        return this.UserService.users;
+        return this.userService.users;
   }
 
   addNewField() {
     this.navCtrl.push(ProfilePage);
   }
+
+  listMobiles() {
+   return this.userService.Mobiles
+  }
+
+
+  listAddresses() {
+    return this.userService.Addresses;
+  }
+
 }
