@@ -43,12 +43,12 @@
 
             <ion-item>
                 <ion-label>Date</ion-label>
-                <ion-datetime displayFormat="MMM DD, HH:mm" min="2017" max="2018-10-31" #date>
+                <ion-datetime displayFormat="YYYY-MM-DD HH:mm:ss" min="2017" max="2018-10-31" #date>
                 </ion-datetime>
             </ion-item>
         </ion-list>
     </div>
 
-    <button ion-button full (click)="confirm(date.value)"> confirm </button>
+    <button ion-button full (click)="confirm(address.value,mobile.value,date.value)"> confirm </button>
 
 </ion-content>

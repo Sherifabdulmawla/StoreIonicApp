@@ -39,10 +39,7 @@ export class MyApp {
       if (this.network.type == 'none' ) { 
         // stuff if disconnected
        alert("disconnected");
-      } else {
-       alert("connected");
-        //stuff if connected
-      }
+      } 
     })
   }
 

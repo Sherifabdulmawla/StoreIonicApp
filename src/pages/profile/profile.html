@@ -33,25 +33,27 @@
                 </button>
 
                 <button ion-item>
-                    <input type="text" placeholder="add Mobile" item-left>
-                    <button ion-item>
-                        <ion-icon name="md-add" item-right></ion-icon>
-                    </button><br/>
-                <!--<ion-icon name="md-add-circle" item-right></ion-icon>-->
+                    <button ion-item>add
+                        <ion-icon name="md-add-circle" item-left></ion-icon>
+                    </button>
+                <input type="text" placeholder="add Mobile" item-left>
                 </button>
+
                 <button item-left *ngFor="let mob of listMobiles()">{{mob.mobile}}</button>
+                <button ion-item (click)="addNewAddress()">add new address
+                        <ion-icon name="md-add" item-right></ion-icon>
+                </button>
                 <button item-left *ngFor="let address of listAddresses()">
                     {{address.country}}/{{address.city}}/{{address.street}}
                 </button>
 
-                <button ion-item>
+                <!--<button ion-item>
                     <button ion-item>
                         <ion-icon name="md-add" item-right></ion-icon>
                     </button>
                 <ion-icon name="md-navigate" item-left></ion-icon>
-                <!--{{user.country}}/ {{user.city}}/{{user.state}}-->
                 <ion-icon name="md-add-circle" item-right></ion-icon>
-                </button>
+                </button>-->
 
             </ion-list>
 

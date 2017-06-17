@@ -25,22 +25,26 @@ export class OrderService {
 
 
 
-    addorder() {
-        var now = new Date();
-        var jsonDate = now.toJSON();
-        let neworder = {
-            "date_added":jsonDate,
-            "iduser": 1,
-            "status": 1,
-            "date_delivered": "2017-05-15 19:43:37 +0100"
-        }
-        this.http.post(this.orderUrl, neworder).map((response: Response) => response.json())
-            .subscribe(
-            data => {
-                this.orders.push(data);
-            },
-            (err) => console.log(`errror ${err}`)
-            )
+    addorder(iduser,selectedTime,totalPrice,selectedAddress,selectedMobile) {
+        console.log(selectedAddress);
+        console.log(selectedTime);
+        console.log("date",JSON.stringify(selectedTime));
+        // let neworder = {
+        //    "iduser":iduser,
+        //    "status":1,
+        //    "selectedtime":selectedTime,
+        //    "totalprice":totalPrice,
+        //    "selectedaddress":selectedAddress,
+        //    "selectedMobile":selectedMobile
+        // }
+        // console.log("new order",neworder);
+        // this.http.post(this.orderUrl, neworder).map((response: Response) => response.json())
+        //     .subscribe(
+        //     data => {
+        //         this.orders.push(data);
+        //     },
+        //     (err) => console.log(`errror ${err}`)
+        //     )
     }
 
 

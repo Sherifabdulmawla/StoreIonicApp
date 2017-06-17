@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { UserService } from "../../Services/user.service";
 import { EditDataPage } from '../edit-data/edit-data';
 import { Storage } from '@ionic/storage';
+import { AddAddressPage } from "../add-address/add-address";
 
 @Component({
   selector: 'page-profile',
@@ -47,6 +48,10 @@ export class ProfilePage {
 
   listAddresses() {
     return this.userService.Addresses;
+  }
+
+  addNewAddress() {
+    this.navCtrl.push(AddAddressPage);
   }
 
 }

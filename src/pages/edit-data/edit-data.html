@@ -10,7 +10,7 @@
 <ion-content padding>
 
     <div *ngFor="let user of ListUsers()">
-        <ion-grid *ngIf="user.email == email">
+        <ion-grid>
             <ion-row>
                 <ion-col>
                     <input type="text" class="inputText" value={{user.userName}} full>
