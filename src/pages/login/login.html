@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-    <ion-navbar>
+    <ion-navbar color="primary">
         <ion-title>Login</ion-title>
     </ion-navbar>
 
@@ -17,44 +17,24 @@
 
     <ion-grid>
 
-        <!--First Row-->
-        <ion-row>
-            <ion-col>
-                <ion-card>
-                    <input type="text" placeholder="E-mail" class="inputText" #email>
-                </ion-card>
-            </ion-col>
-        </ion-row>
+        <ion-item>
+            <ion-label floating>Email</ion-label>
+            <ion-input type="text" class="inputText" required #email></ion-input>
+        </ion-item>
 
-        <!--SecondRow-->
-        <ion-row>
-            <ion-col>
-                <ion-card>
-                    <input type="password" placeholder="password" class="inputText" #password>
-                </ion-card>
-            </ion-col>
-        </ion-row>
+        <ion-item>
+            <ion-label floating>Password</ion-label>
+            <ion-input type="password" class="inputText" required #password></ion-input>
+        </ion-item>
+<br>
+        <ion-item>
+            <button (click)="loginToHome(email.value,password.value)" ion-button block large>Login</button>
+        </ion-item>
 
-        <!--Third Row-->
-        <ion-row>
-            <ion-col>
-                <button (click)="loginToHome(email.value,password.value)" ion-button full icon-left><ion-icon name="login"></ion-icon>Login</button>
-            </ion-col>
-        </ion-row>
-
-        <ion-row>
-            <ion-col>
-                <label id="msgLbl">{{msg}}</label>
-            </ion-col>
-        </ion-row>
-
-        <!--forth row-->
-        <ion-row>
-            <ion-col text-center>
-                <button (click)="register()" ion-button full clear><a href="#">Create an Account</a></button>
-            </ion-col>
-        </ion-row>
-
+        <ion-item>
+            <button (click)="register()"  ion-button block large>Register</button>
+        </ion-item>
+        
     </ion-grid>
 
 </ion-content>

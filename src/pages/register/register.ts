@@ -113,7 +113,7 @@ export class RegisterPage {
         console.log(address + data.results);
         RegisterPage.street = address[0];
         RegisterPage.city = address[1];
-        RegisterPage.country = address[3];
+        RegisterPage.country = address[4];
         // console.log("country drom observer "+RegisterPage.country);
         // var detailedAddress = address[1] + " " + address[0];
         // alert(detailedAddress)

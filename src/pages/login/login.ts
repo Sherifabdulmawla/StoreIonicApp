@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams,ToastController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 import { HomePage } from '../home/home';
@@ -17,7 +17,7 @@ export class LoginPage {
   msg: string = "";
   user_id;
 
-  constructor(public events: Events, private storage: Storage, public userService: UserService, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public events: Events, private toastCtrl: ToastController, private storage: Storage, public userService: UserService, public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
@@ -42,6 +42,11 @@ export class LoginPage {
           (err) => console.log(`errror ${err}`))
       } else {
         this.msg = "Incorrect data";
+        let toast = this.toastCtrl.create({
+                message: 'Incorrect Login info',
+                duration: 3000,
+                position: 'bottom'
+            });toast.present();
       }
     },
       err => console.log(`error happened getting user ${err}`)
