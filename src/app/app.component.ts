@@ -3,6 +3,7 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Storage } from '@ionic/storage';
+import { Events } from 'ionic-angular';
 
 import { HomePage } from '../pages/home/home';
 import { ProfilePage } from '../pages/profile/profile';
@@ -14,6 +15,8 @@ import { CartProductsService } from "../Services/cartProducts.sevice";
 import { UserService } from "../Services/user.service";
 import { Network } from '@ionic-native/network';
 
+declare var isLogged:any;
+
 
 @Component({
   templateUrl: 'app.html'
@@ -24,10 +27,11 @@ export class MyApp {
   rootPage: any = HomePage;
 
   user_email;
-  isLogged=0;
+  public static isLogged: string;
   pages: Array<{title: string, component: any}>;
 
-  constructor(private network: Network, public userService:UserService,public cartProductsService:CartProductsService,private storage: Storage,public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public events: Events,private network: Network, public userService:UserService,public cartProductsService:CartProductsService,private storage: Storage,public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen)
+  {
     this.initializeApp();
     this.setSideMenue();
      platform.ready().then(() => {
@@ -51,15 +55,21 @@ export class MyApp {
           { title: 'profile',component:ProfilePage},
           { title: 'Cart' , component:CartPage},
           { title: 'Categories' , component:CategoriesPage},
-          { title: 'History' , component:OrderHistoryPage},
-          { title : 'aaa',component:this.logOut()}
+          { title: 'History' , component:OrderHistoryPage}
         ];
       } else if(val == null) {
         this.pages = [
           { title: 'Home', component: HomePage },
         ];
-      } else {
-
+      } else if(this.isLoggedUser() == this.user_email) {
+        this.pages = [
+          { title: 'Home', component: HomePage },
+          { title: 'profile',component:ProfilePage},
+          { title: 'Cart' , component:CartPage},
+          { title: 'Categories' , component:CategoriesPage},
+          { title: 'History' , component:OrderHistoryPage},
+          { title : 'aaa',component:this.logOut()}
+        ];
       }
     });
   }
@@ -73,6 +83,16 @@ export class MyApp {
   logIn() {
     this.nav.setRoot(LoginPage);
     this.setSideMenue();
+  }
+
+  checkLoggin() {
+    this.events.subscribe('user:created', (email) => {
+      MyApp.isLogged = email;
+    });
+  }
+
+  isLoggedUser(){
+    return MyApp.isLogged;
   }
 
   initializeApp() {
