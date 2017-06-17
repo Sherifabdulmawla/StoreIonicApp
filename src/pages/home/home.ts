@@ -53,7 +53,7 @@ export class HomePage {
               let toast = this.toastCtrl.create({
                 message: 'Product is not exist',
                 duration: 3000,
-                position: 'bottom'
+                position: 'middle'
             });
 
             toast.onDidDismiss(() => {
@@ -78,7 +78,7 @@ export class HomePage {
       let toast = this.toastCtrl.create({
         message: 'You must login',
         duration: 3000,
-        position: 'bottom'
+        position: 'middle'
       });
       toast.onDidDismiss(() => {
         console.log('Dismissed toast');
@@ -95,7 +95,7 @@ export class HomePage {
       let toast = this.toastCtrl.create({
         message: 'You must login',
         duration: 3000,
-        position: 'bottom'
+        position: 'middle'
       });
       toast.onDidDismiss(() => {
         console.log('Dismissed toast');
@@ -112,7 +112,7 @@ export class HomePage {
       let toast = this.toastCtrl.create({
         message: 'You must login',
         duration: 3000,
-        position: 'bottom'
+        position: 'middle'
       });
       toast.onDidDismiss(() => {
         console.log('Dismissed toast');
