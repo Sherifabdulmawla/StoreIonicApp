@@ -6878,6 +6878,10 @@ ion-icon::before {
   font-style: normal;
 }
 
+ion-content {
+  background-color: red;
+}
+
 ion-action-sheet {
   left: 0;
   top: 0;
@@ -25095,7 +25099,7 @@ ion-menu[type=overlay] .show-backdrop {
 }
 
 .md .menu-inner {
-  background: red;
+  background: #fff;
 }
 
 .md .menu-content-reveal {
@@ -52101,6 +52105,10 @@ ion-navbar.toolbar {
   .wp .modal-wrapper > .ion-page > ion-header > ion-content.statusbar-padding:first-child[padding-top] .scroll-content {
     padding-top: calc(16px + 20px);
   }
+}
+
+ion-menu > div > ion-content > div.scroll-content {
+  background-color: #002984;
 }
 
 #notifications-badge {
