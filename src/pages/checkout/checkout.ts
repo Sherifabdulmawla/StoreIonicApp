@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { OrderService } from '../../Services/order.service';
 import { UserService } from "../../Services/user.service";
 import { Storage } from '@ionic/storage';
+import { ProfilePage } from "../profile/profile";
 
 
 @Component({
@@ -29,5 +30,9 @@ export class CheckoutPage {
 
   ListUsers() {
         return this.UserService.users;
+  }
+
+  addNewField() {
+    this.navCtrl.push(ProfilePage);
   }
 }

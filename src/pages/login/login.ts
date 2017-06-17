@@ -12,8 +12,8 @@ import { UserService } from "../../Services/user.service";
 })
 export class LoginPage {
 
+  public static isLogged: string;
   msg:string="";
-  isLogged=1;
 
   constructor(private storage: Storage,public userService:UserService,public navCtrl: NavController, public navParams: NavParams) {
   }
@@ -28,8 +28,9 @@ export class LoginPage {
         console.log(data);
         this.navCtrl.push(HomePage,{
           "user_email":email
-        });
+        })
         this.storage.set('email', email);
+        this.userService.isLogged = email;
       }else{
         this.msg="Incorrect data";
       }

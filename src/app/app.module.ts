@@ -31,6 +31,7 @@ import { SubCategoryPage } from "../pages/sub-category/sub-category";
 import { OrderHistoryPage } from '../pages/order-history/order-history';
 import { OrderDetailsPage } from "../pages/order-details/order-details";
 import { HeaderComponent } from '../components/header/header';
+import { AddAddressPage } from "../pages/add-address/add-address";
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { HeaderComponent } from '../components/header/header';
     SubCategoryPage,
     OrderHistoryPage,
     OrderDetailsPage,
-    HeaderComponent
+    HeaderComponent,
+    AddAddressPage
   ],
   imports: [
     BrowserModule,
@@ -75,7 +77,8 @@ import { HeaderComponent } from '../components/header/header';
     CheckoutPage,
     SubCategoryPage,
     OrderHistoryPage,
-    OrderDetailsPage
+    OrderDetailsPage,
+    AddAddressPage
   ],
   providers: [
     StatusBar,

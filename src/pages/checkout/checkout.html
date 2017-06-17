@@ -13,20 +13,45 @@
         </ion-card-content>
     </ion-card>
 
-    <div *ngFor="let user of ListUsers()">
-        <ion-list *ngIf="user.email==email">
+    <div>
+        <ion-list>
+            <ion-item col-2>
+                <button item-right (click)="addNewField()">
+                    <ion-icon name="md-add"></ion-icon>
+                </button>
+            </ion-item>
             <ion-item>
-                <ion-label stacked>address</ion-label>
-                <ion-input type="text" value={{user.city}} #address></ion-input>
+                <ion-label>choose address</ion-label>
+                <ion-select multiple="false" #address>
+                    <ion-option>Bacon</ion-option>
+                    <ion-option>Black Olives</ion-option>
+                    <ion-option>Extra Cheese</ion-option>
+                    <ion-option>Mushrooms</ion-option>
+                    <ion-option>Pepperoni</ion-option>
+                    <ion-option>Sausage</ion-option>
+                </ion-select>
+            </ion-item>
+
+            <ion-item col-2>
+                <button item-right (click)="addNewField()">
+                    <ion-icon name="md-add"></ion-icon>
+                </button>
+            </ion-item>
+            <ion-item>
+                <ion-label>choose mobile</ion-label>
+                <ion-select multiple="false" #mobile>
+                    <ion-option>Bacon</ion-option>
+                    <ion-option>Black Olives</ion-option>
+                    <ion-option>Extra Cheese</ion-option>
+                    <ion-option>Mushrooms</ion-option>
+                    <ion-option>Pepperoni</ion-option>
+                    <ion-option>Sausage</ion-option>
+                </ion-select>
             </ion-item>
 
             <ion-item>
-                <ion-label stacked>Mobile</ion-label>
-                <ion-input type="text" value={{user.mobile}} #mobile></ion-input>
-            </ion-item>
-            <ion-item>
                 <ion-label>Date</ion-label>
-                <ion-datetime displayFormat="MMM DD, HH:mm" min="2017" max="2018-10-31" [(ngModel)]="myDate" #date>
+                <ion-datetime displayFormat="MMM DD, HH:mm" min="2017" max="2018-10-31" #date>
                 </ion-datetime>
             </ion-item>
         </ion-list>

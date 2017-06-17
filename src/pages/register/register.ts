@@ -24,7 +24,6 @@ export class RegisterPage {
   password: string;
   msg: string;
   emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-  name = "shimaa";
 
   constructor(private storage: Storage, public geolocation: Geolocation, public userService: UserService, public navCtrl: NavController, public navParams: NavParams) {
   }

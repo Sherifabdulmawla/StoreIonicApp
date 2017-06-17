@@ -53,22 +53,15 @@ export class MyApp {
     });
   }
 
-  getUserEmail() {
-    return this.userService.user_email;
-  }
-
   logOut() {
-    console.log("shimaaaa "+this.getUserEmail());
     this.storage.remove('email');
     this.nav.setRoot(LoginPage);
     this.setSideMenue();
-    console.log("shimaaaa"+this.getUserEmail());
   }
 
   logIn() {
     this.nav.setRoot(LoginPage);
     this.setSideMenue();
-    console.log("shimaaaa"+this.getUserEmail());
   }
 
   initializeApp() {

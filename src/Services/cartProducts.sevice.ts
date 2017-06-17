@@ -51,7 +51,7 @@ export class CartProductsService {
                             console.log("msg from service: "+this.msg);
                             console.log("equal");
                             break;
-                        } else {
+                        } else { 
                             if(i == this.cartProducts.length-1) {
                                 this.msg = "Product is added to cart correctlly";
                                 this.cartProducts.push(productObject)

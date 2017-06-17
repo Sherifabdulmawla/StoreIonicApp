@@ -14,6 +14,7 @@ export class UserService {
     description: string;
     mobiles;
     user_email;
+    isLogged=null;
 
     userUrl = "https://storewebservice.herokuapp.com/users";
     useraddressUrl = "https://storewebservice.herokuapp.com/usersaddress";
