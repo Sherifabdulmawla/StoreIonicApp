@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="/media/afnan_h/DATA/ITI_Courses/GraduationProject/StoreIonicApp/platforms/android/CordovaLib/assets"/><source path="/media/afnan_h/DATA/ITI_Courses/GraduationProject/StoreIonicApp/platforms/android/CordovaLib/build/generated/assets/shaders/release"/></dataSet><dataSet config="release"><source path="/media/afnan_h/DATA/ITI_Courses/GraduationProject/StoreIonicApp/platforms/android/CordovaLib/src/release/assets"/></dataSet></merger>

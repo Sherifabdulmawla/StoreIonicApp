@@ -23,9 +23,7 @@
             <ion-item>
                 <ion-label>choose address</ion-label>
                 <ion-select multiple="false" #address>
-                    <ion-option *ngFor="let address of listAddresses()">
-                        {{address.country}}/{{address.city}}/{{address.street}}
-                    </ion-option>
+                    <ion-option *ngFor="let address of listAddresses()">{{address.country}}/{{address.city}}/{{address.street}}</ion-option>
                 </ion-select>
             </ion-item>
 
