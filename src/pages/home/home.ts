@@ -10,6 +10,7 @@ import { CartProductsService } from "../../Services/cartProducts.sevice";
 import { ProductPage } from "../product/product";
 import { Storage } from '@ionic/storage';
 import { LoginPage } from "../login/login";
+import { Network } from '@ionic-native/network';
 
 @Component({
   selector: 'page-home',
@@ -27,6 +28,7 @@ export class HomePage {
      storage.get('email').then((emailVal) => {
       this.user_email = emailVal;
     });
+
   }
 
   async scanBarCode() {
@@ -123,5 +125,32 @@ export class HomePage {
     this.navCtrl.push(CartPage);
     }
   }
+
+// watchNetworkForDisconnect()
+// {
+//     let disconnectSubscription = this.network.onDisconnect().subscribe(() => {
+//         console.log('network was disconnected :-(');
+//     });
+//     disconnectSubscription.unsubscribe();
+
+// }
+
+// connectSubscription (){
+//    this.network.onConnect().subscribe(() => {
+//     console.log('network connected!');
+//   // We just got a connection but we need to wait briefly
+//    // before we determine the connection type. Might need to wait.
+//   // prior to doing any api requests as well.
+//     setTimeout(() => {
+//     if (this.network.type === 'wifi') {
+//         console.log('we got a wifi connection, woohoo!');
+//       }
+//      }, 3000);
+//     });
+
+// // stop connect watch
+//   // this.connectSubscription.unsubscribe();
+// }
+
 
 }

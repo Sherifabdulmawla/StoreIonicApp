@@ -55,14 +55,14 @@ export class RegisterPage {
 
   get_location() {
     this.geolocation.getCurrentPosition({
-      enableHighAccuracy: true,
+      // enableHighAccuracy: true,
       timeout: 300000,
       maximumAge: 0
     }).then((Position) => {
       var x = Position.coords.latitude;
       var y = Position.coords.longitude;
       this.displayLocation(x, y);
-    }, (err) => alert(err)).catch(err => alert(err));
+    }, (err) => alert(err.message)).catch(err => alert(err.message));
     let watcher = this.geolocation.watchPosition().subscribe((Position) => {
       watcher.unsubscribe();
     })

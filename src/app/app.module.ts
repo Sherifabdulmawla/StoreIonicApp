@@ -32,7 +32,7 @@ import { OrderHistoryPage } from '../pages/order-history/order-history';
 import { OrderDetailsPage } from "../pages/order-details/order-details";
 import { HeaderComponent } from '../components/header/header';
 import { AddAddressPage } from "../pages/add-address/add-address";
-
+import { Network } from "@ionic-native/network";
 
 @NgModule({
   declarations: [
@@ -81,6 +81,7 @@ import { AddAddressPage } from "../pages/add-address/add-address";
     AddAddressPage
   ],
   providers: [
+    Network,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},

@@ -12,6 +12,7 @@ import { CartPage } from '../pages/cart/cart';
 import { OrderHistoryPage } from "../pages/order-history/order-history";
 import { CartProductsService } from "../Services/cartProducts.sevice";
 import { UserService } from "../Services/user.service";
+import { Network } from '@ionic-native/network';
 
 
 @Component({
@@ -26,9 +27,19 @@ export class MyApp {
   isLogged=0;
   pages: Array<{title: string, component: any}>;
 
-  constructor(public userService:UserService,public cartProductsService:CartProductsService,private storage: Storage,public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(private network: Network, public userService:UserService,public cartProductsService:CartProductsService,private storage: Storage,public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
     this.setSideMenue();
+     platform.ready().then(() => {
+      // if no internet, notice is a string
+      if (this.network.type == 'none' ) { 
+        // stuff if disconnected
+       alert("disconnected");
+      } else {
+       alert("connected");
+        //stuff if connected
+      }
+    })
   }
 
   setSideMenue() {
