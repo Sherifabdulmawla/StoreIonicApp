@@ -45,21 +45,21 @@ export class RegisterPage {
           let toast = this.toastCtrl.create({
                 message: 'Password fields are not matching',
                 duration: 3000,
-                position: 'middle'
+                position: 'bottom'
             });toast.present();
         }
       } else {
         let toast = this.toastCtrl.create({
                 message: 'invalid Email Address',
                 duration: 3000,
-                position: 'middle'
+                position: 'bottom'
             });toast.present();
       }
     } else {
       let toast = this.toastCtrl.create({
                 message: 'You have to fill all fields',
                 duration: 3000,
-                position: 'middle'
+                position: 'bottom'
             });toast.present();
     }
   }
@@ -68,7 +68,7 @@ export class RegisterPage {
   get_location() {
     this.geolocation.getCurrentPosition(
       {
-      enableHighAccuracy: true,
+      // enableHighAccuracy: true,
       timeout: 300000,
       maximumAge: 0
     }
@@ -76,7 +76,7 @@ export class RegisterPage {
       var x = Position.coords.latitude;
       var y = Position.coords.longitude;
       this.displayLocation(x, y);
-    }, (err) => alert(err)).catch(err => alert(err));
+    }, (err) => alert(err.message)).catch(err => alert(err.message));
     let watcher = this.geolocation.watchPosition().subscribe((Position) => {
       watcher.unsubscribe();
     })

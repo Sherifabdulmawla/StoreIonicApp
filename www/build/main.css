@@ -6882,6 +6882,22 @@ ion-content {
   background-color: red;
 }
 
+.button {
+  background: #757de8;
+  height: 2em;
+}
+
+.button-inner {
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+}
+
+.button:active {
+  background: #ed1c24;
+  color: #000000;
+}
+
 ion-action-sheet {
   left: 0;
   top: 0;
@@ -32300,7 +32316,7 @@ ion-toast {
   display: block;
   width: 100%;
   max-width: 700px;
-  background: #002984;
+  background: rgba(0, 41, 132, 0.5);
 }
 
 .toast-md .toast-wrapper.toast-top {
@@ -52272,12 +52288,24 @@ page-profile .card-background-page .card-title {
   color: #fff;
 }
 
-page-register .inputText {
-  width: 100%;
+body > ion-app > ng-component > ion-nav > page-register > ion-content > div.scroll-content > form > ion-item:nth-child(5) > div.item-inner, body > ion-app > ng-component > ion-nav > page-register > ion-content > div.scroll-content > form > ion-item:nth-child(12) > div.item-inner {
+  border-bottom: none;
 }
 
-page-register #msgLbl {
-  color: red;
+.button {
+  background: #757de8;
+  height: 2em;
+}
+
+body > ion-app > ng-component > ion-nav > page-register > ion-content > div.scroll-content > form > ion-item:nth-child(5) > div.item-inner > div > ion-label > button > span, body > ion-app > ng-component > ion-nav > page-register > ion-content > div.scroll-content > form > ion-item:nth-child(12) > div.item-inner > div > ion-label > button > span {
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.button:active {
+  background: #ed1c24;
+  color: #000000;
 }
 
 page-sub-category #catName {
