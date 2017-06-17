@@ -20,41 +20,41 @@
             <a href="#">Edit Data</a>
         </ion-card-header>
 
-        <div *ngFor="let user of ListUsers()">
-            <ion-list *ngIf="user.email == email">
+        <div>
+            <ion-list *ngFor="let user of getUserData()">
                 <button ion-item>
-                    <ion-icon name="md-person" item-left (click)="listAddresses()"></ion-icon>
-                        {{user.userName}}
+                    <ion-icon name="md-person" item-left></ion-icon>
+                        {{user.name}}
                 </button>
 
                 <button ion-item>
                     <ion-icon name="md-mail" item-left></ion-icon>
-                    {{user.email}}
+                        {{user.email}}
                 </button>
 
-                <button ion-item (click)="listMobiles()">
-                    <input type="text" placeholder="add Mobile" item-left>
-                    <button ion-item>
+                <input type="text" placeholder="add Mobile" item-left #mobile>
+                <button item-right (click)="addNewMobile(mobile.value)">
+                        <ion-icon name="md-add-circle" item-left></ion-icon>
+                </button>
+
+                <button item-left *ngFor="let mob of listMobiles()">{{mob.mobile}}</button>
+                <button ion-item (click)="addNewAddress()">add new address
                         <ion-icon name="md-add" item-right></ion-icon>
-                    </button><br/>
-                <ion-icon name="md-call" item-left></ion-icon>
-                {{user.mobile}}
-                <ion-icon name="md-add-circle" item-right></ion-icon>
                 </button>
-                <!--<button>
-                    <ion-icin name="md-add-circle" item-right></ion-icin>
-                </button>-->
+                <button item-left *ngFor="let address of listAddresses()">
+                    {{address.country}}/{{address.city}}/{{address.street}}
+                </button>
 
-                <button ion-item>
+                <!--<button ion-item>
                     <button ion-item>
                         <ion-icon name="md-add" item-right></ion-icon>
                     </button>
                 <ion-icon name="md-navigate" item-left></ion-icon>
-                {{user.country}}/ {{user.city}}/{{user.state}}
                 <ion-icon name="md-add-circle" item-right></ion-icon>
-                </button>
+                </button>-->
 
             </ion-list>
+
         </div>
 
     </ion-card>

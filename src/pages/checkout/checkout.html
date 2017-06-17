@@ -23,12 +23,7 @@
             <ion-item>
                 <ion-label>choose address</ion-label>
                 <ion-select multiple="false" #address>
-                    <ion-option>Bacon</ion-option>
-                    <ion-option>Black Olives</ion-option>
-                    <ion-option>Extra Cheese</ion-option>
-                    <ion-option>Mushrooms</ion-option>
-                    <ion-option>Pepperoni</ion-option>
-                    <ion-option>Sausage</ion-option>
+                    <ion-option *ngFor="let address of listAddresses()">{{address.country}}/{{address.city}}/{{address.street}}</ion-option>
                 </ion-select>
             </ion-item>
 
@@ -40,23 +35,18 @@
             <ion-item>
                 <ion-label>choose mobile</ion-label>
                 <ion-select multiple="false" #mobile>
-                    <ion-option>Bacon</ion-option>
-                    <ion-option>Black Olives</ion-option>
-                    <ion-option>Extra Cheese</ion-option>
-                    <ion-option>Mushrooms</ion-option>
-                    <ion-option>Pepperoni</ion-option>
-                    <ion-option>Sausage</ion-option>
+                    <ion-option *ngFor="let mobile of listMobiles()">{{mobile.mobile}}</ion-option>
                 </ion-select>
             </ion-item>
 
             <ion-item>
                 <ion-label>Date</ion-label>
-                <ion-datetime displayFormat="MMM DD, HH:mm" min="2017" max="2018-10-31" #date>
+                <ion-datetime displayFormat="YYYY-MM-DD HH:mm:ss" min="2017" max="2018-10-31" #date>
                 </ion-datetime>
             </ion-item>
         </ion-list>
     </div>
 
-    <button ion-button full (click)="confirm()"> confirm </button>
+    <button ion-button full (click)="confirm(address.value,mobile.value,date.value)"> confirm </button>
 
 </ion-content>

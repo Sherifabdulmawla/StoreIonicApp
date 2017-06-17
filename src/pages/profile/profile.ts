@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { UserService } from "../../Services/user.service";
 import { EditDataPage } from '../edit-data/edit-data';
 import { Storage } from '@ionic/storage';
+import { AddAddressPage } from "../add-address/add-address";
 
 @Component({
   selector: 'page-profile',
@@ -12,14 +13,20 @@ export class ProfilePage {
 
   mobiles = [];
   addresses = [];
-  user={};
+  user;
   email;
+  user_id;
 
-  constructor(private storage: Storage,public userService:UserService,public navCtrl: NavController, public navParams: NavParams) {
-    storage.get('email').then((val)=>{
+  constructor(private storage: Storage, public userService: UserService, public navCtrl: NavController, public navParams: NavParams) {
+    storage.get('email').then((val) => {
       this.email = val;
     });
-}
+    storage.get('id').then((val) => {
+      this.user_id = val;
+      console.log("id " + this.user_id);
+    })
+    this.getUserDataFromSubscribe();
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfilePage');
@@ -30,29 +37,42 @@ export class ProfilePage {
   }
 
   ListUsers() {
-        return this.userService.users;
+    return this.userService.users;
   }
 
   listMobiles() {
-    for(var i=0 ; i<this.userService.users.length;i++) {
-      for(var j=0 ; j<this.userService.users[i].mobile.length;j++) {
-        this.mobiles.push(this.userService.users[i].mobile[j]);
-          // console.log(this.userService.users[i].mobile[j]);
-      }
-    }
-    return this.mobiles;
+   return this.userService.Mobiles
   }
 
-  listAddresses() {
-  //  this.user =this.userService.getUserBuEmail(this.user_email);
 
-    // for(var i =0;i<this.userService.users.length;i++) {
-    //   for(var j=0 ; j<this.userService.users[i].address.length;j++) {
-    //     this.addresses.push(this.userService.users[i].address);
-    //   }
-    // }
-    // console.log(this.addresses);
-    // return this.addresses;
+  listAddresses() {
+    return this.userService.Addresses;
+  }
+
+  addNewAddress() {
+    this.navCtrl.push(AddAddressPage);
+  }
+
+  addNewMobile(mobile) {
+      this.storage.get('id').then((user_id) => {
+        this.user_id = user_id;
+        this.userService.AddNewMobile(this.user_id,mobile);
+      })
+  }
+
+  getUserDataFromSubscribe() {
+    this.storage.get('email').then((email)=> {
+        this.userService.getUserByEmail(email).subscribe(data => {
+                 this.user=data;
+                //  return this.user;
+                //  console.log("user from profile "+this.user);
+        },
+        (err) => console.log(`errror ${err}`))
+    })
+  }
+
+  getUserData() {
+    return this.user;
   }
 
 }

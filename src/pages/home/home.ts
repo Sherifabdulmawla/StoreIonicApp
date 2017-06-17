@@ -10,7 +10,7 @@ import { CartProductsService } from "../../Services/cartProducts.sevice";
 import { ProductPage } from "../product/product";
 import { Storage } from '@ionic/storage';
 import { LoginPage } from "../login/login";
-import { Network } from '@ionic-native/network';
+// import { Network } from '@ionic-native/network';
 
 @Component({
   selector: 'page-home',

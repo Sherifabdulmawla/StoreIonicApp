@@ -28,7 +28,10 @@
             <ion-input type="text" placeholder="add street" class="inputText" required #street></ion-input>
         </ion-item>
 
-        <button (click)="addAddress(country.value,city.value,street.value)">add</button>
+        <br/>
+        <button (click)="addAddress(country.value,city.value,street.value)" ion-button block icon-left large>
+            Add
+            </button>
 
     </form>
 
