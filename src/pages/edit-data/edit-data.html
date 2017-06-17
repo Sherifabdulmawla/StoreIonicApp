@@ -9,29 +9,29 @@
 
 <ion-content padding>
 
-    <div *ngFor="let user of ListUsers()">
+    <div *ngFor="let user of getUserData()">
         <ion-grid>
             <ion-row>
                 <ion-col>
-                    <input type="text" class="inputText" value={{user.userName}} full>
+                    <input type="text" class="inputText" value={{user.name}} full #name>
                 </ion-col>
             </ion-row>
 
             <ion-row>
                 <ion-col>
-                    <input type="text" class="inputText" value={{user.email}}>
+                    <input type="text" class="inputText" value={{user.email}} #email>
                 </ion-col>
             </ion-row>
 
             <ion-row>
                 <ion-col>
-                    <input type="password" class="inputText" value={{user.password}}>
+                    <input type="password" class="inputText" value={{user.password}} #password>
                 </ion-col>
             </ion-row>
 
             <ion-row>
                 <ion-col>
-                    <button (click)="EditData()" ion-button full icon-left>Keep Changes</button>
+                    <button (click)="editData(name.value,email.value,password.value)" ion-button full icon-left>Keep Changes</button>
                 </ion-col>
             </ion-row>
         </ion-grid>

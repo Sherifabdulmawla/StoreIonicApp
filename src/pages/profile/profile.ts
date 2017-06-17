@@ -13,7 +13,7 @@ export class ProfilePage {
 
   mobiles = [];
   addresses = [];
-  user = {};
+  user;
   email;
   user_id;
 
@@ -25,8 +25,7 @@ export class ProfilePage {
       this.user_id = val;
       console.log("id " + this.user_id);
     })
-    // console.log(this.listMobiles());
-    // console.log("mobiles ", this.Mobiles);
+    this.getUserDataFromSubscribe();
   }
 
   ionViewDidLoad() {
@@ -52,6 +51,28 @@ export class ProfilePage {
 
   addNewAddress() {
     this.navCtrl.push(AddAddressPage);
+  }
+
+  addNewMobile(mobile) {
+      this.storage.get('id').then((user_id) => {
+        this.user_id = user_id;
+        this.userService.AddNewMobile(this.user_id,mobile);
+      })
+  }
+
+  getUserDataFromSubscribe() {
+    this.storage.get('email').then((email)=> {
+        this.userService.getUserByEmail(email).subscribe(data => {
+                 this.user=data;
+                //  return this.user;
+                //  console.log("user from profile "+this.user);
+        },
+        (err) => console.log(`errror ${err}`))
+    })
+  }
+
+  getUserData() {
+    return this.user;
   }
 
 }

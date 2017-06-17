@@ -10,6 +10,8 @@ import { Storage } from '@ionic/storage';
 })
 export class AddAddressPage {
 
+  user_id;
+
   constructor(private storage: Storage,public userService: UserService,public navCtrl: NavController, public navParams: NavParams) {
   }
 
@@ -17,7 +19,11 @@ export class AddAddressPage {
     console.log('ionViewDidLoad AddAddressPage');
   }
 
-  addAddress(country,city,state) {
+  addAddress(country,city,street) {
+    this.storage.get('id').then((user_id) => {
+      this.user_id = user_id;
+      this.userService.AddNewAddress(this.user_id,country,city,street);
+    })
     this.navCtrl.push(ProfilePage);
   }
 

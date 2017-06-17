@@ -21,22 +21,20 @@
         </ion-card-header>
 
         <div>
-            <ion-list>
+            <ion-list *ngFor="let user of getUserData()">
                 <button ion-item>
-                    <ion-icon name="md-person" item-left (click)="listAddresses()"></ion-icon>
-                        <!--{{user.userName}}-->shimaa
+                    <ion-icon name="md-person" item-left></ion-icon>
+                        {{user.name}}
                 </button>
 
                 <button ion-item>
                     <ion-icon name="md-mail" item-left></ion-icon>
-                    <!--{{user.email}}-->shimaa@gmail.com
+                        {{user.email}}
                 </button>
 
-                <button ion-item>
-                    <button ion-item>add
+                <input type="text" placeholder="add Mobile" item-left #mobile>
+                <button item-right (click)="addNewMobile(mobile.value)">
                         <ion-icon name="md-add-circle" item-left></ion-icon>
-                    </button>
-                <input type="text" placeholder="add Mobile" item-left>
                 </button>
 
                 <button item-left *ngFor="let mob of listMobiles()">{{mob.mobile}}</button>
