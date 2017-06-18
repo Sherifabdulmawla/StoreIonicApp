@@ -4,6 +4,7 @@ import { ProductService } from '../../Services/product.service';
 import { CartProductsService } from "../../Services/cartProducts.sevice";
 import { Storage } from '@ionic/storage';
 import { LoginPage } from "../login/login";
+import { Events } from 'ionic-angular';
 
 @Component({
   selector: 'page-product',
@@ -11,28 +12,28 @@ import { LoginPage } from "../login/login";
 })
 export class ProductPage {
 
-  product_id:number;
-  product_name:number;
-  product:any=[];
+  product_id: number;
+  product_name: number;
+  product: any = [];
   user_email;
   productObject;
   msg;
 
-  constructor(private storage: Storage,public cartProductsService:CartProductsService,private toastCtrl: ToastController,public productService:ProductService,public navCtrl: NavController, public navParams: NavParams) {
-    this.product_id=navParams.get("productId");
-    this.product_name=navParams.get("productName");
+  constructor(public events: Events, private storage: Storage, public cartProductsService: CartProductsService, private toastCtrl: ToastController, public productService: ProductService, public navCtrl: NavController, public navParams: NavParams) {
+    this.product_id = navParams.get("productId");
+    this.product_name = navParams.get("productName");
     this.storage.get('email').then((val) => {
-        this.user_email = val;
+      this.user_email = val;
     });
     this.listProductData();
-}
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProductPage');
   }
 
-  presentToast(idproduct,name,barcode,quantity,price,description,productQuantity) {
-    if(this.user_email == null){
+  presentToast(idproduct, name, barcode, quantity, price, description, productQuantity) {
+    if (this.user_email == null) {
       let toast = this.toastCtrl.create({
         message: 'You must login',
         duration: 3000,
@@ -44,60 +45,82 @@ export class ProductPage {
       toast.present();
       this.navCtrl.push(LoginPage);
     } else {
-      if(productQuantity==0){
-          let toast = this.toastCtrl.create({
-            message: 'out of stock',
-            duration: 3000,
-            position: 'bottom'
-          });
+      if (productQuantity == 0) {
+        let toast = this.toastCtrl.create({
+          message: 'out of stock',
+          duration: 3000,
+          position: 'bottom'
+        });
         toast.onDidDismiss(() => {
-        console.log('Dismissed toast');
+          console.log('Dismissed toast');
         });
         toast.present();
-      } else if(quantity > productQuantity) {
+      } else if (quantity > productQuantity) {
+        let toast = this.toastCtrl.create({
+          message: 'not enough quantity, only ' + productQuantity + " available",
+          duration: 3000,
+          position: 'bottom'
+        });
+        toast.onDidDismiss(() => {
+          console.log('Dismissoed toast');
+        });
+        toast.present();
+      } else if (quantity < 1) {
+        let toast = this.toastCtrl.create({
+          message: 'quantity must by greater than 1',
+          duration: 3000,
+          position: 'bottom'
+        });
+        toast.onDidDismiss(() => {
+          console.log('Dismissoed toast');
+        });
+        toast.present();
+      } else {
+        this.productObject = {
+          'idproduct': idproduct,
+          'name': name,
+          'barcode': barcode,
+          'quantity': quantity,
+          'price': price,
+          'description': description
+        }
+        this.cartProductsService.addProductsToCart(this.productObject);
+
+        this.events.subscribe('msg', (msg) => {
+          console.log("msg from event "+msg);
           let toast = this.toastCtrl.create({
-            message: 'not enough quantity, only '+productQuantity+" available",
+            message: msg,
             duration: 3000,
             position: 'bottom'
           });
           toast.onDidDismiss(() => {
-            console.log('Dismissoed toast');
-          });
-        toast.present();
-      } else {
-        this.productObject = {
-          'idproduct':idproduct,
-          'name':name,
-          'barcode':barcode,
-          'quantity':quantity,
-          'price':price,
-          'description':description
-        }
-        this.cartProductsService.addProductsToCart(this.productObject);
-        console.log("msg first: "+this.cartProductsService.msg);
-        let toast = this.toastCtrl.create({
-          message: this.cartProductsService.msg,
-          duration: 3000,
-          position: 'bottom'
-        });
-        console.log("msg after: "+this.cartProductsService.msg);
-
-        toast.onDidDismiss(() => {
           console.log('Dismissed toast');
         });
 
         toast.present();
+        });
+
+        // let toast = this.toastCtrl.create({
+        //   message: this.cartProductsService.msg,
+        //   duration: 3000,
+        //   position: 'bottom'
+        // });
+        // toast.onDidDismiss(() => {
+        //   console.log('Dismissed toast');
+        // });
+
+        // toast.present();
       }
     }
   }
 
   listProductData() {
-      this.productService.getproductid(this.product_id).subscribe(data => {
-        this.product = data
-        console.log(`the data ${data}`);
-      },
+    this.productService.getproductid(this.product_id).subscribe(data => {
+      this.product = data
+      console.log(`the data ${data}`);
+    },
       err => console.log(`error happened getting products ${err}`)
-      );
+    );
   }
 
 }

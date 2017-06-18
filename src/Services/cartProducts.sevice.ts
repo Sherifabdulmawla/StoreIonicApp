@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Storage } from '@ionic/storage';
+import { Events } from 'ionic-angular';
 
 import 'rxjs/add/operator/map';
 @Injectable()
@@ -11,7 +12,7 @@ export class CartProductsService {
     index;
     msg:string;
    
-    constructor(private storage: Storage) {
+    constructor(public events: Events,private storage: Storage) {
         this.storage.get('email').then((val) => {
             this.user_email = val;
         });
@@ -40,6 +41,7 @@ export class CartProductsService {
                 if(JSON.parse(val) == null){
                     console.log("first time");
                     this.msg = "Product is added to cart correctlly";
+                    this.events.publish('msg', this.msg);
                     console.log("msg from service: "+this.msg);
                     this.cartProducts.push(productObject);
                     this.storage.set(this.user_email,JSON.stringify(this.cartProducts));
@@ -48,12 +50,14 @@ export class CartProductsService {
                     for(var i=0;i<this.cartProducts.length;i++) {
                         if(productObject.barcode == this.cartProducts[i].barcode) {
                             this.msg = "already added";
+                            this.events.publish('msg', this.msg);
                             console.log("msg from service: "+this.msg);
                             console.log("equal");
                             break;
                         } else { 
                             if(i == this.cartProducts.length-1) {
                                 this.msg = "Product is added to cart correctlly";
+                                this.events.publish('msg', this.msg);
                                 this.cartProducts.push(productObject)
                                 this.storage.set(this.user_email,JSON.stringify(this.cartProducts));
                                 this.cartProductsLength = this.cartProducts.length;

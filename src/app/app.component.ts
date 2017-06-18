@@ -33,6 +33,10 @@ export class MyApp {
   constructor(public events: Events,private network: Network, public userService:UserService,public cartProductsService:CartProductsService,private storage: Storage,public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen)
   {
     this.initializeApp();
+    this.events.subscribe('user:logged',(userEmail)=>{
+      console.log(`user ${userEmail} logged in`);
+      this.setSideMenue();
+    });
     this.setSideMenue();
      platform.ready().then(() => {
       // if no internet, notice is a string
@@ -105,5 +109,7 @@ export class MyApp {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
+    this.nav.dismissPageChangeViews();
+    this.setSideMenue();
   }
 }

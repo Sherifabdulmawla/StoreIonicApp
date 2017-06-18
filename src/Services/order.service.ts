@@ -91,4 +91,9 @@ export class OrderService {
             (err) => console.log(`errror ${err}`)
             )
     }
+
+   
+    getorderdetails(orderid){
+        return this.http.get(this.orderUrl+"/"+"details"+"/"+orderid).map((response: Response) => response.json())
+    }
 }

@@ -16,10 +16,16 @@ export class OrderHistoryPage {
     console.log('ionViewDidLoad OrderHistoryPage');
   }
 
-  showOrderDetails() {
-    this.navCtrl.push(OrderDetailsPage);
+  getUserOders(){
+    return  this.orderservice.orders;
   }
- getUserOders(){
-  return  this.orderservice.orders;
- }
+
+  showOrderHistory(idorder,ordertime,deliverytime,totalprice) {
+    this.navCtrl.push(OrderDetailsPage,{
+      "idorder":idorder,
+      "ordertime":ordertime,
+      "deliverytime":deliverytime,
+      "totalprice":totalprice
+    })
+  }
 }

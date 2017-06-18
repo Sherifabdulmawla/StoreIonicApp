@@ -33,6 +33,7 @@ import { OrderDetailsPage } from "../pages/order-details/order-details";
 import { HeaderComponent } from '../components/header/header';
 import { AddAddressPage } from "../pages/add-address/add-address";
 import { Network } from "@ionic-native/network";
+import { ChangePasswordPage } from "../pages/change-password/change-password";
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { Network } from "@ionic-native/network";
     OrderHistoryPage,
     OrderDetailsPage,
     HeaderComponent,
-    AddAddressPage
+    AddAddressPage,
+    ChangePasswordPage
   ],
   imports: [
     BrowserModule,
@@ -78,7 +80,8 @@ import { Network } from "@ionic-native/network";
     SubCategoryPage,
     OrderHistoryPage,
     OrderDetailsPage,
-    AddAddressPage
+    AddAddressPage,
+    ChangePasswordPage
   ],
   providers: [
     Network,

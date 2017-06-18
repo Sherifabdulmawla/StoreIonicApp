@@ -12,6 +12,7 @@ export class EditDataPage {
   email;
   user;
   msg;
+  newuser;
   emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
   constructor(private storage: Storage, private toastCtrl: ToastController, public userService: UserService, public navCtrl: NavController, public navParams: NavParams) {
@@ -29,12 +30,15 @@ export class EditDataPage {
     return this.userService.users;
   }
 
-  editData(name, email, password) {
-    if (name.length > 0 && email.length > 0 && password.length > 0) {
+  editData(name, email) {
+    if (name.length > 0 && email.length > 0) {
       if (this.emailPattern.test(email)) {
         this.storage.get('id').then((user_id) => {
-          // set edit method from service hena ya ayaaaaa
-
+        this.newuser={
+            "name":name,
+            "email":email
+          }
+          this.userService.edituserdata(user_id,this.newuser)
           this.navCtrl.push(ProfilePage);
         })
       } else {

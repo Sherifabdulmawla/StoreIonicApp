@@ -23,6 +23,7 @@ export class CheckoutPage {
     storage.get('email').then((val) => {
       this.email = val;
     })
+    this.calcTotalPrice();
     this.getTotalPrice();
   }
 
@@ -35,6 +36,7 @@ export class CheckoutPage {
     if (address.length > 0 && mobile.length > 0 && date > 0) {
       console.log("date " + JSON.stringify(date));
       this.getTotalPrice();
+      console.log("total price  "+this.getTotalPrice());
       this.storage.get('id').then((user_id) => {
         this.orderservice.addorder(user_id, date, this.getTotalPrice(), address, mobile).subscribe(
           data => {

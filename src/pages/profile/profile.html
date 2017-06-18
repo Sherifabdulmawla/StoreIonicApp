@@ -32,6 +32,10 @@
                         {{user.email}}
                 </button>
 
+                <button ion-item (click)="changePassword(user.password)">
+                    change password
+                </button>
+
                 <input type="text" placeholder="add Mobile" item-left #mobile>
                 <button item-right (click)="addNewMobile(mobile.value)">
                         <ion-icon name="md-add-circle" item-left></ion-icon>

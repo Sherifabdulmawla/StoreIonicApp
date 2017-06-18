@@ -25,13 +25,7 @@
 
             <ion-row>
                 <ion-col>
-                    <input type="password" class="inputText" value={{user.password}} #password>
-                </ion-col>
-            </ion-row>
-
-            <ion-row>
-                <ion-col>
-                    <button (click)="editData(name.value,email.value,password.value)" ion-button full icon-left>Keep Changes</button>
+                    <button (click)="editData(name.value,email.value)" ion-button full icon-left>Apply change</button>
                 </ion-col>
             </ion-row>
         </ion-grid>

@@ -103,4 +103,12 @@ export class UserService {
     get Addresses(){
        return this.addresses;
     }
+
+    edituserdata(userid,newuser){
+         this.http.put(this.userUrl+"/"+userid,newuser).map((response: Response) => response.json()).subscribe(data => {
+                console.log(data);
+      }
+        , (err) => console.log(`error happen ${err}`))
+
+    }
 }

@@ -4,6 +4,7 @@ import { UserService } from "../../Services/user.service";
 import { EditDataPage } from '../edit-data/edit-data';
 import { Storage } from '@ionic/storage';
 import { AddAddressPage } from "../add-address/add-address";
+import { ChangePasswordPage } from "../change-password/change-password";
 
 @Component({
   selector: 'page-profile',
@@ -26,6 +27,7 @@ export class ProfilePage {
       this.user_id = val;
       console.log("id " + this.user_id);
     })
+    
     this.getUserDataFromSubscribe();
   }
 
@@ -90,6 +92,12 @@ export class ProfilePage {
 
   getUserData() {
     return this.user;
+  }
+
+  changePassword(password) {
+    this.navCtrl.push(ChangePasswordPage,{
+      "password":password
+    });
   }
 
 }

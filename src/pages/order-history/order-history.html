@@ -1,6 +1,6 @@
 <ion-header>
 
-   <header  myTitle="Order History"></header>
+    <header myTitle="Order History"></header>
 
 </ion-header>
 
@@ -10,14 +10,11 @@
 
     <!--<button *ngFor="let order of getUserOders()"(click)="showOrderDetails()" ion-button clear item-left><a href="#">15/5/2015 12:04 AM</a>
     </button>-->
-   <ion-list *ngFor="let order of getUserOders();">
-       <ion-item>{{order.idorder}} </ion-item>
-       <ion-item> {{ order.ordertime}}</ion-item>
-       <ion-item> {{ order.selectedtime}} </ion-item>
-       </ion-list>
-    <details>
-    </details>
+    <ion-list *ngFor="let order of getUserOders();">
+        <ion-list> {{ order.idorder}}</ion-list>
+        <button (click)="showOrderHistory(order.idorder,order.ordertime,order.deliverytime,order.totalprice)"><a href=""> {{ order.ordertime}}</a></button>
+    </ion-list>
 
-    
+
 
 </ion-content>

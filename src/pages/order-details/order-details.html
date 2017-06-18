@@ -1,6 +1,6 @@
 <ion-header>
 
-   <header  myTitle="Order Details"></header>
+    <header myTitle="Order Details"></header>
 
 </ion-header>
 
@@ -13,32 +13,17 @@
         <div class="col">quantity</div>
         <div class="col">price</div>
     </div>
-
-    <div class="row">
-        <div class="col">watch</div>
-        <div class="col">2</div>
-        <div class="col">100$</div>
+    <div *ngFor="let product of Orderdetails">
+        <div class="row">
+            <div class="col">watch</div>
+            <div class="col">{{product.quantity}}</div>
+            <div class="col">{{product.unitprice}}</div>
+        </div>
     </div>
 
-    <div class="row">
-        <div class="col">watch</div>
-        <div class="col">2</div>
-        <div class="col">100$</div>
+    <div>
+        <br/> Orderd at: {{ordertime}}<br/> Delivered at: {{deliverytime}}<br/> Total Salary: {{totalprice}}
     </div>
-
-    <div class="row">
-        <div class="col">watch</div>
-        <div class="col">2</div>
-        <div class="col">100$</div>
-    </div>
-
-    <div class="row">
-        <div class="col">watch</div>
-        <div class="col">2</div>
-        <div class="col">100$</div>
-    </div>
-
-    <br/> Orderd at: 12-5-2017 11:00 AM<br/> Delivered at: 12-5-2017 02:00 PM<br/> Total Salary: 400$
 
     <br/>
     <button (click)="backBtn()" ion-button full>OK</button>

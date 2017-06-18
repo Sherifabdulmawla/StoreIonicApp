@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams,ToastController } from 'ionic-angular';
+import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 import { Storage } from '@ionic/storage';
 import { HomePage } from '../home/home';
 import { UserService } from "../../Services/user.service";
+import { Events } from 'ionic-angular';
 
 declare var country: any;
 declare var city: any;
@@ -26,8 +27,9 @@ export class RegisterPage {
   users: any = [];
   emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
   mobilePattern = /010([0-9]{8})/;
+  
 
-  constructor(private storage: Storage, public geolocation: Geolocation,private toastCtrl: ToastController, public userService: UserService, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public events: Events,private storage: Storage, public geolocation: Geolocation, private toastCtrl: ToastController, public userService: UserService, public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
@@ -44,11 +46,22 @@ export class RegisterPage {
               data => {
                 this.userid = data;
                 console.log("user id method ", this.userid);
-                this.storage.set('email', email);
+                this.storage.set('email', email).then((val) => {
+                  console.log('val is ' + val);
+                  this.storage.get('email').then((val) => {
+                    let testEmail = val;
+                    console.log('before page change email : ' + testEmail);
+                  });
+                  this.events.publish('user:logged', val);
+                  this.navCtrl.setRoot(HomePage, {
+                    "user_email": val
+                  });
+                });
+                // this.storage.set('email', email);
                 this.storage.set('id', this.userid);
                 this.userService.AddNewAddress(this.userid, country, city, street);
                 this.userService.AddNewMobile(this.userid, mobile);
-                this.navCtrl.push(HomePage);
+                // this.navCtrl.push(HomePage);
 
               },
               (err) => console.log(`errror ${err}`)
@@ -58,31 +71,31 @@ export class RegisterPage {
 
           } else {
             let toast = this.toastCtrl.create({
-                message: 'Password fields are not matching',
-                duration: 3000,
-                position: 'bottom'
-            });toast.present();
+              message: 'Password fields are not matching',
+              duration: 3000,
+              position: 'bottom'
+            }); toast.present();
           }
         } else {
           let toast = this.toastCtrl.create({
-                message: "Invalid mobile pattern",
-                duration: 3000,
-                position: 'bottom'
-            });toast.present();
+            message: "Invalid mobile pattern",
+            duration: 3000,
+            position: 'bottom'
+          }); toast.present();
         }
       } else {
         let toast = this.toastCtrl.create({
-                message: "Invalid email pattern",
-                duration: 3000,
-                position: 'bottom'
-            });toast.present();
+          message: "Invalid email pattern",
+          duration: 3000,
+          position: 'bottom'
+        }); toast.present();
       }
     } else {
       let toast = this.toastCtrl.create({
-                message: "You must fill all fields",
-                duration: 3000,
-                position: 'bottom'
-            });toast.present();
+        message: "You must fill all fields",
+        duration: 3000,
+        position: 'bottom'
+      }); toast.present();
     }
   }
 
