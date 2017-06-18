@@ -43,6 +43,9 @@ export class MyApp {
     });
     this.setSideMenue();
      platform.ready().then(() => {
+       setTimeout(() => {
+        this.splashScreen.hide();
+      }, 200);
       // if no internet, notice is a string
       if (this.network.type == 'none' ) { 
         // stuff if disconnected
