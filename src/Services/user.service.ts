@@ -8,6 +8,7 @@ export class UserService {
 
     public users: any = [];
     public user: any;
+    public errorMsg=0;
 
     title: string;
     quantity: number;
@@ -75,8 +76,9 @@ export class UserService {
             data => {
                 // this.mobiles = data;
                 console.log(data);
+                this.errorMsg=0;
             },
-            (err) => console.log(`errror ${err}`)
+            (err) => this.errorMsg=1 
         )
     }
 

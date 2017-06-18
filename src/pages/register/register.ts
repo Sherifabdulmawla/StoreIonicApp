@@ -27,9 +27,9 @@ export class RegisterPage {
   users: any = [];
   emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
   mobilePattern = /010([0-9]{8})/;
-  
 
-  constructor(public events: Events,private storage: Storage, public geolocation: Geolocation, private toastCtrl: ToastController, public userService: UserService, public navCtrl: NavController, public navParams: NavParams) {
+
+  constructor(public events: Events, private storage: Storage, public geolocation: Geolocation, private toastCtrl: ToastController, public userService: UserService, public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
@@ -41,6 +41,7 @@ export class RegisterPage {
       && street.length > 0 && password.length > 0) {
       if (this.emailPattern.test(email)) {
         if (this.mobilePattern.test(mobile)) {
+          if(password.length >6 ){
           if (password == confirmPass) {
             this.userService.addUser(name, email, password).subscribe(
               data => {
@@ -57,21 +58,22 @@ export class RegisterPage {
                     "user_email": val
                   });
                 });
-                // this.storage.set('email', email);
                 this.storage.set('id', this.userid);
                 this.userService.AddNewAddress(this.userid, country, city, street);
                 this.userService.AddNewMobile(this.userid, mobile);
-                // this.navCtrl.push(HomePage);
-
               },
               (err) => console.log(`errror ${err}`)
             )
-
-
-
           } else {
             let toast = this.toastCtrl.create({
               message: 'Password fields are not matching',
+              duration: 3000,
+              position: 'bottom'
+            }); toast.present();
+          }
+          }else {
+            let toast = this.toastCtrl.create({
+              message: 'Password length must be greater than 7 characters',
               duration: 3000,
               position: 'bottom'
             }); toast.present();
