@@ -17,10 +17,20 @@
         <div class="col">{{product.name}}</div>
         <div class="col" id="inputBarCode">{{product.barcode}}</div>
         <input type="number" [(ngModel)]="product.quantity" id="inputNum" min="1">
-        <!--<div class="col"><input type="number" value={{product.quantity}} id="inputNum" min="1"></div>-->
-        <div class="col">{{product.price}}$</div>
+        <div class="col">{{product.price*product.quantity}}$</div>
         <div class="col"><button class="button" id="inputdelete" style="background-color:white" (click)="deleteProduct(product.idproduct)"><ion-icon name="md-trash"></ion-icon></button></div>
     </div>
+
+    <br/>
+    <ion-card *ngIf="checkArrLength()>0">
+        <ion-card-header>
+            Total Price
+        </ion-card-header>
+        <ion-card-content>
+            {{getTotalPrice()}}
+        </ion-card-content>
+    </ion-card>
+
     <br/>
     <div *ngIf="checkArrLength()>0">
         <button (click)="deleteAll()" ion-button full>delete all</button>

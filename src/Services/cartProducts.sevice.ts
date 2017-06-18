@@ -86,21 +86,6 @@ export class CartProductsService {
                 this.storage.remove(this.user_email);
             }
         }); 
-
-
-        // console.log("sss "+this.cartProducts);
-        // this.storage.remove(this.user_email);
-        // let swapArr;
-        // swapArr = this.cartProducts.filter((product) => product.idproduct != id);
-        // this.cartProducts = [];
-        // console.log("swap array length "+swapArr.length+" this "+this.cartProducts);
-        // for (var i = 0; i < swapArr.length; i++) {
-        //     console.log("price"+swapArr[i].price);
-        //     this.addProductsToCart(swapArr[i]);
-        //     swapArr.length -=1;
-        // }
-        // console.log("test befor store "+this.cartProducts);
-        // this.storage.set(this.user_email,JSON.stringify(this.cartProducts));
     }
 
     deleteAllProducts() {

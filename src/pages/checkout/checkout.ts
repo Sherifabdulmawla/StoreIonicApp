@@ -29,6 +29,8 @@ export class CheckoutPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CheckoutPage');
+    this.calcTotalPrice();
+    this.getTotalPrice();
   }
   public cartproduct: any = [];
   confirm(address, mobile, date) {

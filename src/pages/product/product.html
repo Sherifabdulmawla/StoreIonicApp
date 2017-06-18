@@ -7,6 +7,10 @@
 
 <ion-content padding>
 
+    <div *ngIf="product.length==0">
+        <h3>Empty</h3>
+    </div>
+
     <div *ngFor="let product of product">
         <ion-card>
 

@@ -13,37 +13,20 @@ export class CartPage {
 
   public id:number;
   swapCartArray;
+  totalPrice=0;
 
   constructor(public cartProductsService:CartProductsService,private toastCtrl: ToastController,public navCtrl: NavController, public navParams: NavParams) {
-    
-}
+    this.calcTotalPrice();
+    this.getTotalPrice();
+    this.getTotalPrice();
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CartPage');
   }
 
   checkOut(quantity) {
-    for(var i = 0 ; i<this.cartProductsService.cartProducts.length;i++) {
-      if(this.cartProductsService.cartProducts[i].quantity<1) {
-        let toast = this.toastCtrl.create({
-          message: 'quantity must by greater than 1',
-          duration: 3000,
-          position: 'bottom'
-        });
-        toast.present();
-      }
-      break;
-    }
-    // if(quantity >0){
       this.navCtrl.push(CheckoutPage);
-    // } else {
-    //   let toast = this.toastCtrl.create({
-    //       message: 'quantity must by greater than 1',
-    //       duration: 3000,
-    //       position: 'bottom'
-    //     });
-    //     toast.present();
-    // }
   }
 
   Listproducts() {
@@ -57,6 +40,22 @@ export class CartPage {
       this.productsArrLength = this.cartProductsService.cartProducts.length
     }
     return this.productsArrLength;
+  }
+
+  calcTotalPrice() {
+    for (var i = 0; i < this.cartProductsService.listProducts().length; i++) {
+      this.totalPrice += (parseFloat(this.cartProductsService.listProducts()[i].quantity)) * (parseFloat(this.cartProductsService.listProducts()[i].price));
+    }
+    return this.totalPrice;
+  }
+
+  getTotalPrice() {
+    return this.totalPrice;
+  }
+
+  testTotalPrice() {
+    var inputNum = (<HTMLInputElement>document.getElementById("inputNum")).value;
+    console.log(inputNum);
   }
 
   continueShopping() {
