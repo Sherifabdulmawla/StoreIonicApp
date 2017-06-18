@@ -45,6 +45,7 @@ export class CartProductsService {
                     console.log("msg from service: "+this.msg);
                     this.cartProducts.push(productObject);
                     this.storage.set(this.user_email,JSON.stringify(this.cartProducts));
+                    return;
                 } else {
                     this.cartProducts = JSON.parse(val);
                     for(var i=0;i<this.cartProducts.length;i++) {
@@ -63,6 +64,7 @@ export class CartProductsService {
                                 this.cartProductsLength = this.cartProducts.length;
                                 console.log("msg from service: "+this.msg);
                                 console.log("not equal");
+                                break;
                             }
                         }
                     }
@@ -70,6 +72,15 @@ export class CartProductsService {
                 }
             }); 
         });
+    }
+
+    swapCartProducts() {
+        this.storage.get(this.user_email).then((val)=>{
+            console.log("before "+val);
+        });
+        this.storage.remove(this.user_email);
+        this.cartProducts=[];
+         
     }
 
     deleteProduct(id) {

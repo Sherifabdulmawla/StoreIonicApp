@@ -98,7 +98,8 @@ export class ProductPage {
         });
 
         toast.present();
-        });
+        this.events.unsubscribe('msg');
+      });
 
         // let toast = this.toastCtrl.create({
         //   message: this.cartProductsService.msg,

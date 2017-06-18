@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams ,ToastController } from 'ionic-angular';
 import { CheckoutPage } from "../checkout/checkout";
 import { CartProductsService } from "../../Services/cartProducts.sevice";
 
@@ -12,8 +12,9 @@ export class CartPage {
   productsArrLength:number;
 
   public id:number;
+  swapCartArray;
 
-  constructor(public cartProductsService:CartProductsService,public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public cartProductsService:CartProductsService,private toastCtrl: ToastController,public navCtrl: NavController, public navParams: NavParams) {
     
 }
 
@@ -21,8 +22,28 @@ export class CartPage {
     console.log('ionViewDidLoad CartPage');
   }
 
-  checkOut() {
-    this.navCtrl.push(CheckoutPage);
+  checkOut(quantity) {
+    for(var i = 0 ; i<this.cartProductsService.cartProducts.length;i++) {
+      if(this.cartProductsService.cartProducts[i].quantity<1) {
+        let toast = this.toastCtrl.create({
+          message: 'quantity must by greater than 1',
+          duration: 3000,
+          position: 'bottom'
+        });
+        toast.present();
+      }
+      break;
+    }
+    // if(quantity >0){
+      this.navCtrl.push(CheckoutPage);
+    // } else {
+    //   let toast = this.toastCtrl.create({
+    //       message: 'quantity must by greater than 1',
+    //       duration: 3000,
+    //       position: 'bottom'
+    //     });
+    //     toast.present();
+    // }
   }
 
   Listproducts() {
