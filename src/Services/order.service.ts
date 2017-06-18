@@ -1,18 +1,27 @@
 
 import { Injectable } from "@angular/core";
 import { Http, Response } from '@angular/http';
+import { Storage } from '@ionic/storage';
+
 import 'rxjs/add/operator/map';
 @Injectable()
 export class OrderService {
     public orders: any = [];
-
+    user_id;
+    orderId;
     orderUrl = "https://storewebservice.herokuapp.com/orders";
-    constructor(private http: Http) {
-        this.getAllOrders();
+    productUrl = "https://storewebservice.herokuapp.com/products";
+
+    constructor(private http: Http, private storage: Storage) {
+        storage.get('id').then((val) => {
+            this.user_id = val;
+              this.getAllOrders(this.user_id);
+        });
+      
     }
 
-    getAllOrders() {
-        return this.http.get(this.orderUrl).map((response: Response) => response.json())
+    getAllOrders(userid) {
+         this.http.get(this.orderUrl+"/"+userid).map((response: Response) => response.json())
             .subscribe(data => {
                 this.orders = data
             },
@@ -25,28 +34,61 @@ export class OrderService {
 
 
 
-    addorder(iduser,selectedTime,totalPrice,selectedAddress,selectedMobile) {
+    addorder(iduser, selectedTime, totalPrice, selectedAddress, selectedMobile) {
         console.log(selectedAddress);
         console.log(selectedTime);
-        let newselectedtime=selectedTime.year+"-"+ selectedTime.month+"-"+selectedTime.day+ " " + selectedTime.hour+":"+selectedTime.minute
+        let newselectedtime = selectedTime.year + "-" + selectedTime.month + "-" + selectedTime.day + " " + selectedTime.hour + ":" + selectedTime.minute
         let neworder = {
-           "iduser":iduser,
-           "status":1,
-           "selectedtime":newselectedtime,
-           "totalprice":totalPrice,
-           "selectedaddress":selectedAddress,
-           "selectedmobile":selectedMobile
+            "iduser": iduser,
+            "status": 1,
+            "selectedtime": newselectedtime,
+            "totalprice": totalPrice,
+            "selectedaddress": selectedAddress,
+            "selectedmobile": selectedMobile
         }
-        console.log("new order",neworder);
-        this.http.post(this.orderUrl, neworder).map((response: Response) => response.json())
-            .subscribe(
-            data => {
-                this.orders.push(data);
+        console.log("new order", neworder);
+        return this.http.post(this.orderUrl, neworder).map((response: Response) => response.json())
+
+    }
+
+
+    addorderdetails(orderid, cartproduct) {
+        let orderproduct = [];
+        let orderproductobject = {};
+        for (var i = 0; i < cartproduct.length; i++) {
+            orderproductobject = {
+                "idorder": orderid,
+                "idproduct": cartproduct[i].idproduct,
+                "unitprice": cartproduct[i].price,
+                "quantity": cartproduct[i].quantity
+            }
+            orderproduct.push(orderproductobject);
+        }
+        this.http.post(this.orderUrl + "/" + orderid, orderproduct).map((response: Response) => response.json())
+            .subscribe(data => {
+                console.log(data);
+
             },
             (err) => console.log(`errror ${err}`)
             )
     }
 
+    updateProductQuantity(cartproduct) {
+        let products = [];
+        let productoobject = {};
+        for (var i = 0; i < cartproduct.length; i++) {
+            productoobject = {
+                "quantity": cartproduct[i].quantity,
+                "idproduct": cartproduct[i].idproduct
+            }
+            products.push(productoobject);
+        }
+        return this.http.put(this.productUrl, products).map((response: Response) => response.json())
+            .subscribe(data => {
+                console.log(data);
 
-
+            },
+            (err) => console.log(`errror ${err}`)
+            )
+    }
 }

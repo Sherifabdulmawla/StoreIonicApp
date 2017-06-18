@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { OrderDetailsPage } from "../order-details/order-details";
+import { OrderService } from "../../Services/order.service";
 
 @Component({
   selector: 'page-order-history',
@@ -8,7 +9,7 @@ import { OrderDetailsPage } from "../order-details/order-details";
 })
 export class OrderHistoryPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public orderservice:OrderService,public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
@@ -18,5 +19,7 @@ export class OrderHistoryPage {
   showOrderDetails() {
     this.navCtrl.push(OrderDetailsPage);
   }
-
+ getUserOders(){
+  return  this.orderservice.orders;
+ }
 }

@@ -8,24 +8,16 @@
 
 <ion-content padding>
 
-    <button (click)="showOrderDetails()" ion-button clear item-left><a href="#">15/5/2015 12:04 AM</a></button>
+    <!--<button *ngFor="let order of getUserOders()"(click)="showOrderDetails()" ion-button clear item-left><a href="#">15/5/2015 12:04 AM</a>
+    </button>-->
+   <ion-list *ngFor="let order of getUserOders();">
+       <ion-item>{{order.idorder}} </ion-item>
+       <ion-item> {{ order.ordertime}}</ion-item>
+       <ion-item> {{ order.selectedtime}} </ion-item>
+       </ion-list>
     <details>
-        Total Price: 200$
     </details>
 
-    <button (click)="showOrderDetails()" ion-button clear item-left><a href="#">15/5/2015 12:04 AM</a></button>
-    <details>
-        Total Price: 200$
-    </details>
-
-    <button (click)="showOrderDetails()" ion-button clear item-left><a href="#">15/5/2015 12:04 AM</a></button>
-    <details>
-        Total Price: 200$
-    </details>
-
-    <button (click)="showOrderDetails()" ion-button clear item-left><a href="#">15/5/2015 12:04 AM</a></button>
-    <details>
-        Total Price: 200$
-    </details>
+    
 
 </ion-content>
