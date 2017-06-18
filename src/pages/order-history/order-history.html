@@ -11,7 +11,7 @@
     <!--<button *ngFor="let order of getUserOders()"(click)="showOrderDetails()" ion-button clear item-left><a href="#">15/5/2015 12:04 AM</a>
     </button>-->
     <ion-list *ngFor="let order of getUserOders();">
-        <ion-list> {{ order.idorder}}</ion-list>
+        <!--<ion-list> {{ order.idorder}}</ion-list>-->
         <button (click)="showOrderHistory(order.idorder,order.ordertime,order.deliverytime,order.totalprice)"><a href=""> {{ order.ordertime}}</a></button>
     </ion-list>
 
