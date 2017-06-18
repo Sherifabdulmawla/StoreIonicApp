@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { UserService } from "../../Services/user.service";
 import { EditDataPage } from '../edit-data/edit-data';
 import { Storage } from '@ionic/storage';
@@ -16,8 +16,9 @@ export class ProfilePage {
   user;
   email;
   user_id;
+  mobilePattern = /010([0-9]{8})/;
 
-  constructor(private storage: Storage, public userService: UserService, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private storage: Storage, private toastCtrl: ToastController, public userService: UserService, public navCtrl: NavController, public navParams: NavParams) {
     storage.get('email').then((val) => {
       this.email = val;
     });
@@ -41,7 +42,7 @@ export class ProfilePage {
   }
 
   listMobiles() {
-   return this.userService.Mobiles
+    return this.userService.Mobiles
   }
 
 
@@ -54,19 +55,35 @@ export class ProfilePage {
   }
 
   addNewMobile(mobile) {
-      this.storage.get('id').then((user_id) => {
-        this.user_id = user_id;
-        this.userService.AddNewMobile(this.user_id,mobile);
-      })
+    if (mobile.length > 0) {
+      if (this.mobilePattern.test(mobile)) {
+        this.storage.get('id').then((user_id) => {
+          this.user_id = user_id;
+          this.userService.AddNewMobile(this.user_id, mobile);
+        })
+      } else {
+        let toast = this.toastCtrl.create({
+          message: "invalid mobile number",
+          duration: 3000,
+          position: 'bottom'
+        }); toast.present();
+      }
+    } else {
+      let toast = this.toastCtrl.create({
+        message: "please enter mobile number",
+        duration: 3000,
+        position: 'bottom'
+      }); toast.present();
+    }
   }
 
   getUserDataFromSubscribe() {
-    this.storage.get('email').then((email)=> {
-        this.userService.getUserByEmail(email).subscribe(data => {
-                 this.user=data;
-                //  return this.user;
-                //  console.log("user from profile "+this.user);
-        },
+    this.storage.get('email').then((email) => {
+      this.userService.getUserByEmail(email).subscribe(data => {
+        this.user = data;
+        //  return this.user;
+        //  console.log("user from profile "+this.user);
+      },
         (err) => console.log(`errror ${err}`))
     })
   }

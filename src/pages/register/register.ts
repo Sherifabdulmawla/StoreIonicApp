@@ -25,8 +25,9 @@ export class RegisterPage {
   msg: string;
   users: any = [];
   emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  mobilePattern = /010([0-9]{8})/;
 
-  constructor(private storage: Storage,private toastCtrl: ToastController, public geolocation: Geolocation, public userService: UserService, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private storage: Storage, public geolocation: Geolocation,private toastCtrl: ToastController, public userService: UserService, public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
@@ -37,40 +38,48 @@ export class RegisterPage {
     if (name.length > 0 && email.length > 0 && mobile.length > 0 && country.length > 0 && city.length > 0
       && street.length > 0 && password.length > 0) {
       if (this.emailPattern.test(email)) {
-        if (password == confirmPass) {
-          this.userService.addUser(name, email, password).subscribe(
-            data => {
-              this.userid = data;
-              console.log("user id method ", this.userid);
-               this.storage.set('email', email);
-               this.storage.set('id',this.userid);
-               this.userService.AddNewAddress(this.userid,country,city,street);
-               this.userService.AddNewMobile(this.userid,mobile);
-               this.navCtrl.push(HomePage);
-             
-            },
-            (err) => console.log(`errror ${err}`)
-          )
+        if (this.mobilePattern.test(mobile)) {
+          if (password == confirmPass) {
+            this.userService.addUser(name, email, password).subscribe(
+              data => {
+                this.userid = data;
+                console.log("user id method ", this.userid);
+                this.storage.set('email', email);
+                this.storage.set('id', this.userid);
+                this.userService.AddNewAddress(this.userid, country, city, street);
+                this.userService.AddNewMobile(this.userid, mobile);
+                this.navCtrl.push(HomePage);
+
+              },
+              (err) => console.log(`errror ${err}`)
+            )
 
 
 
+          } else {
+            let toast = this.toastCtrl.create({
+                message: 'Password fields are not matching',
+                duration: 3000,
+                position: 'bottom'
+            });toast.present();
+          }
         } else {
           let toast = this.toastCtrl.create({
-                message: 'Password fields are not matching',
+                message: "Invalid mobile pattern",
                 duration: 3000,
                 position: 'bottom'
             });toast.present();
         }
       } else {
         let toast = this.toastCtrl.create({
-                message: 'invalid Email Address',
+                message: "Invalid email pattern",
                 duration: 3000,
                 position: 'bottom'
             });toast.present();
       }
     } else {
       let toast = this.toastCtrl.create({
-                message: 'You have to fill all fields',
+                message: "You must fill all fields",
                 duration: 3000,
                 position: 'bottom'
             });toast.present();
@@ -79,13 +88,11 @@ export class RegisterPage {
 
 
   get_location() {
-    this.geolocation.getCurrentPosition(
-      {
+    this.geolocation.getCurrentPosition({
       // enableHighAccuracy: true,
       timeout: 300000,
       maximumAge: 0
-    }
-    ).then((Position) => {
+    }).then((Position) => {
       var x = Position.coords.latitude;
       var y = Position.coords.longitude;
       this.displayLocation(x, y);
@@ -113,7 +120,7 @@ export class RegisterPage {
         console.log(address + data.results);
         RegisterPage.street = address[0];
         RegisterPage.city = address[1];
-        RegisterPage.country = address[4];
+        RegisterPage.country = address[2];
         // console.log("country drom observer "+RegisterPage.country);
         // var detailedAddress = address[1] + " " + address[0];
         // alert(detailedAddress)

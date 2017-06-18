@@ -6,10 +6,10 @@
 
     <ion-card>
         <ion-card-header>
-            Header
+            Total Price
         </ion-card-header>
         <ion-card-content>
-            total price
+            {{getTotalPrice()}}
         </ion-card-content>
     </ion-card>
 
@@ -48,5 +48,6 @@
     </div>
 
     <button ion-button full (click)="confirm(address.value,mobile.value,date.value)"> confirm </button>
+    <label style="color:red">{{msg}}</label>
 
 </ion-content>

@@ -17,6 +17,10 @@
 
     <form name="myForm" novalidate>
         <ion-item>
+            <button (click)="get_location($event)" ion-button full color="danger">Get location</button>
+        </ion-item>
+
+        <ion-item>
             <ion-input type="text" placeholder="add country" class="inputText" required #country></ion-input>
         </ion-item>
 
@@ -31,7 +35,8 @@
         <br/>
         <button (click)="addAddress(country.value,city.value,street.value)" ion-button block icon-left large>
             Add
-            </button>
+        </button>
+        <label style="color:red">{{msg}}</label>
 
     </form>
 

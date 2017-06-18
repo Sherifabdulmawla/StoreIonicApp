@@ -16,7 +16,7 @@
     <div class="row" *ngFor="let product of Listproducts()">
         <div class="col">{{product.name}}</div>
         <div class="col" id="inputBarCode">{{product.barcode}}</div>
-        <div class="col"><input type="number" value={{product.quantity}} id="inputNum"></div>
+        <div class="col"><input type="number" value={{product.quantity}} id="inputNum" min="1"></div>
         <div class="col">{{product.price}}$</div>
         <div class="col"><button class="button" id="inputdelete" style="background-color:white" (click)="deleteProduct(product.id)"><ion-icon name="md-trash"></ion-icon></button></div>
     </div>

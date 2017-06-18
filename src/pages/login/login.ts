@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams,ToastController } from 'ionic-angular';
+import { NavController, NavParams,ToastController,ViewController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 import { HomePage } from '../home/home';
@@ -17,7 +17,7 @@ export class LoginPage {
   msg: string = "";
   user_id;
 
-  constructor(public events: Events, private toastCtrl: ToastController, private storage: Storage, public userService: UserService, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public events: Events, private toastCtrl: ToastController, private storage: Storage, public userService: UserService,private viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
@@ -28,9 +28,13 @@ export class LoginPage {
     this.userService.login(email, password).subscribe(data => {
       if (data) {
         console.log(data);
-        this.navCtrl.push(HomePage, {
+        this.navCtrl.setRoot(HomePage, {
           "user_email": email
         })
+        // .then(() => {
+        //   const index = this.viewCtrl.index;
+        //   this.navCtrl.remove(index);
+        // })
         this.storage.set('email', email);
         this.events.publish('user:created', email);
         this.userService.getUserByEmail(email).subscribe(data => {
