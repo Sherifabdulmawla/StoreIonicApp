@@ -16,5 +16,9 @@
      background-color:color($colors,pDark);
  }
 
+.list-md .item-block .item-inner{
+    border-bottom:none;
+}
+
 $list-md-border-color:color($colors,pDark);
 $list-md-header-border-top:5px;

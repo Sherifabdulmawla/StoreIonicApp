@@ -74,4 +74,20 @@ $colors: (
     ion-content{
         background-color: red;
     }
+.button{
+    background: color($colors,pLight);
+    height:2em;
+}
+.button-inner{
+    justify-content:flex-start;
+}
 
+.button:active{
+    background: color($colors,secondary);
+    color:color($colors,textOnS)
+}
+$toast-md-background:rgba(color($colors,pDark),0.5)
+// $toast-md-background:color($colors,pDark);
+// $toast-md-title-padding-top:19px	;
+// $toast-md-title-padding-end:16px	;
+// $toast-md-title-padding-bottom:17px	;

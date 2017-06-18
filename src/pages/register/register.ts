@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams,ToastController } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 import { Storage } from '@ionic/storage';
 import { HomePage } from '../home/home';
@@ -26,7 +26,7 @@ export class RegisterPage {
   users: any = [];
   emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
-  constructor(private storage: Storage, public geolocation: Geolocation, public userService: UserService, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private storage: Storage,private toastCtrl: ToastController, public geolocation: Geolocation, public userService: UserService, public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
@@ -55,23 +55,37 @@ export class RegisterPage {
 
 
         } else {
-          this.msg = "password dosen't matches";
+          let toast = this.toastCtrl.create({
+                message: 'Password fields are not matching',
+                duration: 3000,
+                position: 'bottom'
+            });toast.present();
         }
       } else {
-        this.msg = "Invalid email pattern";
+        let toast = this.toastCtrl.create({
+                message: 'invalid Email Address',
+                duration: 3000,
+                position: 'bottom'
+            });toast.present();
       }
     } else {
-      this.msg = "You must fill all fields";
+      let toast = this.toastCtrl.create({
+                message: 'You have to fill all fields',
+                duration: 3000,
+                position: 'bottom'
+            });toast.present();
     }
   }
 
 
   get_location() {
-    this.geolocation.getCurrentPosition({
+    this.geolocation.getCurrentPosition(
+      {
       // enableHighAccuracy: true,
       timeout: 300000,
       maximumAge: 0
-    }).then((Position) => {
+    }
+    ).then((Position) => {
       var x = Position.coords.latitude;
       var y = Position.coords.longitude;
       this.displayLocation(x, y);
@@ -99,7 +113,7 @@ export class RegisterPage {
         console.log(address + data.results);
         RegisterPage.street = address[0];
         RegisterPage.city = address[1];
-        RegisterPage.country = address[2];
+        RegisterPage.country = address[4];
         // console.log("country drom observer "+RegisterPage.country);
         // var detailedAddress = address[1] + " " + address[0];
         // alert(detailedAddress)
