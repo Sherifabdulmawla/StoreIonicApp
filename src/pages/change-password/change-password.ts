@@ -19,7 +19,7 @@ export class ChangePasswordPage {
   changePassword(oldPass, newPass) {
     console.log(oldPass+" "+this.password);
     if (oldPass == this.password) {
-
+      
     } else {
       let toast = this.toastCtrl.create({
         message: "old password is incorrect",

@@ -58,6 +58,7 @@ export class UserService {
         }
         return this.http.post(this.useraddressUrl + "/" + id, newaddress).map((response: Response) => response.json()).subscribe(
             data => {
+                this.addresses = this.addresses.push();
                 console.log(data);
             },
             (err) => console.log(`errror ${err}`)
@@ -72,6 +73,7 @@ export class UserService {
         }
         return this.http.post(this.usermobileUrl + "/" + id, newmobile).map((response: Response) => response.json()).subscribe(
             data => {
+                // this.mobiles = data;
                 console.log(data);
             },
             (err) => console.log(`errror ${err}`)

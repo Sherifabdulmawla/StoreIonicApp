@@ -32,6 +32,10 @@ export class MyApp {
 
   constructor(public events: Events,private network: Network, public userService:UserService,public cartProductsService:CartProductsService,private storage: Storage,public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen)
   {
+    // this.storage.get('email').then((val)=>{
+    //         this.storage.remove(val);
+    //         this.storage.remove('email');
+    // });
     this.initializeApp();
     this.events.subscribe('user:logged',(userEmail)=>{
       console.log(`user ${userEmail} logged in`);
