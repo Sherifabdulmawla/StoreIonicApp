@@ -1,3 +1,13 @@
-page-checkout {
+.button{
+    background: color($colors,pLight);
+    // height:2em;
 
+}
+  body > ion-app > ng-component > ion-nav > page-checkout > ion-content > div.scroll-content > button > span{
+    justify-content:center;
+}
+
+.button:active{
+    background: color($colors,secondary);
+    color:color($colors,textOnS)
 }
