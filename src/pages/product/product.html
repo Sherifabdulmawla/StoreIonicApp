@@ -7,7 +7,7 @@
 <ion-content padding>
 
 <ion-card *ngFor="let product of product">
-    <img src="https://ionicframework.com/dist/preview-app/www/assets/img/nin-live.png" />
+    <img src="{{product.image}}" />
     <ion-card-content>
         <ion-card-title>
             {{product.name}}
@@ -19,7 +19,7 @@
     <ion-row>
         <ion-col center text-center>
             <ion-note>
-                {{product.price}}
+                {{product.price}}EGP
             </ion-note>
         </ion-col>
     </ion-row>

@@ -52141,8 +52141,9 @@ ion-menu > div > ion-content > div.scroll-content {
 }
 
 page-cart #inputNum {
-  width: 35px;
+  width: 5px;
   height: 1005;
+  max-width: 30%;
 }
 
 page-cart #inputdelete {
@@ -52154,23 +52155,18 @@ page-cart body {
 }
 
 page-cart .header .col {
-  background-color: lightgrey;
+  background-color: #757de8;
 }
 
 page-cart .col {
+  border: 1px solid #354073;
   vertical-align: middle;
   text-align: center;
-  border: solid 1px grey;
-  border-bottom-style: none;
-  border-right-style: none;
+  width: 20px;
 }
 
-page-cart .col:last-child {
-  border-right: solid 1px grey;
-}
-
-page-cart .row:last-child .col {
-  border-bottom: solid 1px grey;
+page-cart #hh {
+  width: 20px;
 }
 
 page-cart #notification-button {
@@ -52215,6 +52211,21 @@ page-cart .span {
 
 .card-background-page img {
   max-width: none;
+}
+
+.button {
+  background: #757de8;
+}
+
+body > ion-app > ng-component > ion-nav > page-checkout > ion-content > div.scroll-content > button > span {
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.button:active {
+  background: #ed1c24;
+  color: #000000;
 }
 
 page-edit-data .inputText {
@@ -52296,8 +52307,36 @@ page-order-details .row:last-child .col {
   border-bottom: solid 1px grey;
 }
 
-page-product #productsNum {
+ion-card {
+  position: relative;
+  text-align: center;
+}
+
+img {
+  max-width: none;
+}
+
+.ion-card {
+  margin: none;
+}
+
+#productsNum {
   width: 25%;
+}
+
+.button {
+  background: #757de8;
+}
+
+body > ion-app > ng-component > ion-nav > page-product > ion-content > div.scroll-content > ion-card > ion-row:nth-child(5) > ion-col > button > span {
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.button:active {
+  background: #ed1c24;
+  color: #000000;
 }
 
 .card-background-page ion-card {

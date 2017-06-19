@@ -52143,6 +52143,7 @@ ion-menu > div > ion-content > div.scroll-content {
 page-cart #inputNum {
   width: 5px;
   height: 1005;
+  max-width: 30%;
 }
 
 page-cart #inputdelete {
@@ -52161,6 +52162,11 @@ page-cart .col {
   border: 1px solid #354073;
   vertical-align: middle;
   text-align: center;
+  width: 20px;
+}
+
+page-cart #hh {
+  width: 20px;
 }
 
 page-cart #notification-button {

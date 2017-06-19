@@ -49,13 +49,14 @@ export class CheckoutPage {
             this.orderservice.addorderdetails(this.orderId, this.cartproduct);
             this.orderservice.updateProductQuantity(this.cartproduct);
             console.log("done all");
+            this.orderservice.getAllOrders(user_id);
             let toast = this.toastCtrl.create({
               message: "done, your order will deliverd in the time",
               duration: 3000,
               position: 'bottom'
             }); toast.present();
             this.cartProductsService.deleteAllProducts();
-            this.navCtrl.push(HomePage);
+            this.navCtrl.setRoot(HomePage);
           },
           (err) => console.log(`errror ${err}`)
         )
