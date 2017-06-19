@@ -112,6 +112,8 @@ export class UserService {
     edituserdata(userid,newuser){
          this.http.put(this.userUrl+"/"+userid,newuser).map((response: Response) => response.json()).subscribe(data => {
                 console.log(data);
+                // this.userObject=[];
+                this.userObject.push(data);
       }
         , (err) => console.log(`error happen ${err}`))
 

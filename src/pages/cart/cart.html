@@ -13,10 +13,10 @@
     </div>
 
     <div class="row" *ngFor="let product of Listproducts()">
-        <div class="col">{{product.name}}</div>
-        <input class="col" type="number" [(ngModel)]="product.quantity" id="inputNum" min="1">
-        <div class="col">{{product.price*product.quantity}}LE</div>
-        <div class="col"><button class="button" id="inputdelete" style="background-color:white" (click)="deleteProduct(product.idproduct)"><ion-icon name="md-trash"></ion-icon></button></div>
+        <div class="col" id="hh">{{product.name}}</div>
+        <input class="col" id="hh" type="number" [(ngModel)]="product.quantity" id="inputNum" min="1">
+        <div class="col" id="hh">{{product.price*product.quantity}}LE</div>
+        <div class="col" id="hh"><button class="button" id="inputdelete" style="background-color:white" (click)="deleteProduct(product.idproduct)"><ion-icon name="md-trash"></ion-icon></button></div>
     </div>
 
     <br/>

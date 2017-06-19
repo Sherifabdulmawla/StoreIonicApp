@@ -30,13 +30,14 @@ export class EditDataPage {
     return this.userService.users;
   }
 
-  editData(name, email) {
+  editData(name, email,password) {
     if (name.length > 0 && email.length > 0) {
       if (this.emailPattern.test(email)) {
         this.storage.get('id').then((user_id) => {
         this.newuser={
             "name":name,
-            "email":email
+            "email":email,
+            "password":password
           }
           this.userService.edituserdata(user_id,this.newuser)
           this.navCtrl.push(ProfilePage);

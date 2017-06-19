@@ -2,6 +2,7 @@ page-cart {
     #inputNum {
         width: 5px;
         height: 1005;
+        max-width: 30%
     }
     #inputdelete {
         width: 30px;
@@ -10,13 +11,16 @@ page-cart {
         cursor: url('http://ionicframework.com/img/finger.png'), auto;
     }
     .header .col {
-        background-color: color($colors,pLight);
+        background-color: color($colors, pLight);
     }
-
-    .col{
+    .col {
         border: 1px solid #354073;
         vertical-align: middle;
         text-align: center;
+        width: 20px;
+    }
+    #hh {
+        width: 20px;
     }
     // .col {
     //     vertical-align: middle;

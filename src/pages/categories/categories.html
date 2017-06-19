@@ -24,7 +24,7 @@
 
     <div *ngIf="ListCategory().length>0">
         <ion-card *ngFor="let catagory of ListCategory()">
-            <img src="https://holisticwellness.ca/wp-content/uploads/2015/08/dairy_products-1100x796.jpg" (click)="showSubCategories($event,catagory.idcategory,catagory.name)" />
+            <img src="{{catagory.image}}" (click)="showSubCategories($event,catagory.idcategory,catagory.name)" />
             <div class="card-title" (click)="showSubCategories($event,catagory.idcategory,catagory.name)">{{catagory.name}}</div>
         </ion-card>
     </div>

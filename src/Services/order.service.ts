@@ -17,6 +17,7 @@ export class OrderService {
             this.user_id = val;
               this.getAllOrders(this.user_id);
         });
+        this.Orders;
       
     }
 
@@ -40,13 +41,15 @@ export class OrderService {
         let newselectedtime = selectedTime.year + "-" + selectedTime.month + "-" + selectedTime.day + " " + selectedTime.hour + ":" + selectedTime.minute
         let neworder = {
             "iduser": iduser,
-            "status": 1,
+            "status": 3,
             "selectedtime": newselectedtime,
             "totalprice": totalPrice,
             "selectedaddress": selectedAddress,
             "selectedmobile": selectedMobile
         }
         console.log("new order", neworder);
+        this.orders.push(neworder);
+        console.log("array "+this.orders);
         return this.http.post(this.orderUrl, neworder).map((response: Response) => response.json())
 
     }

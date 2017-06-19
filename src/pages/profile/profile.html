@@ -32,22 +32,31 @@
                         {{user.email}}
                 </button>
 
-                <button ion-item (click)="changePassword(user.password)">
-                    change password
-                </button>
-
                 <input type="text" placeholder="add Mobile" item-left #mobile>
                 <button item-right (click)="addNewMobile(mobile.value)">
                         <ion-icon name="md-add-circle" item-left></ion-icon>
                 </button>
+                <br/>
 
-                <button item-left *ngFor="let mob of listMobiles()">{{mob.mobile}}</button>
+                <ion-list>
+                    <ion-item *ngFor="let mob of listMobiles()">{{mob.mobile}}
+                    </ion-item>
+                </ion-list>
+
+                <!--<button item-left *ngFor="let mob of listMobiles()">{{mob.mobile}}</button>-->
                 <button ion-item (click)="addNewAddress()">add new address
                         <ion-icon name="md-add" item-right></ion-icon>
                 </button>
-                <button item-left *ngFor="let address of listAddresses()">
+
+
+                <ion-list>
+                    <ion-item *ngFor="let address of listAddresses()">
+                        {{address.country}}/{{address.city}}/{{address.street}}
+                    </ion-item>
+                </ion-list>
+                <!--<button item-left *ngFor="let address of listAddresses()">
                     {{address.country}}/{{address.city}}/{{address.street}}
-                </button>
+                </button>-->
 
                 <!--<button ion-item>
                     <button ion-item>

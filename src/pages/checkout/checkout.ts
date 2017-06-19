@@ -35,7 +35,7 @@ export class CheckoutPage {
   public cartproduct: any = [];
   confirm(address, mobile, date) {
 
-    if (address.length > 0 && mobile.length > 0 && date > 0) {
+    // if (address.length > 0 && mobile.length > 0 && date > 0) {
       console.log("date " + JSON.stringify(date));
       this.getTotalPrice();
       console.log("total price  "+this.getTotalPrice());
@@ -60,9 +60,9 @@ export class CheckoutPage {
           (err) => console.log(`errror ${err}`)
         )
       })
-    } else {
-      this.msg = "please fill all fields";
-    }
+    // } else {
+    //   this.msg = "please fill all fields";
+    // }
   }
 
   ListUsers() {
@@ -78,9 +78,11 @@ export class CheckoutPage {
   }
 
   calcTotalPrice() {
+    this.totalPrice=0;
     for (var i = 0; i < this.cartProductsService.listProducts().length; i++) {
       this.totalPrice += (parseFloat(this.cartProductsService.listProducts()[i].quantity)) * (parseFloat(this.cartProductsService.listProducts()[i].price));
-    }
+  }
+    // this.totalPrice = this.totalPrice/2;
     return this.totalPrice;
   }
 
