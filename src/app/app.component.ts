@@ -15,7 +15,7 @@ import { CartProductsService } from "../Services/cartProducts.sevice";
 import { UserService } from "../Services/user.service";
 import { Network } from '@ionic-native/network';
 
-declare var isLogged:any;
+declare var isLogged: any;
 
 
 @Component({
@@ -28,55 +28,54 @@ export class MyApp {
 
   user_email;
   public static isLogged: string;
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{ title: string, component: any }>;
 
-  constructor(public events: Events,private network: Network, public userService:UserService,public cartProductsService:CartProductsService,private storage: Storage,public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen)
-  {
+  constructor(public events: Events, private network: Network, public userService: UserService, public cartProductsService: CartProductsService, private storage: Storage, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     // this.storage.get('email').then((val)=>{
     //         this.storage.remove(val);
     //         this.storage.remove('email');
     // });
     this.initializeApp();
-    this.events.subscribe('user:logged',(userEmail)=>{
+    this.events.subscribe('user:logged', (userEmail) => {
       console.log(`user ${userEmail} logged in`);
       this.setSideMenue();
     });
     this.setSideMenue();
-     platform.ready().then(() => {
-       setTimeout(() => {
+    platform.ready().then(() => {
+      setTimeout(() => {
         this.splashScreen.hide();
       }, 200);
       // if no internet, notice is a string
-      if (this.network.type == 'none' ) { 
+      if (this.network.type == 'none') {
         // stuff if disconnected
-       alert("disconnected");
-      } 
+        alert("disconnected");
+      }
     })
   }
 
   setSideMenue() {
     this.storage.get('email').then((val) => {
       this.user_email = val;
-      if(val != null){
+      if (val != null) {
         this.pages = [
           { title: 'Home', component: HomePage },
-          { title: 'profile',component:ProfilePage},
-          { title: 'Cart' , component:CartPage},
-          { title: 'Categories' , component:CategoriesPage},
-          { title: 'History' , component:OrderHistoryPage}
+          { title: 'profile', component: ProfilePage },
+          { title: 'Cart', component: CartPage },
+          { title: 'Categories', component: CategoriesPage },
+          { title: 'History', component: OrderHistoryPage }
         ];
-      } else if(val == null) {
+      } else if (val == null) {
         this.pages = [
           { title: 'Home', component: HomePage },
         ];
-      } else if(this.isLoggedUser() == this.user_email) {
+      } else if (this.isLoggedUser() == this.user_email) {
         this.pages = [
           { title: 'Home', component: HomePage },
-          { title: 'profile',component:ProfilePage},
-          { title: 'Cart' , component:CartPage},
-          { title: 'Categories' , component:CategoriesPage},
-          { title: 'History' , component:OrderHistoryPage},
-          { title : 'aaa',component:this.logOut()}
+          { title: 'profile', component: ProfilePage },
+          { title: 'Cart', component: CartPage },
+          { title: 'Categories', component: CategoriesPage },
+          { title: 'History', component: OrderHistoryPage },
+          { title: 'aaa', component: this.logOut() }
         ];
       }
     });
@@ -99,11 +98,17 @@ export class MyApp {
     });
   }
 
-  isLoggedUser(){
+  isLoggedUser() {
     return MyApp.isLogged;
   }
 
   initializeApp() {
+    // let status bar overlay webview
+    this.statusBar.overlaysWebView(false);
+
+    // set status bar to white
+    this.statusBar.backgroundColorByHexString('#002984');
+
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.

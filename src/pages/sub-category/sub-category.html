@@ -4,6 +4,17 @@
 
 </ion-header>
 
+<ion-content class="card-background-page">
+
+    <ion-card *ngFor="let catagory of subcatagories">
+        <img src="../../assets/img/card-sf.jpg" (click)="showProductsList($event,catagory.idcategory,catagory.name)"/>
+        <div class="card-title"  (click)="showProductsList($event,catagory.idcategory,catagory.name)">{{catagory.name}}</div>
+    </ion-card>
+
+</ion-content>
+
+
+<!--
 <ion-content padding>
 
     <ion-grid>
@@ -30,4 +41,4 @@
 
     </ion-grid>
 
-</ion-content>
+</ion-content>-->
