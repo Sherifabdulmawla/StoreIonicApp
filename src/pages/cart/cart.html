@@ -6,18 +6,16 @@
 <ion-content padding>
 
     <div class="row header" *ngIf="checkArrLength()>0">
-        <div class="col">product name</div>
-        <div class="col">barcode</div>
-        <div class="col">quantity</div>
-        <div class="col">price</div>
-        <div class="col"></div>
+        <div class="col">Name</div>
+        <div class="col">Quantity</div>
+        <div class="col">Price</div>
+        <div class="col">Action</div>
     </div>
 
     <div class="row" *ngFor="let product of Listproducts()">
         <div class="col">{{product.name}}</div>
-        <div class="col" id="inputBarCode">{{product.barcode}}</div>
-        <input type="number" [(ngModel)]="product.quantity" id="inputNum" min="1">
-        <div class="col">{{product.price*product.quantity}}$</div>
+        <input class="col" type="number" [(ngModel)]="product.quantity" id="inputNum" min="1">
+        <div class="col">{{product.price*product.quantity}}LE</div>
         <div class="col"><button class="button" id="inputdelete" style="background-color:white" (click)="deleteProduct(product.idproduct)"><ion-icon name="md-trash"></ion-icon></button></div>
     </div>
 

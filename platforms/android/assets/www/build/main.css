@@ -52199,8 +52199,22 @@ page-cart .span {
   text-shadow: 20ch;
 }
 
-page-categories #catName {
-  font-size: 12px;
+.card-background-page ion-card {
+  position: relative;
+  text-align: center;
+}
+
+.card-background-page .card-title {
+  position: relative;
+  bottom: 0;
+  font-size: 2.0em;
+  width: 100%;
+  color: #ffffff;
+  background-color: #757de8;
+}
+
+.card-background-page img {
+  max-width: none;
 }
 
 page-edit-data .inputText {
@@ -52286,6 +52300,28 @@ page-product #productsNum {
   width: 25%;
 }
 
+.card-background-page ion-card {
+  position: relative;
+  text-align: center;
+}
+
+.card-background-page .card-title {
+  position: relative;
+  bottom: 0;
+  font-size: 1.5em;
+  width: 100%;
+  color: #ffffff;
+  background-color: #757de8;
+}
+
+.card-background-page img {
+  max-width: none;
+}
+
+.card-background-page .ion-card {
+  margin: none;
+}
+
 page-profile #bottomCard {
   margin-top: 40px;
 }
@@ -52324,6 +52360,20 @@ body > ion-app > ng-component > ion-nav > page-register > ion-content > div.scro
   color: #000000;
 }
 
-page-sub-category #catName {
-  font-size: 12px;
+.card-background-page ion-card {
+  position: relative;
+  text-align: center;
+}
+
+.card-background-page .card-title {
+  position: relative;
+  bottom: 0;
+  font-size: 2.0em;
+  width: 100%;
+  color: #ffffff;
+  background-color: #757de8;
+}
+
+.card-background-page img {
+  max-width: none;
 }

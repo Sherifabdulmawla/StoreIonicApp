@@ -26,7 +26,7 @@ export class RegisterPage {
   msg: string;
   users: any = [];
   emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-  mobilePattern = /010([0-9]{8})/;
+  mobilePattern = /01([0-9]{9})/;
 
 
   constructor(public events: Events, private storage: Storage, public geolocation: Geolocation, private toastCtrl: ToastController, public userService: UserService, public navCtrl: NavController, public navParams: NavParams) {

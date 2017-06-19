@@ -1,31 +1,36 @@
 page-cart {
     #inputNum {
-        width: 35px;
+        width: 5px;
         height: 1005;
     }
     #inputdelete {
         width: 30px;
     }
-    #inputBarCode {}
     body {
         cursor: url('http://ionicframework.com/img/finger.png'), auto;
     }
     .header .col {
-        background-color: lightgrey;
+        background-color: color($colors,pLight);
     }
-    .col {
+
+    .col{
+        border: 1px solid #354073;
         vertical-align: middle;
         text-align: center;
-        border: solid 1px grey;
-        border-bottom-style: none;
-        border-right-style: none;
     }
-    .col:last-child {
-        border-right: solid 1px grey;
-    }
-    .row:last-child .col {
-        border-bottom: solid 1px grey;
-    }
+    // .col {
+    //     vertical-align: middle;
+    //     text-align: center;
+    //     border: solid 1px grey;
+    //     border-bottom-style: none;
+    //     border-right-style: none;
+    // }
+    // .col:last-child {
+    //     border-right: solid 1px grey;
+    // }
+    // .row:last-child .col {
+    //     border-bottom: solid 1px grey;
+    // }
     #notification-button {
         position: relative;
         width: 42px;

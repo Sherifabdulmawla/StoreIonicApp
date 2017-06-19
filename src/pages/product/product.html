@@ -4,7 +4,42 @@
 
 </ion-header>
 
+<ion-content padding>
 
+<ion-card *ngFor="let product of product">
+    <img src="https://ionicframework.com/dist/preview-app/www/assets/img/nin-live.png" />
+    <ion-card-content>
+        <ion-card-title>
+            {{product.name}}
+        </ion-card-title>
+        <p>
+            {{product.description}}
+        </p>
+    </ion-card-content>
+    <ion-row>
+        <ion-col center text-center>
+            <ion-note>
+                {{product.price}}
+            </ion-note>
+        </ion-col>
+    </ion-row>
+
+    <ion-row>
+        <ion-col center text-center>
+            <input type="number" id="productsNum" value="1" min="1" #quantity>
+        </ion-col>
+    </ion-row>
+
+    <ion-row>
+        <ion-col center text-center>
+            <button (click)="presentToast(product.idproduct,product.name,product.barcode,quantity.value,product.price,product.description,product.quantity)"
+                ion-button full icon-left >Add To Cart</button>
+        </ion-col>
+    </ion-row>
+</ion-card>
+</ion-content>
+
+<!--
 <ion-content padding>
 
     <div *ngIf="product.length==0">
@@ -36,11 +71,12 @@
 
             <ion-row>
                 <ion-col center text-center>
-                    <button (click)="presentToast(product.idproduct,product.name,product.barcode,quantity.value,product.price,product.description,product.quantity)" ion-button full icon-left>Add To Cart</button>
+                    <button (click)="presentToast(product.idproduct,product.name,product.barcode,quantity.value,product.price,product.description,product.quantity)"
+                        ion-button full icon-left>Add To Cart</button>
                 </ion-col>
             </ion-row>
 
         </ion-card>
     </div>
 
-</ion-content>
+</ion-content>-->
