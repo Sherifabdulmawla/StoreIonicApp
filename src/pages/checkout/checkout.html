@@ -15,32 +15,34 @@
 
     <div>
         <ion-list>
-            <ion-item col-2>
-                <button item-right (click)="addNewField()">
-                    <ion-icon name="md-add"></ion-icon>
-                </button>
-            </ion-item>
+            
             <ion-item>
                 <ion-label>choose address</ion-label>
                 <ion-select multiple="false" #address>
                     <ion-option *ngFor="let address of listAddresses()">{{address.country}}/{{address.city}}/{{address.street}}</ion-option>
                 </ion-select>
             </ion-item>
-
-            <ion-item col-2>
+            <ion-item>
                 <button item-right (click)="addNewField()">
-                    <ion-icon name="md-add"></ion-icon>
+                    Add new Address <ion-icon name="md-add"></ion-icon>
                 </button>
             </ion-item>
+
+
             <ion-item>
-                <ion-label>choose mobile</ion-label>
+                <ion-label>Choose mobile</ion-label>
                 <ion-select multiple="false" #mobile>
                     <ion-option *ngFor="let mobile of listMobiles()">{{mobile.mobile}}</ion-option>
                 </ion-select>
             </ion-item>
+                        <ion-item>
+                <button item-right (click)="addNewField()">
+                    Add new Mobile <ion-icon name="md-add"></ion-icon>
+                </button>
+            </ion-item>
 
             <ion-item>
-                <ion-label>Date</ion-label>
+                <ion-label>Delivery Date</ion-label>
                 <ion-datetime displayFormat="YYYY-MM-DD HH:mm:ss" min="2017" max="2018-10-31" #date>
                 </ion-datetime>
             </ion-item>

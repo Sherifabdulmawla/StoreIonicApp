@@ -52207,6 +52207,21 @@ page-cart .span {
   max-width: none;
 }
 
+.button {
+  background: #757de8;
+}
+
+body > ion-app > ng-component > ion-nav > page-checkout > ion-content > div.scroll-content > button > span {
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.button:active {
+  background: #ed1c24;
+  color: #000000;
+}
+
 page-edit-data .inputText {
   width: 100%;
 }
