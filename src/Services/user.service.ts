@@ -8,6 +8,7 @@ export class UserService {
 
     public users: any = [];
     public user: any;
+    public userObject;
     public errorMsg=0;
 
     title: string;

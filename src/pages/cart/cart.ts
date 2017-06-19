@@ -13,12 +13,9 @@ export class CartPage {
 
   public id:number;
   swapCartArray;
-  totalPrice=0;
 
   constructor(public cartProductsService:CartProductsService,private toastCtrl: ToastController,public navCtrl: NavController, public navParams: NavParams) {
-    this.calcTotalPrice();
-    this.getTotalPrice();
-    this.getTotalPrice();
+    
   }
 
   ionViewDidLoad() {
@@ -40,17 +37,6 @@ export class CartPage {
       this.productsArrLength = this.cartProductsService.cartProducts.length
     }
     return this.productsArrLength;
-  }
-
-  calcTotalPrice() {
-    for (var i = 0; i < this.cartProductsService.listProducts().length; i++) {
-      this.totalPrice += (parseFloat(this.cartProductsService.listProducts()[i].quantity)) * (parseFloat(this.cartProductsService.listProducts()[i].price));
-    }
-    return this.totalPrice;
-  }
-
-  getTotalPrice() {
-    return this.totalPrice;
   }
 
   testTotalPrice() {

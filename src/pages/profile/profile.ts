@@ -83,15 +83,14 @@ export class ProfilePage {
     this.storage.get('email').then((email) => {
       this.userService.getUserByEmail(email).subscribe(data => {
         this.user = data;
-        //  return this.user;
-        //  console.log("user from profile "+this.user);
+        this.userService.userObject = data;
       },
         (err) => console.log(`errror ${err}`))
     })
   }
 
   getUserData() {
-    return this.user;
+    return this.userService.userObject;
   }
 
   changePassword(password) {

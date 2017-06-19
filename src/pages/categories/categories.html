@@ -22,10 +22,16 @@
 
 <ion-content class="card-background-page">
 
-    <ion-card *ngFor="let catagory of ListCategory()">
-        <img src="https://holisticwellness.ca/wp-content/uploads/2015/08/dairy_products-1100x796.jpg" (click)="showSubCategories($event,catagory.idcategory,catagory.name)"/>
-        <div class="card-title" (click)="showSubCategories($event,catagory.idcategory,catagory.name)">{{catagory.name}}</div>
-    </ion-card>
+    <div *ngIf="ListCategory().length>0">
+        <ion-card *ngFor="let catagory of ListCategory()">
+            <img src="https://holisticwellness.ca/wp-content/uploads/2015/08/dairy_products-1100x796.jpg" (click)="showSubCategories($event,catagory.idcategory,catagory.name)" />
+            <div class="card-title" (click)="showSubCategories($event,catagory.idcategory,catagory.name)">{{catagory.name}}</div>
+        </ion-card>
+    </div>
+
+    <div *ngIf="ListCategory().length == 0" style="text-align:center; color:grey">
+        <h4>Empty</h4>
+    </div>
 
     <!--<ion-card>
         <img src="http://www.foodbusinessnews.net/-/media/ImagesNew/FoodBusinessNews/Features-2016/2/PepsiBevs_Embedded.jpg" />

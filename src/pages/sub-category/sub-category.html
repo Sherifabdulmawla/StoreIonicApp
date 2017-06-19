@@ -6,10 +6,16 @@
 
 <ion-content class="card-background-page">
 
-    <ion-card *ngFor="let catagory of subcatagories">
-        <img src="../../assets/img/card-sf.jpg" (click)="showProductsList($event,catagory.idcategory,catagory.name)"/>
-        <div class="card-title"  (click)="showProductsList($event,catagory.idcategory,catagory.name)">{{catagory.name}}</div>
-    </ion-card>
+    <div *ngIf="subcatagories.length > 0">
+        <ion-card *ngFor="let catagory of subcatagories">
+            <img src="../../assets/img/card-sf.jpg" (click)="showProductsList($event,catagory.idcategory,catagory.name)" />
+            <div class="card-title" (click)="showProductsList($event,catagory.idcategory,catagory.name)">{{catagory.name}}</div>
+        </ion-card>
+    </div>
+
+    <div *ngIf="subcatagories.length == 0" style="text-align:center; color:grey">
+        <h4>Empty</h4>
+    </div>
 
 </ion-content>
 

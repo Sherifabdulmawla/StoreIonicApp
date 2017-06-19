@@ -22,16 +22,6 @@
     </div>
 
     <br/>
-    <ion-card *ngIf="checkArrLength()>0">
-        <ion-card-header>
-            Total Price
-        </ion-card-header>
-        <ion-card-content>
-            {{getTotalPrice()}}
-        </ion-card-content>
-    </ion-card>
-
-    <br/>
     <div *ngIf="checkArrLength()>0">
         <button (click)="deleteAll()" ion-button full>delete all</button>
     </div>
