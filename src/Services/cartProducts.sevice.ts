@@ -75,6 +75,15 @@ export class CartProductsService {
         });
     }
 
+    updateSelectedQuantity(idproduct,newQuantity) {
+        for(var i=0 ; i<this.cartProducts.length ; i++) {
+            if(idproduct == this.cartProducts[i].idproduct){
+                this.cartProducts[i].quantity = newQuantity;
+            }
+            // this.addProductsToCart(this.cartProducts[i]);
+        }
+    }
+
     deleteProduct(id) {
         this.storage.get(this.user_email).then((val)=>{
             this.cartProducts = JSON.parse(val);

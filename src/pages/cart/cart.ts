@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams ,ToastController } from 'ionic-angular';
 import { CheckoutPage } from "../checkout/checkout";
 import { CartProductsService } from "../../Services/cartProducts.sevice";
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'page-cart',
@@ -14,7 +15,7 @@ export class CartPage {
   public id:number;
   swapCartArray;
 
-  constructor(public cartProductsService:CartProductsService,private toastCtrl: ToastController,public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public storage:Storage,public cartProductsService:CartProductsService,private toastCtrl: ToastController,public navCtrl: NavController, public navParams: NavParams) {
     
   }
 
@@ -41,6 +42,12 @@ export class CartPage {
 
   updateSelectedQuantity(idproduct,newQuantity) {
     console.log("product id: "+idproduct+" new quantity: "+newQuantity);
+    // this.storage.get('email').then((emailVal)=> {
+    //   console.log("before "+emailVal);
+    //   this.storage.remove(emailVal);
+    //   console.log("after "+emailVal)
+    // })
+    this.cartProductsService.updateSelectedQuantity(idproduct,newQuantity);
   }
 
   testTotalPrice() {
