@@ -41,12 +41,6 @@ export class CartPage {
   }
 
   updateSelectedQuantity(idproduct,newQuantity) {
-    console.log("product id: "+idproduct+" new quantity: "+newQuantity);
-    // this.storage.get('email').then((emailVal)=> {
-    //   console.log("before "+emailVal);
-    //   this.storage.remove(emailVal);
-    //   console.log("after "+emailVal)
-    // })
     this.cartProductsService.updateSelectedQuantity(idproduct,newQuantity);
   }
 

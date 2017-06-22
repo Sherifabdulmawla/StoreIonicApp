@@ -44,7 +44,8 @@ export class CheckoutPage {
           data => {
             this.orderId = data;
             console.log(this.orderId);
-            this.cartproduct = this.cartProductsService.listProducts();
+            this.cartproduct = this.cartProductsService.cartProducts;
+            console.log("first element "+this.cartproduct[0].quantity);
             console.log("cart product", this.cartproduct);
             this.orderservice.addorderdetails(this.orderId, this.cartproduct);
             this.orderservice.updateProductQuantity(this.cartproduct);

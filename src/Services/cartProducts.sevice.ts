@@ -42,9 +42,7 @@ export class CartProductsService {
                     console.log("first time");
                     this.msg = "Product is added to cart correctlly";
                     this.events.publish('msg', this.msg);
-                    console.log("msg from service: " + this.msg);
                     this.cartProducts.push(productObject);
-                    console.log("test befor store " + this.cartProducts);
                     this.storage.set(this.user_email, JSON.stringify(this.cartProducts));
                     return;
                 } else {
@@ -53,8 +51,6 @@ export class CartProductsService {
                         if (productObject.barcode == this.cartProducts[i].barcode) {
                             this.msg = "already added";
                             this.events.publish('msg', this.msg);
-                            console.log("msg from service: " + this.msg);
-                            console.log("equal");
                             break;
                         } else {
                             if (i == this.cartProducts.length - 1) {
@@ -63,8 +59,6 @@ export class CartProductsService {
                                 this.cartProducts.push(productObject)
                                 this.storage.set(this.user_email, JSON.stringify(this.cartProducts));
                                 this.cartProductsLength = this.cartProducts.length;
-                                console.log("msg from service: " + this.msg);
-                                console.log("not equal");
                                 break;
                             }
                         }
@@ -79,8 +73,9 @@ export class CartProductsService {
         for(var i=0 ; i<this.cartProducts.length ; i++) {
             if(idproduct == this.cartProducts[i].idproduct){
                 this.cartProducts[i].quantity = newQuantity;
+                console.log("new quantity change "+this.cartProducts[i].quantity);
             }
-            // this.addProductsToCart(this.cartProducts[i]);
+            console.log(this.cartProducts[i]);
         }
     }
 
