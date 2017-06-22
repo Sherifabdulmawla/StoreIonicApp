@@ -9,7 +9,7 @@ export class UserService {
     public users: any = [];
     public user: any;
     public userObject;
-    public errorMsg=0;
+    public errorMsg = 0;
 
     title: string;
     quantity: number;
@@ -23,12 +23,12 @@ export class UserService {
     userUrl = "https://storewebservice.herokuapp.com/users/";
     useraddressUrl = "https://storewebservice.herokuapp.com/usersaddress/";
     usermobileUrl = "https://storewebservice.herokuapp.com/Mobiles/"
-    constructor(private storage: Storage,private http: Http) {
+
+    constructor(private storage: Storage, private http: Http) {
         storage.get('id').then((val) => {
-           this. listMobiles(val);
-           this.listAddress(val);
-    })
-        
+            this.listMobiles(val);
+            this.listAddress(val);
+        })
     }
 
     getUserByEmail(email: string) {
@@ -38,6 +38,7 @@ export class UserService {
     login(email: string, password: string) {
         return this.http.get(this.userUrl + "user" + "/" + email + "/" + password).map((response: Response) => response.json())
     }
+
     addUser(userName: string, email: string, password: string) {
         if (userName != "" && email != "" && password != "") {
             let newUser = {
@@ -49,7 +50,6 @@ export class UserService {
 
         }
     }
-
 
     AddNewAddress(id, country, city, street) {
         let newaddress = {
@@ -67,7 +67,6 @@ export class UserService {
         )
     }
 
-
     AddNewMobile(id, mobile) {
         let newmobile = {
             "iduser": id,
@@ -77,45 +76,55 @@ export class UserService {
             data => {
                 console.log(data);
                 this.mobiles.push(data);
-                this.errorMsg=0;
+                this.errorMsg = 0;
             },
-            (err) => this.errorMsg=1 
+            (err) => this.errorMsg = 1
         )
     }
 
     listMobiles(userid) {
-        console.log("inside service id ",userid);
-       this.http.get(this.usermobileUrl + "/" + userid).map((response: Response) => response.json()).subscribe(data => {
-       // data = JSON.stringify(data);
-        this.mobiles = data;
-        console.log("mobile", this.mobiles);
-        console.log("stringfy data " + JSON.stringify(data))
-      }
-        , (err) => console.log(`error happen ${err}`))
+        console.log("inside service id ", userid);
+        this.http.get(this.usermobileUrl + "/" + userid).map((response: Response) => response.json()).subscribe(data => {
+            // data = JSON.stringify(data);
+            this.mobiles = data;
+            console.log("mobile", this.mobiles);
+            console.log("stringfy data " + JSON.stringify(data))
+        }
+            , (err) => console.log(`error happen ${err}`))
 
     }
-    get Mobiles(){
-       return this.mobiles;
-    }
-      listAddress(userid) {
-       this.http.get(this.useraddressUrl + "/" + userid).map((response: Response) => response.json()).subscribe(data => {
-       // data = JSON.stringify(data);
-        this.addresses = data;
-      }
-        , (err) => console.log(`error happen ${err}`))
 
-    }
-    get Addresses(){
-       return this.addresses;
+    get Mobiles() {
+        return this.mobiles;
     }
 
-    edituserdata(userid,newuser){
-         this.http.put(this.userUrl+"/"+userid,newuser).map((response: Response) => response.json()).subscribe(data => {
-                console.log(data);
-                // this.userObject=[];
-                this.userObject.push(data);
-      }
-        , (err) => console.log(`error happen ${err}`))
+    listAddress(userid) {
+        this.http.get(this.useraddressUrl + "/" + userid).map((response: Response) => response.json()).subscribe(data => {
+            // data = JSON.stringify(data);
+            this.addresses = data;
+        }
+            , (err) => console.log(`error happen ${err}`))
+
+    }
+
+    get Addresses() {
+        return this.addresses;
+    }
+
+    edituserdata(userid, newuser) {
+        this.http.put(this.userUrl + "/" + userid, newuser).map((response: Response) => response.json()).subscribe(data => {
+            console.log(data);
+            // this.userObject=[];
+            this.userObject.push(data);
+            this.storage.get('email').then((email) => {
+                this.getUserByEmail(email).subscribe(data => {
+                    this.user = data;
+                    this.userObject = data;
+                },
+                    (err) => console.log(`errror ${err}`))
+            })
+        }
+            , (err) => console.log(`error happen ${err}`))
 
     }
 }

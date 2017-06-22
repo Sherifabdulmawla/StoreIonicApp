@@ -6,7 +6,7 @@ import { Storage } from '@ionic/storage';
 import 'rxjs/add/operator/map';
 @Injectable()
 export class OrderService {
-    public orders: any = [];
+    orders = [];
     user_id;
     orderId;
     orderUrl = "https://storewebservice.herokuapp.com/orders";
@@ -29,11 +29,10 @@ export class OrderService {
             (err) => console.log(`error happened getting todos ${err}`)
             );
     }
+
     get Orders() {
         return this.orders;
     }
-
-
 
     addorder(iduser, selectedTime, totalPrice, selectedAddress, selectedMobile) {
         console.log(selectedAddress);
@@ -48,12 +47,14 @@ export class OrderService {
             "selectedmobile": selectedMobile
         }
         console.log("new order", neworder);
-        this.orders.push(neworder);
-        console.log("array "+this.orders);
+        if(this.orders.length == 0) {
+            this.orders = [neworder];
+        } 
+        // this.orders.push(neworder);
+        // console.log("array "+this.orders);
         return this.http.post(this.orderUrl, neworder).map((response: Response) => response.json())
 
     }
-
 
     addorderdetails(orderid, cartproduct) {
         let orderproduct = [];
@@ -95,7 +96,6 @@ export class OrderService {
             )
     }
 
-   
     getorderdetails(orderid){
         return this.http.get(this.orderUrl+"/"+"details"+"/"+orderid).map((response: Response) => response.json())
     }
