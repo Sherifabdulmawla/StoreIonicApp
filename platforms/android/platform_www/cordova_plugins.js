@@ -91,7 +91,8 @@ module.exports.metadata =
     "cordova-plugin-whitelist": "1.3.2",
     "cordova-sqlite-plugin": "3.1.1",
     "ionic-plugin-keyboard": "2.2.1",
-    "phonegap-plugin-barcodescanner": "6.0.6"
+    "phonegap-plugin-barcodescanner": "6.0.6",
+    "cordova-plugin-crosswalk-webview": "2.3.0"
 };
 // BOTTOM OF METADATA
 });
