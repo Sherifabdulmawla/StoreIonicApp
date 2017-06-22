@@ -64,7 +64,7 @@ export class OrderService {
                 "idorder": orderid,
                 "idproduct": cartproduct[i].idproduct,
                 "unitprice": cartproduct[i].price,
-                "quantity": cartproduct[i].quantity
+                "orderquantity": cartproduct[i].quantity
             }
             orderproduct.push(orderproductobject);
         }
