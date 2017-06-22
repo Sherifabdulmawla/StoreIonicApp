@@ -39,6 +39,10 @@ export class CartPage {
     return this.productsArrLength;
   }
 
+  updateSelectedQuantity(idproduct,newQuantity) {
+    console.log("product id: "+idproduct+" new quantity: "+newQuantity);
+  }
+
   testTotalPrice() {
     var inputNum = (<HTMLInputElement>document.getElementById("inputNum")).value;
     console.log(inputNum);

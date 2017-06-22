@@ -15,7 +15,7 @@
 
     <div>
         <ion-list>
-            
+
             <ion-item>
                 <ion-label>choose address</ion-label>
                 <ion-select multiple="false" #address>
@@ -35,7 +35,7 @@
                     <ion-option *ngFor="let mobile of listMobiles()">{{mobile.mobile}}</ion-option>
                 </ion-select>
             </ion-item>
-                        <ion-item>
+            <ion-item>
                 <button item-right (click)="addNewField()">
                     Add new Mobile <ion-icon name="md-add"></ion-icon>
                 </button>
