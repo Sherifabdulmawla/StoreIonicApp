@@ -58,7 +58,7 @@ export class RegisterPage {
                     this.storage.set('email', email).then((val) => {
                       // console.log('val is ' + val);
                       this.storage.get('email').then((val) => {
-                        let testEmail = val;
+                        // let testEmail = val;
                         // console.log('before page change email : ' + testEmail);
                       });
                       this.events.publish('user:logged', val);
