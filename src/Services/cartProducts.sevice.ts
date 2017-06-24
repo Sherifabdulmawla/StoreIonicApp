@@ -70,6 +70,7 @@ export class CartProductsService {
     }
 
     updateSelectedQuantity(idproduct,newQuantity) {
+        this.storage.remove(this.user_email);
         for(var i=0 ; i<this.cartProducts.length ; i++) {
             if(idproduct == this.cartProducts[i].idproduct){
                 this.cartProducts[i].quantity = newQuantity;
@@ -77,6 +78,8 @@ export class CartProductsService {
             }
             console.log(this.cartProducts[i]);
         }
+        this.storage.set(this.user_email, JSON.stringify(this.cartProducts));
+        
     }
 
     deleteProduct(id) {
@@ -93,14 +96,8 @@ export class CartProductsService {
     }
 
     deleteAllProducts() {
-        this.storage.get(this.user_email).then((val) => {
-            console.log("before " + val);
-        });
         this.storage.remove(this.user_email);
         this.cartProducts = [];
-        this.storage.get(this.user_email).then((val) => {
-            console.log("after " + val);
-        });
     }
 
 }
