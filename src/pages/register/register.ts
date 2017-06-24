@@ -41,37 +41,46 @@ export class RegisterPage {
       && street.length > 0 && password.length > 0) {
       if (this.emailPattern.test(email)) {
         if (this.mobilePattern.test(mobile)) {
-          if(password.length >6 ){
-          if (password == confirmPass) {
-            this.userService.addUser(name, email, password).subscribe(
-              data => {
-                this.userid = data;
-                console.log("user id method ", this.userid);
-                this.storage.set('email', email).then((val) => {
-                  console.log('val is ' + val);
-                  this.storage.get('email').then((val) => {
-                    let testEmail = val;
-                    console.log('before page change email : ' + testEmail);
-                  });
-                  this.events.publish('user:logged', val);
-                  this.navCtrl.setRoot(HomePage, {
-                    "user_email": val
-                  });
-                });
-                this.storage.set('id', this.userid);
-                this.userService.AddNewAddress(this.userid, country, city, street);
-                this.userService.AddNewMobile(this.userid, mobile);
-              },
-              (err) => console.log(`errror ${err}`)
-            )
+          if (password.length > 6) {
+            if (password == confirmPass) {
+              this.userService.addUser(name, email, password).subscribe(
+                data => {
+                  if (JSON.stringify(data) == '{"code":"ER_DUP_ENTRY","errno":1062,"sqlState":"23000","index":0}') {
+                      let toast = this.toastCtrl.create({
+                      message: 'This email is used befor',
+                      duration: 3000,
+                      position: 'bottom'
+                    }); toast.present();
+                  } else {
+                    console.log("data from register is " + JSON.stringify(data));
+                    this.userid = data;
+                    console.log("user id method ", this.userid);
+                    this.storage.set('email', email).then((val) => {
+                      console.log('val is ' + val);
+                      this.storage.get('email').then((val) => {
+                        let testEmail = val;
+                        console.log('before page change email : ' + testEmail);
+                      });
+                      this.events.publish('user:logged', val);
+                      this.navCtrl.setRoot(HomePage, {
+                        "user_email": val
+                      });
+                    });
+                    this.storage.set('id', this.userid);
+                    this.userService.AddNewAddress(this.userid, country, city, street);
+                    this.userService.AddNewMobile(this.userid, mobile);
+                  }
+                },
+                (err) => console.log(`errror ${err}`)
+              )
+            } else {
+              let toast = this.toastCtrl.create({
+                message: 'Password fields are not matching',
+                duration: 3000,
+                position: 'bottom'
+              }); toast.present();
+            }
           } else {
-            let toast = this.toastCtrl.create({
-              message: 'Password fields are not matching',
-              duration: 3000,
-              position: 'bottom'
-            }); toast.present();
-          }
-          }else {
             let toast = this.toastCtrl.create({
               message: 'Password length must be greater than 7 characters',
               duration: 3000,
