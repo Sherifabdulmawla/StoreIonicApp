@@ -1,11 +1,3 @@
-<!--
-  Generated template for the ProfilePage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-
-
 <ion-header>
 
     <header myTitle="Profile"></header>
@@ -16,55 +8,70 @@
 
     <ion-card id="bottomCard">
 
-        <ion-card-header (click)="editData()">
-            <a href="#">Edit Data</a>
+        <ion-card-header id="profile">
+            Basic Info
         </ion-card-header>
 
         <div>
             <ion-list *ngFor="let user of getUserData()">
-                <button ion-item>
+                <button ion-item class="profile">
                     <ion-icon name="md-person" item-left></ion-icon>
                         {{user.name}}
                 </button>
 
-                <button ion-item>
+                <button ion-item class="profile">
                     <ion-icon name="md-mail" item-left></ion-icon>
                         {{user.email}}
                 </button>
-
-                <input type="text" placeholder="add Mobile" item-left #mobile>
-                <button item-right (click)="addNewMobile(mobile.value)">
-                        <ion-icon name="md-add-circle" item-left></ion-icon>
+                <ion-item>
+                    <button ion-button full (click)="editData()">
+                    Edit Info
                 </button>
-                <br/>
+                </ion-item>
 
+                <ion-card-header id="profile" (click)="editData()">
+                    Mobile Numbers
+                </ion-card-header>
                 <ion-list>
-                    <ion-item *ngFor="let mob of listMobiles()">{{mob.mobile}}
-                    </ion-item>
-                </ion-list>
 
-                <!--<button item-left *ngFor="let mob of listMobiles()">{{mob.mobile}}</button>-->
-                <button ion-item (click)="addNewAddress()">add new address
-                        <ion-icon name="md-add" item-right></ion-icon>
+                    <button ion-item *ngFor="let mob of listMobiles()" class="profile">
+                    <ion-icon name="phone-portrait" item-left></ion-icon>{{mob.mobile}}
                 </button>
+                    <ion-grid>
+                        <ion-row>
+                            <ion-col col-10>
+                                <ion-item>
+                                    <ion-label floating>Add New Mobile</ion-label>
+                                    <ion-input type="tel" class="inputText" required #mobile></ion-input>
+                                </ion-item>
+                            </ion-col>
+                            <ion-col col-2>
+                                <ion-icon id="addicon" name="md-add-circle" item-right (click)="addNewMobile(mobile.value)"></ion-icon>
+
+                            </ion-col>
 
 
-                <ion-list>
-                    <ion-item *ngFor="let address of listAddresses()">
-                        {{address.country}}/{{address.city}}/{{address.street}}
-                    </ion-item>
+                        </ion-row>
+                    </ion-grid>
+
+
                 </ion-list>
-                <!--<button item-left *ngFor="let address of listAddresses()">
-                    {{address.country}}/{{address.city}}/{{address.street}}
-                </button>-->
+                <ion-card-header id="profile" (click)="editData()">
+                    Addresses
+                </ion-card-header>
+                <ion-list>
+                    <button ion-item *ngFor="let address of listAddresses()" class="profile" class="addresses">
+                    <ion-icon name="md-home" item-left></ion-icon>{{address.street}} St,<br>
+                    {{address.city}},<br>{{address.country}}
+                </button>
+                </ion-list>
+                <ion-item>
+                    <button ion-button full (click)="addNewAddress()">
+                    Add New Address &nbsp; <ion-icon name="md-add"></ion-icon>
+                </button>
+                </ion-item>
 
-                <!--<button ion-item>
-                    <button ion-item>
-                        <ion-icon name="md-add" item-right></ion-icon>
-                    </button>
-                <ion-icon name="md-navigate" item-left></ion-icon>
-                <ion-icon name="md-add-circle" item-right></ion-icon>
-                </button>-->
+
 
             </ion-list>
 

@@ -33,7 +33,7 @@ export class RegisterPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad RegisterPage');
+    // console.log('ionViewDidLoad RegisterPage');
   }
 
   register(name, email, mobile, country, city, street, password, confirmPass) {
@@ -47,19 +47,19 @@ export class RegisterPage {
                 data => {
                   if (JSON.stringify(data) == '{"code":"ER_DUP_ENTRY","errno":1062,"sqlState":"23000","index":0}') {
                       let toast = this.toastCtrl.create({
-                      message: 'This email is used befor',
+                      message: 'This email is already in use',
                       duration: 3000,
                       position: 'bottom'
                     }); toast.present();
                   } else {
-                    console.log("data from register is " + JSON.stringify(data));
+                    // console.log("data from register is " + JSON.stringify(data));
                     this.userid = data;
-                    console.log("user id method ", this.userid);
+                    // console.log("user id method ", this.userid);
                     this.storage.set('email', email).then((val) => {
-                      console.log('val is ' + val);
+                      // console.log('val is ' + val);
                       this.storage.get('email').then((val) => {
                         let testEmail = val;
-                        console.log('before page change email : ' + testEmail);
+                        // console.log('before page change email : ' + testEmail);
                       });
                       this.events.publish('user:logged', val);
                       this.navCtrl.setRoot(HomePage, {
@@ -103,7 +103,7 @@ export class RegisterPage {
       }
     } else {
       let toast = this.toastCtrl.create({
-        message: "You must fill all fields",
+        message: "Please fill all fields accurately",
         duration: 3000,
         position: 'bottom'
       }); toast.present();
@@ -130,7 +130,7 @@ export class RegisterPage {
     var request = new XMLHttpRequest();
 
     var method = 'GET';
-    var url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + latitude + ',' + longitude + '&sensor=true';
+    var url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + latitude + ',' + longitude + '&sensor=true';
     var async = true;
     var address;
 
@@ -141,13 +141,9 @@ export class RegisterPage {
         address = data.results[0];
         address = address.formatted_address;
         address = address.split(',');
-        console.log(address + data.results);
         RegisterPage.street = address[0];
         RegisterPage.city = address[1];
         RegisterPage.country = address[2];
-        // console.log("country drom observer "+RegisterPage.country);
-        // var detailedAddress = address[1] + " " + address[0];
-        // alert(detailedAddress)
       }
     };
     request.send();

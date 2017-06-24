@@ -5,7 +5,7 @@ import { UserService } from "../../Services/user.service";
 import { Storage } from '@ionic/storage';
 import { Geolocation } from '@ionic-native/geolocation';
 
-declare var country: any;
+declare var state: any;
 declare var city: any;
 declare var street: any;
 
@@ -16,7 +16,7 @@ declare var street: any;
 export class AddAddressPage {
 
   user_id;
-  public static country: string;
+  public static state: string;
   public static city: string;
   public static street: string;
   msg;
@@ -28,16 +28,16 @@ export class AddAddressPage {
     console.log('ionViewDidLoad AddAddressPage');
   }
 
-  addAddress(country, city, street) {
-    if (country.length > 0 && city.length > 0 && street.length > 0) {
+  addAddress(state, city, street) {
+    if (state.length > 0 && city.length > 0 && street.length > 0) {
       this.storage.get('id').then((user_id) => {
         this.user_id = user_id;
-        this.userService.AddNewAddress(this.user_id, country, city, street);
+        this.userService.AddNewAddress(this.user_id, state, city, street);
       })
       this.navCtrl.push(ProfilePage);
     } else {
       let toast = this.toastCtrl.create({
-        message: "please fill all fields",
+        message: "Please fill all fields accurately",
         duration: 3000,
         position: 'bottom'
       }); toast.present();
@@ -77,8 +77,8 @@ export class AddAddressPage {
         console.log(address + data.results);
         AddAddressPage.street = address[0];
         AddAddressPage.city = address[1];
-        AddAddressPage.country = address[2];
-        // console.log("country drom observer "+RegisterPage.country);
+        AddAddressPage.state = address[2];
+        // console.log("state drom observer "+AddAddressPage.state);
         // var detailedAddress = address[1] + " " + address[0];
         // alert(detailedAddress)
       }
@@ -94,8 +94,8 @@ export class AddAddressPage {
     return AddAddressPage.street;
   }
 
-  getCountry() {
-    return AddAddressPage.country
+  getState() {
+    return AddAddressPage.state
   }
 
 }

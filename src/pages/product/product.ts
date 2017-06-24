@@ -35,7 +35,7 @@ export class ProductPage {
   presentToast(idproduct, name, barcode, quantity, price, description, productQuantity) {
     if (this.user_email == null) {
       let toast = this.toastCtrl.create({
-        message: 'You must login',
+        message: 'You must login first',
         duration: 3000,
         position: 'bottom'
       });
@@ -47,7 +47,7 @@ export class ProductPage {
     } else {
       if (productQuantity == 0) {
         let toast = this.toastCtrl.create({
-          message: 'out of stock',
+          message: 'This product is out of stock',
           duration: 3000,
           position: 'bottom'
         });
@@ -57,7 +57,7 @@ export class ProductPage {
         toast.present();
       } else if (quantity > productQuantity) {
         let toast = this.toastCtrl.create({
-          message: 'not enough quantity, only ' + productQuantity + " available",
+          message: 'Not enough quantity, only '+ productQuantity +" items available",
           duration: 3000,
           position: 'bottom'
         });
@@ -67,7 +67,7 @@ export class ProductPage {
         toast.present();
       } else if (quantity < 1) {
         let toast = this.toastCtrl.create({
-          message: 'quantity must by greater than 1',
+          message: 'Minimum quantity should be 1',
           duration: 3000,
           position: 'bottom'
         });

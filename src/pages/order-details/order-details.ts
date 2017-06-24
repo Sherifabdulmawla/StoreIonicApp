@@ -24,9 +24,9 @@ export class OrderDetailsPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad OrderDetailsPage');
-     console.log("shimaa "+this.Orderdetails);
-    console.log("aya"+this.orderdetails);
+    // console.log('ionViewDidLoad OrderDetailsPage');
+    //  console.log("shimaa "+this.Orderdetails);
+    // console.log("aya"+this.orderdetails);
   }
 
   backBtn() {

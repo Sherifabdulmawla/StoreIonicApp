@@ -59,7 +59,7 @@ export class MyApp {
       if (val != null) {
         this.pages = [
           { title: 'Home', component: HomePage },
-          { title: 'profile', component: ProfilePage },
+          { title: 'Profile', component: ProfilePage },
           { title: 'Cart', component: CartPage },
           { title: 'Categories', component: CategoriesPage },
           { title: 'History', component: OrderHistoryPage }
@@ -71,7 +71,7 @@ export class MyApp {
       } else if (this.isLoggedUser() == this.user_email) {
         this.pages = [
           { title: 'Home', component: HomePage },
-          { title: 'profile', component: ProfilePage },
+          { title: 'Profile', component: ProfilePage },
           { title: 'Cart', component: CartPage },
           { title: 'Categories', component: CategoriesPage },
           { title: 'History', component: OrderHistoryPage },

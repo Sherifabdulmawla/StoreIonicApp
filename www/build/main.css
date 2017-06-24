@@ -52140,59 +52140,66 @@ ion-menu > div > ion-content > div.scroll-content {
   left: -15px;
 }
 
-page-cart #inputNum {
-  width: 5px;
-  height: 1005;
-  max-width: 30%;
+body > ion-app > ng-component > ion-nav > page-add-address > ion-content > div.scroll-content > form > ion-item:nth-child(6) > div.item-inner,
+body > ion-app > ng-component > ion-nav > page-add-address > ion-content > div.scroll-content > form > ion-item:nth-child(1) > div.item-inner {
+  border-bottom: none;
 }
 
-page-cart #inputdelete {
-  width: 30px;
+.button {
+  background: #757de8;
+  height: 2em;
 }
 
-page-cart body {
-  cursor: url("http://ionicframework.com/img/finger.png"), auto;
+body > ion-app > ng-component > ion-nav > page-register > ion-content > div.scroll-content > form > ion-item:nth-child(5) > div.item-inner > div > ion-label > button > span, body > ion-app > ng-component > ion-nav > page-register > ion-content > div.scroll-content > form > ion-item:nth-child(12) > div.item-inner > div > ion-label > button > span {
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.button:active {
+  background: #ed1c24;
+  color: #000000;
 }
 
 page-cart .header .col {
   background-color: #757de8;
 }
 
-page-cart .col {
-  border: 1px solid #354073;
+page-cart #productWrapper, page-cart #priceWrapper {
+  padding-top: 0.8em;
+}
+
+page-cart #inputNum {
+  width: 80%;
+}
+
+page-cart ion-grid {
+  display: table;
+}
+
+page-cart ion-row {
+  display: table-row;
+}
+
+page-cart ion-col {
+  display: table-column;
   vertical-align: middle;
   text-align: center;
-  width: 20px;
+  border: 1px solid #002984;
+  border-bottom: none;
+  border-right: none;
 }
 
-page-cart #hh {
-  width: 20px;
+page-cart ion-col:last-child {
+  border-right: 1px solid #002984;
 }
 
-page-cart #notification-button {
-  position: relative;
-  width: 42px;
-  top: 1px;
-  left: 1px;
-  overflow: visible !important;
+page-cart ion-row:last-child {
+  border-bottom: 1px solid #002984;
 }
 
-page-cart #notifications-badge {
-  background-color: red;
-  position: absolute;
-  top: -3px;
-  left: -3px;
-  border-radius: 100%;
-}
-
-page-cart #emptyDiv {
-  text-align: center;
-  vertical-align: middle;
-}
-
-page-cart .span {
-  text-align: center;
-  text-shadow: 20ch;
+page-cart #inputdelete {
+  padding: 0;
 }
 
 .card-background-page ion-card {
@@ -52228,8 +52235,37 @@ body > ion-app > ng-component > ion-nav > page-checkout > ion-content > div.scro
   color: #000000;
 }
 
-page-edit-data .inputText {
+ion-datetime, ion-select {
+  max-width: none;
+  border-bottom: 1px solid #dedede;
+  padding: none;
   width: 100%;
+}
+
+#checkout {
+  background: #ed1c24;
+  font-weight: bold;
+  font-size: 100%;
+}
+
+body > ion-app > ng-component > ion-nav > page-edit-data > ion-content > div.scroll-content > div > form > ion-item:nth-child(4) > div.item-inner > div > ion-label > button {
+  background: #757de8;
+  height: 3em;
+}
+
+body > ion-app > ng-component > ion-nav > page-register > ion-content > div.scroll-content > form > ion-item:nth-child(5) > div.item-inner > div > ion-label > button > span, body > ion-app > ng-component > ion-nav > page-register > ion-content > div.scroll-content > form > ion-item:nth-child(12) > div.item-inner > div > ion-label > button > span {
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.button:active {
+  background: #ed1c24;
+  color: #000000;
+}
+
+body > ion-app > ng-component > ion-nav > page-edit-data > ion-content > div.scroll-content > div > form > ion-item:nth-child(4) > div.item-inner {
+  border-bottom: none;
 }
 
 .button {
@@ -52339,6 +52375,13 @@ body > ion-app > ng-component > ion-nav > page-product > ion-content > div.scrol
   color: #000000;
 }
 
+.card .note-md {
+  font-size: 1em;
+  background: mediumslateblue;
+  color: #000000;
+  padding: 5px;
+}
+
 .card-background-page ion-card {
   position: relative;
   text-align: center;
@@ -52361,22 +52404,42 @@ body > ion-app > ng-component > ion-nav > page-product > ion-content > div.scrol
   margin: none;
 }
 
-page-profile #bottomCard {
-  margin-top: 40px;
+#profile {
+  color: #002984;
+  text-align: left;
 }
 
-page-profile .card-background-page ion-card {
-  position: relative;
-  text-align: center;
+input {
+  width: 50%;
 }
 
-page-profile .card-background-page .card-title {
-  position: absolute;
-  top: 36%;
-  font-size: 2.0em;
-  width: 100%;
-  font-weight: bold;
-  color: #fff;
+#bottomCard > div > ion-list > ion-list:nth-child(3) > ion-grid > ion-row > ion-col:nth-child(2) > ion-icon {
+  padding-top: 35px;
+  font-size: 2em;
+}
+
+#addicon {
+  font-size: 2.8em;
+  padding-top: 20px;
+}
+
+.profile {
+  border-bottom: 1px solid #dedede;
+}
+
+.addresses {
+  padding-bottom: 5px;
+  padding-top: 5px;
+  border-bottom: 1px solid #dedede;
+}
+
+.addresses:last-child {
+  border-bottom: none;
+}
+
+#bottomCard > div > ion-list > ion-item:nth-child(3) > div.item-inner > div > ion-label > button, #bottomCard > div > ion-list > ion-item:nth-child(8) > div.item-inner > div > ion-label > button {
+  background: #757de8;
+  height: 3em;
 }
 
 body > ion-app > ng-component > ion-nav > page-register > ion-content > div.scroll-content > form > ion-item:nth-child(5) > div.item-inner, body > ion-app > ng-component > ion-nav > page-register > ion-content > div.scroll-content > form > ion-item:nth-child(12) > div.item-inner {

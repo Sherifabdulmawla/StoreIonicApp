@@ -5,51 +5,53 @@
 <ion-content padding>
 
     <ion-card>
-        <ion-card-header>
-            Total Price
+        <ion-card-header id="checkout">
+            Total Price: {{getTotalPrice()}} EGP
         </ion-card-header>
+        <br>
         <ion-card-content>
-            {{getTotalPrice()}} EGP
+            <ion-list>
+                <ion-item>
+                    <ion-label>Choose Address</ion-label>
+                    <ion-select multiple="false" #address placeholder="Choose Address">
+                        <ion-option *ngFor="let address of listAddresses()">{{address.street}} St,{{address.city}},{{address.country}}/</ion-option>
+                    </ion-select>
+                </ion-item>
+                <ion-item>
+                    <button ion-button full (click)="addNewField()">
+                    Or Add New One &nbsp; <ion-icon name="md-add"></ion-icon>
+                </button>
+                </ion-item>
+                <br>
+
+                <ion-item>
+                    <ion-label>Choose Mobile</ion-label>
+                    <ion-select multiple="false" #mobile placeholder="Choose Mobile">
+                        <ion-option *ngFor="let mobile of listMobiles()">{{mobile.mobile}}</ion-option>
+                    </ion-select>
+                </ion-item>
+
+                <ion-item>
+                    <button ion-button full (click)="addNewField()">
+                    Or Add New One &nbsp; <ion-icon name="md-add"></ion-icon>
+                </button>
+                </ion-item>
+                <br>
+
+                <ion-item>
+                    <ion-label>Choose Delivery Time</ion-label>
+                    <ion-datetime displayFormat="DD MMM - hh:mm A" min="2017" max="2018-10-31" #date placeholder="Delivery Time">
+                    </ion-datetime>
+                </ion-item>
+            </ion-list>
+            <br>
+
+            <button ion-button full (click)="confirm(address.value,mobile.value,date.value)"> confirm </button>
+
         </ion-card-content>
     </ion-card>
 
-    <div>
-        <ion-list>
 
-            <ion-item>
-                <ion-label>choose address</ion-label>
-                <ion-select multiple="false" #address>
-                    <ion-option *ngFor="let address of listAddresses()">{{address.country}}/{{address.city}}/{{address.street}}</ion-option>
-                </ion-select>
-            </ion-item>
-            <ion-item>
-                <button item-right (click)="addNewField()">
-                    Add new Address <ion-icon name="md-add"></ion-icon>
-                </button>
-            </ion-item>
-
-
-            <ion-item>
-                <ion-label>Choose mobile</ion-label>
-                <ion-select multiple="false" #mobile>
-                    <ion-option *ngFor="let mobile of listMobiles()">{{mobile.mobile}}</ion-option>
-                </ion-select>
-            </ion-item>
-            <ion-item>
-                <button item-right (click)="addNewField()">
-                    Add new Mobile <ion-icon name="md-add"></ion-icon>
-                </button>
-            </ion-item>
-
-            <ion-item>
-                <ion-label>Delivery Date</ion-label>
-                <ion-datetime displayFormat="YYYY-MM-DD HH:mm:ss" min="2017" max="2018-10-31" #date>
-                </ion-datetime>
-            </ion-item>
-        </ion-list>
-    </div>
-
-    <button ion-button full (click)="confirm(address.value,mobile.value,date.value)"> confirm </button>
     <label style="color:red">{{msg}}</label>
 
 </ion-content>

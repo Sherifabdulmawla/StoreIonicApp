@@ -22,7 +22,7 @@ export class ChangePasswordPage {
       
     } else {
       let toast = this.toastCtrl.create({
-        message: "old password is incorrect",
+        message: "Old password is incorrect",
         duration: 3000,
         position: 'bottom'
       }); 

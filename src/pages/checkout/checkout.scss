@@ -11,3 +11,17 @@
     background: color($colors,secondary);
     color:color($colors,textOnS)
 }
+
+ion-datetime, ion-select{
+    max-width:none;
+    border-bottom: 1px solid #dedede;
+    padding: none;
+    width:100%;
+}
+
+#checkout{
+    background: color($colors,secondary);
+    font-weight: bold;
+    font-size:100%;
+}
+

@@ -38,3 +38,10 @@
     background: color($colors,secondary);
     color:color($colors,textOnS)
 }
+
+.card .note-md{
+    font-size: 1em;
+    background: mediumslateblue;
+    color:color($colors,textOnS);
+    padding:5px;
+}

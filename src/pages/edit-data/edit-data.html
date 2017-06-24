@@ -8,7 +8,7 @@
 
 
 <ion-content padding>
-
+    <!--
     <div *ngFor="let user of getUserData()">
         <ion-grid>
             <ion-row>
@@ -35,6 +35,29 @@
                 </ion-col>
             </ion-row>
         </ion-grid>
-    </div>
+    </div>-->
 
+    <div *ngFor="let user of getUserData()">
+        <form name="myForm">
+
+            <ion-item>
+                <ion-label floating>Username</ion-label>
+                <ion-input type="text" class="inputText" required #name value={{user.name}}></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label floating>Email</ion-label>
+                <ion-input input type="email" class="inputText" required #email value={{user.email}}></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label floating>Password</ion-label>
+                <ion-input type="password" class="inputText" required ng-minlength="6" #pass></ion-input>
+            </ion-item>
+            <ion-item>
+
+                <button (click)="editData(name.value,email.value,pass.value)" ion-button full icon-left>Apply change</button>
+            </ion-item>
+        </form>
+    </div>
 </ion-content>

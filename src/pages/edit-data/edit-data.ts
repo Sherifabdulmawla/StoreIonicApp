@@ -31,7 +31,7 @@ export class EditDataPage {
   }
 
   editData(name, email,password) {
-    if (name.length > 0 && email.length > 0) {
+    if (name.length > 0 && email.length > 0 && password.length > 6) {
       if (this.emailPattern.test(email)) {
         this.storage.get('id').then((user_id) => {
         this.newuser={
@@ -44,14 +44,14 @@ export class EditDataPage {
         })
       } else {
         let toast = this.toastCtrl.create({
-          message: "invalid email pattern",
+          message: "Invalid email pattern",
           duration: 3000,
           position: 'bottom'
         }); toast.present();
       }
     } else {
       let toast = this.toastCtrl.create({
-        message: "please fill all data",
+        message: "Please fill all fields accurately",
         duration: 3000,
         position: 'bottom'
       }); toast.present();

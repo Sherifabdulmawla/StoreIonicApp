@@ -41,7 +41,7 @@ export class HomePage {
     if(this.productService.allProducts.length == 0) {
       // console.log("nnnnnnnnnnn")
       let toast = this.toastCtrl.create({
-                message: 'Connection Error, Please Make sure Internet is connected',
+                message: 'Connection Error, Please make sure that you\'re connected to the internet',
                 duration: 3000,
                 position: 'bottom'
             });
@@ -66,7 +66,7 @@ export class HomePage {
           // console.log("inide second if");
             
               let toast = this.toastCtrl.create({
-                message: 'Product is not exist',
+                message: 'Product doesn\'t exist',
                 duration: 3000,
                 position: 'bottom'
             });
@@ -91,7 +91,7 @@ export class HomePage {
   showProfile() {
     if(this.user_email == null){
       let toast = this.toastCtrl.create({
-        message: 'You must login',
+        message: 'You must login first',
         duration: 3000,
         position: 'bottom'
       });
@@ -108,7 +108,7 @@ export class HomePage {
   showHistory() {
     if(this.user_email == null){
       let toast = this.toastCtrl.create({
-        message: 'You must login',
+        message: 'You must login first',
         duration: 3000,
         position: 'bottom'
       });
@@ -125,7 +125,7 @@ export class HomePage {
   showCart() {
     if(this.user_email == null){
       let toast = this.toastCtrl.create({
-        message: 'You must login',
+        message: 'You must login first',
         duration: 3000,
         position: 'bottom'
       });

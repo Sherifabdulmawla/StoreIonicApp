@@ -17,7 +17,7 @@ export class ProfilePage {
   user;
   email;
   user_id;
-  mobilePattern = /010([0-9]{8})/;
+  mobilePattern = /01([0-9]{9})/;
 
   constructor(private storage: Storage, private toastCtrl: ToastController, public userService: UserService, public navCtrl: NavController, public navParams: NavParams) {
     storage.get('email').then((val) => {
@@ -65,14 +65,14 @@ export class ProfilePage {
         })
       } else {
         let toast = this.toastCtrl.create({
-          message: "invalid mobile number",
+          message: "Invalid mobile number",
           duration: 3000,
           position: 'bottom'
         }); toast.present();
       }
     } else {
       let toast = this.toastCtrl.create({
-        message: "please enter mobile number",
+        message: "Please enter mobile number",
         duration: 3000,
         position: 'bottom'
       }); toast.present();

@@ -51,7 +51,7 @@ export class CheckoutPage {
             console.log("done all");
             this.orderservice.getAllOrders(user_id);
             let toast = this.toastCtrl.create({
-              message: "done, your order will deliverd in the time",
+              message: "Done, Your order will be deliverd on time",
               duration: 3000,
               position: 'bottom'
             }); toast.present();
@@ -62,7 +62,11 @@ export class CheckoutPage {
         )
       })
     } else {
-      this.msg = "please fill all fields";
+      let toast = this.toastCtrl.create({
+              message: 'Please fill all fields accurately',
+              duration: 3000,
+              position: 'bottom'
+            }); toast.present();
     }
   }
 
