@@ -7,12 +7,33 @@
 
 
 <ion-content padding>
+    <ion-list *ngIf="getUserOders().length > 0">
+        <ion-list-header>
+            Your Orders History
+        </ion-list-header>
+        <ion-item-sliding>
+            <ion-item *ngFor="let order of getUserOders();">
+                <ion-avatar item-start>
+                    <img src="https://maxcdn.icons8.com/Share/icon/p1em/Time_And_Date//calendar1600.png">
+                    <!--<ion-icon name="calendar"></ion-icon>-->
+                </ion-avatar>
+                <h2>{{ order.ordertime}}</h2>
+            </ion-item>
 
-    <div *ngIf="getUserOders().length > 0">
+            <ion-item-options side="left" *ngFor="let order of getUserOders();">
+                <button ion-button color="secondary" (click)="showOrderHistory(order.idorder,order.ordertime,order.deliverytime,order.totalprice)">
+                    <ion-icon name="productsList"></ion-icon>
+                        products list
+                </button>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+
+    <!--<div *ngIf="getUserOders().length > 0">
         <ion-list *ngFor="let order of getUserOders();" style="text-align:center">
             <button (click)="showOrderHistory(order.idorder,order.ordertime,order.deliverytime,order.totalprice)"><a href=""> {{ order.ordertime}}</a></button>
         </ion-list>
-    </div>
+    </div>-->
 
     <div *ngIf="getUserOders().length == 0" style="text-align:center; color:grey">
         <h4>Empty</h4>
