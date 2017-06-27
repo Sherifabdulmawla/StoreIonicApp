@@ -93,6 +93,6 @@ module.exports.metadata =
     "ionic-plugin-keyboard": "2.2.1",
     "phonegap-plugin-barcodescanner": "6.0.6",
     "cordova-plugin-crosswalk-webview": "2.3.0"
-};
+}
 // BOTTOM OF METADATA
 });
