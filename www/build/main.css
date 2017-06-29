@@ -52161,11 +52161,20 @@ body > ion-app > ng-component > ion-nav > page-register > ion-content > div.scro
   color: #000000;
 }
 
+page-cart #clearAll {
+  float: left;
+}
+
+page-cart #back {
+  float: right;
+}
+
 page-cart .header .col {
   background-color: #757de8;
 }
 
-page-cart #productWrapper, page-cart #priceWrapper {
+page-cart #productWrapper,
+page-cart #priceWrapper {
   padding-top: 0.8em;
 }
 
@@ -52314,33 +52323,61 @@ div.item-inner > div > ion-label > button > span, body > ion-app > ng-component 
   margin: 2px 0px;
 }
 
-page-order-details #inputNum {
-  width: 80%;
-  height: 1005;
-}
-
-page-order-details body {
-  cursor: url("http://ionicframework.com/img/finger.png"), auto;
-}
-
 page-order-details .header .col {
-  background-color: lightgrey;
+  background-color: #757de8;
 }
 
-page-order-details .col {
+page-order-details ion-grid {
+  display: table;
+}
+
+page-order-details ion-row {
+  display: table-row;
+}
+
+page-order-details ion-col {
+  display: table-column;
   vertical-align: middle;
   text-align: center;
-  border: solid 1px grey;
-  border-bottom-style: none;
-  border-right-style: none;
+  border: 1px solid #002984;
+  border-bottom: none;
+  border-right: none;
 }
 
-page-order-details .col:last-child {
-  border-right: solid 1px grey;
+page-order-details ion-col:last-child {
+  border-right: 1px solid #002984;
 }
 
-page-order-details .row:last-child .col {
-  border-bottom: solid 1px grey;
+page-order-details ion-row:last-child {
+  border-bottom: 1px solid #002984;
+}
+
+page-order-history ion-list-header, page-order-history .list-header-md {
+  border-top: none;
+  border-bottom: 1px solid #dedede;
+}
+
+page-order-history .button {
+  background: #ed1c24;
+  width: 2.5em;
+}
+
+page-order-history ion-item-options {
+  height: 100%;
+  margin-right: none;
+  border: 0px;
+}
+
+page-order-history ion-item-sliding {
+  border-bottom: 1px solid #dedede;
+}
+
+page-order-history .item, page-order-history .item-block, page-order-history .item-md {
+  border: none;
+}
+
+page-order-history .item-wrapper.active-slide.active-options-left.active-swipe-left > ion-item-options {
+  border: none;
 }
 
 ion-card {

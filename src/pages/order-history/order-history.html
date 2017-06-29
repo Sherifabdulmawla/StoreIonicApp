@@ -4,36 +4,25 @@
 
 </ion-header>
 
-
-
 <ion-content padding>
-    <ion-list *ngIf="getUserOders().length > 0">
+    <ion-list *ngIf="getUserOders().length > 0" >
         <ion-list-header>
-            Your Orders History
+            Swipe Right For Order Details
         </ion-list-header>
-        <ion-item-sliding>
-            <ion-item *ngFor="let order of getUserOders();">
+        <ion-item-sliding *ngFor="let order of getUserOders();" >
+            <ion-item>
                 <ion-avatar item-start>
-                    <img src="https://maxcdn.icons8.com/Share/icon/p1em/Time_And_Date//calendar1600.png">
-                    <!--<ion-icon name="calendar"></ion-icon>-->
+                    <i class="fa fa-calendar fa-2x" aria-hidden="true"></i>
                 </ion-avatar>
-                <h2>{{ order.ordertime}}</h2>
+                <h2>{{order.ordertime | date:'medium'}}</h2>
             </ion-item>
-
-            <ion-item-options side="left" *ngFor="let order of getUserOders();">
-                <button ion-button color="secondary" (click)="showOrderHistory(order.idorder,order.ordertime,order.deliverytime,order.totalprice)">
-                    <ion-icon name="productsList"></ion-icon>
-                        products list
+            <ion-item-options side="left">
+                <button ion-button (click)="showOrderHistory(order.idorder,order.ordertime,order.deliverytime,order.totalprice)">
+                    <i class="fa fa-question-circle fa-2x" aria-hidden="true"></i>
                 </button>
             </ion-item-options>
         </ion-item-sliding>
     </ion-list>
-
-    <!--<div *ngIf="getUserOders().length > 0">
-        <ion-list *ngFor="let order of getUserOders();" style="text-align:center">
-            <button (click)="showOrderHistory(order.idorder,order.ordertime,order.deliverytime,order.totalprice)"><a href=""> {{ order.ordertime}}</a></button>
-        </ion-list>
-    </div>-->
 
     <div *ngIf="getUserOders().length == 0" style="text-align:center; color:grey">
         <h4>Empty</h4>

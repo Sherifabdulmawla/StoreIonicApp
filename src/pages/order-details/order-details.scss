@@ -2,16 +2,7 @@ page-order-details {
     .header .col {
         background-color: color($colors, pLight);
     }
-    #productWrapper,
-    #priceWrapper {
-        padding-top: 0.8em;
-    }
-    #inputNum {
-        width: 80%;
-    }
-    body {
-        cursor: url('http://ionicframework.com/img/finger.png'), auto;
-    }
+
     ion-grid {
         display: table;
     }
@@ -32,4 +23,7 @@ page-order-details {
     ion-row:last-child {
         border-bottom: 1px solid color($colors, pDark);
     }
+
+
+
 }

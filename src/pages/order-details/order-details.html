@@ -4,8 +4,6 @@
 
 </ion-header>
 
-
-
 <ion-content padding>
 
     <ion-grid>
@@ -22,31 +20,11 @@
         </ion-row>
     </ion-grid>
 
-    <ion-list *ngFor="let product of Orderdetails">
-        <ion-item>Orderd at: {{ordertime}}</ion-item>
-        <ion-item>Total Salary: {{totalprice}}</ion-item>
-    </ion-list>
+
+    <ion-item-group>
+        <ion-item>Date: {{ordertime | date:'medium'}}</ion-item>
+        <ion-item>Total Price: {{totalprice}} EGP</ion-item>
+    </ion-item-group>
 
     <button (click)="backBtn()" ion-button full>OK</button>
-
-    <!--<div class="row header">
-        <div class="col">product name</div>
-        <div class="col">quantity</div>
-        <div class="col">price</div>
-    </div>
-    <div *ngFor="let product of Orderdetails">
-        <div class="row">
-            <div class="col">{{product.name}}</div>
-            <div class="col">{{product.orderquantity}}</div>
-            <div class="col">{{product.orderquantity*product.unitprice}}</div>
-        </div>
-    </div>-->
-
-    <!--<div>
-        <br/> Orderd at: {{ordertime}}<br/> Total Salary: {{totalprice}}
-    </div>
-
-    <br/>-->
-    <!--<button (click)="backBtn()" ion-button full>OK</button>-->
-
 </ion-content>

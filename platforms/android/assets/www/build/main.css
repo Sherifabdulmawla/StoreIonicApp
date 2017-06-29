@@ -52161,11 +52161,20 @@ body > ion-app > ng-component > ion-nav > page-register > ion-content > div.scro
   color: #000000;
 }
 
+page-cart #clearAll {
+  float: left;
+}
+
+page-cart #back {
+  float: right;
+}
+
 page-cart .header .col {
   background-color: #757de8;
 }
 
-page-cart #productWrapper, page-cart #priceWrapper {
+page-cart #productWrapper,
+page-cart #priceWrapper {
   padding-top: 0.8em;
 }
 
@@ -52314,33 +52323,46 @@ div.item-inner > div > ion-label > button > span, body > ion-app > ng-component 
   margin: 2px 0px;
 }
 
+page-order-details .header .col {
+  background-color: #757de8;
+}
+
+page-order-details #productWrapper,
+page-order-details #priceWrapper {
+  padding-top: 0.8em;
+}
+
 page-order-details #inputNum {
   width: 80%;
-  height: 1005;
 }
 
 page-order-details body {
   cursor: url("http://ionicframework.com/img/finger.png"), auto;
 }
 
-page-order-details .header .col {
-  background-color: lightgrey;
+page-order-details ion-grid {
+  display: table;
 }
 
-page-order-details .col {
+page-order-details ion-row {
+  display: table-row;
+}
+
+page-order-details ion-col {
+  display: table-column;
   vertical-align: middle;
   text-align: center;
-  border: solid 1px grey;
-  border-bottom-style: none;
-  border-right-style: none;
+  border: 1px solid #002984;
+  border-bottom: none;
+  border-right: none;
 }
 
-page-order-details .col:last-child {
-  border-right: solid 1px grey;
+page-order-details ion-col:last-child {
+  border-right: 1px solid #002984;
 }
 
-page-order-details .row:last-child .col {
-  border-bottom: solid 1px grey;
+page-order-details ion-row:last-child {
+  border-bottom: 1px solid #002984;
 }
 
 ion-card {
