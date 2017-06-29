@@ -52327,19 +52327,6 @@ page-order-details .header .col {
   background-color: #757de8;
 }
 
-page-order-details #productWrapper,
-page-order-details #priceWrapper {
-  padding-top: 0.8em;
-}
-
-page-order-details #inputNum {
-  width: 80%;
-}
-
-page-order-details body {
-  cursor: url("http://ionicframework.com/img/finger.png"), auto;
-}
-
 page-order-details ion-grid {
   display: table;
 }
@@ -52363,6 +52350,34 @@ page-order-details ion-col:last-child {
 
 page-order-details ion-row:last-child {
   border-bottom: 1px solid #002984;
+}
+
+page-order-history ion-list-header, page-order-history .list-header-md {
+  border-top: none;
+  border-bottom: 1px solid #dedede;
+}
+
+page-order-history .button {
+  background: #ed1c24;
+  width: 2.5em;
+}
+
+page-order-history ion-item-options {
+  height: 100%;
+  margin-right: none;
+  border: 0px;
+}
+
+page-order-history ion-item-sliding {
+  border-bottom: 1px solid #dedede;
+}
+
+page-order-history .item, page-order-history .item-block, page-order-history .item-md {
+  border: none;
+}
+
+page-order-history .item-wrapper.active-slide.active-options-left.active-swipe-left > ion-item-options {
+  border: none;
 }
 
 ion-card {
